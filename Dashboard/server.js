@@ -1,16 +1,24 @@
 const express = require('express');
+const session = require('express-session');
 const app = express();
 const path = require("path");
 const ejs = require("ejs");
 
 module.exports = client => {
 
+    app.use(session({
+        secret: ";oksdflnsefgjwieofamdaoli;k",
+        resave: false,
+        saveUninitialized: false,
+    }));
+
     app.set('view engine', 'ejs');
     app.set('views', path.join(__dirname, 'views'));
 
-    app.get('/', (req, res) => {
-        res.render('index', { message: 'Hello World', client });
-    });
+    app.locals.client = client;
+    
+    app.use('/', require("./Routes/index"));
+    app.use('/auth', require("./routes/auth"));
 
     app.listen(process.env.port, () => {
         console.log(`Le serveur fonctionne sur http://localhost:${process.env.port}`);
