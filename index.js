@@ -10,10 +10,6 @@ const client = new Client({
     ]
 });
 
-client.on(Events.ClientReady, () => {
-    console.log("\x1b[34m", `${client.user.displayName} est connecté sur ${client.guilds.cache.size} serveurs.`);
-});
-
 client.login(process.env.token);
 
 fs.readdirSync("./Client/Handlers").forEach(file => {
