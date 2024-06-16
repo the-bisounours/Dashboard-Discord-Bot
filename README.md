@@ -9,6 +9,12 @@ Ensuite, créez un fichier .env à la racine du projet et ajoutez-y votre token 
 ```bash
 token=votre_token_ici
 mongoDB=mongodb+srv://<Utilisateur>:<MotDePasse>@<NomDeLaDb>.<codeDb>.mongodb.net/<NomDuBot>
+port=3000
+clientId=votre_client_id_ici
+clientSecret=votre_client_secret_ici
+redirectURI=http://localhost:3000/auth/callback
+scopes=identify+email+guilds+guilds.join
+guildId=votre_guild_id_ici
 ```
 
 ## Lancement
