@@ -75,9 +75,8 @@ router.get('/callback', async (req, res) => {
         res.redirect('/');
 
     } catch (error) {
-        console.log('Erreur lors du processus d\'authentification :', error);
-        res.status(500).send('Erreur lors du processus d\'authentification.');
-    }
+        res.redirect("/");
+    };
 });
 
 router.get('/logout', (req, res) => {
