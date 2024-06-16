@@ -1,4 +1,5 @@
 const { SlashCommandBuilder, Client, ChatInputCommandInteraction, EmbedBuilder } = require("discord.js");
+const { channelType } = require("../../Functions/channelType");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -36,7 +37,7 @@ module.exports = {
                 .addFields(
                     {
                         name: "Information sur le salon",
-                        value: `> **Nom:** \`${channel.name}\`\n> **Identifiant:** \`${channel.id}\`\n> **Type:** \`${channel.type}\`\n> **Description:** \`${channel.topic ? channel.topic : "Aucune"}\`\n> **Position:** \`${channel.position} / ${channel.rawPosition}\`\n> **NSFW:** \`${channel.nsfw ? "oui" : "non"}\`\n> **Ralentissement:** \`${channel.rateLimitPerUser === 0 ? "Aucun" : `${channel.rateLimitPerUser} secondes`}\`\n> **Date de création:** <t:${Math.round(channel.createdTimestamp / 1000)}:D> <t:${Math.round(channel.createdTimestamp / 1000)}:R>`
+                        value: `> **Nom:** \`${channel.name}\`\n> **Identifiant:** \`${channel.id}\`\n> **Type:** \`${channelType(channel.type)}\`\n> **Description:** \`${channel.topic ? channel.topic : "Aucune"}\`\n> **Position:** \`${channel.position} / ${channel.rawPosition}\`\n> **NSFW:** \`${channel.nsfw ? "oui" : "non"}\`\n> **Ralentissement:** \`${channel.rateLimitPerUser === 0 ? "Aucun" : `${channel.rateLimitPerUser} secondes`}\`\n> **Date de création:** <t:${Math.round(channel.createdTimestamp / 1000)}:D> <t:${Math.round(channel.createdTimestamp / 1000)}:R>`
                     },
                     {
                         name: "Information sur les permissions",

@@ -9,21 +9,21 @@ function channelType(channelType) {
         case ChannelType.GroupDM:
             return 'Messages de groupe';
         case ChannelType.GuildAnnouncement:
-            return 'Annonces de serveur';
+            return 'Annonces';
         case ChannelType.GuildCategory:
-            return 'Catégorie de serveur';
+            return 'Catégorie';
         case ChannelType.GuildDirectory:
-            return 'Répertoire de serveur';
+            return 'Répertoire';
         case ChannelType.GuildForum:
-            return 'Forum de serveur';
+            return 'Forum';
         case ChannelType.GuildMedia:
-            return 'Média de serveur';
+            return 'Média';
         case ChannelType.GuildStageVoice:
-            return 'Salon vocal de scène';
+            return 'Vocal';
         case ChannelType.GuildText:
-            return 'Salon textuel de serveur';
+            return 'Textuel';
         case ChannelType.GuildVoice:
-            return 'Salon vocal de serveur';
+            return 'Vocal ';
         case ChannelType.PrivateThread:
             return 'Discussion privée';
         case ChannelType.PublicThread:
