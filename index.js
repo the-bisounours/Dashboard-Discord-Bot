@@ -11,6 +11,7 @@ const client = new Client({
 });
 
 client.commands = new Collection();
+client.slashArray = new Array()
 
 client.login(process.env.token);
 
