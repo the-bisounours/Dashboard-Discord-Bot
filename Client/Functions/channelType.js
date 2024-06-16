@@ -23,7 +23,7 @@ function channelType(channelType) {
         case ChannelType.GuildText:
             return 'Textuel';
         case ChannelType.GuildVoice:
-            return 'Vocal ';
+            return 'Vocal';
         case ChannelType.PrivateThread:
             return 'Discussion privée';
         case ChannelType.PublicThread:
