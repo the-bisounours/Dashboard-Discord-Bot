@@ -1,26 +1,20 @@
-const { SlashCommandBuilder, Client, ChatInputCommandInteraction, EmbedBuilder } = require("discord.js");
+const { ContextMenuCommandBuilder, ApplicationCommandType, Client, ContextMenuCommandInteraction, EmbedBuilder } = require("discord.js");
 
 module.exports = {
-    data: new SlashCommandBuilder()
+    data: new ContextMenuCommandBuilder()
     .setName("user")
-    .setDescription("Permet d'avoir des informations sur un utilisateur.")
     .setDMPermission(false)
     .setDefaultMemberPermissions(null)
-    .addUserOption(option => option
-        .setName("membre")
-        .setDescription("Le membre pour avoir les informations.")
-        .setRequired(false)
-    ),
+    .setType(ApplicationCommandType.User),
 
     /**
      * 
      * @param {Client} client 
-     * @param {ChatInputCommandInteraction} interaction 
+     * @param {ContextMenuCommandInteraction} interaction 
      */
     execute: async (client, interaction) => {
-    
-        const user = interaction.options.getUser("membre") ? interaction.options.getUser("membre") : interaction.user;
-        const member = interaction.guild.members.cache.get(user.id);
+
+        const member = interaction.guild.members.cache.get(interaction.targetId);
 
         if(!member) { 
             return await interaction.reply({
@@ -36,7 +30,7 @@ module.exports = {
                 .addFields(
                     {
                         name: "Information sur l'utilisateur",
-                        value: `> **Nom:** \`${member.displayName}\` ${member}\n> **Identifiant:** \`${member.id}\`\n> **Robot:** \`${user.bot ? "oui" : "non"}\`\n> **Date de création du compte:** <t:${Math.round(user.createdTimestamp / 1000)}:D> <t:${Math.round(user.createdTimestamp / 1000)}:R>`
+                        value: `> **Nom:** \`${member.displayName}\` ${member}\n> **Identifiant:** \`${member.id}\`\n> **Robot:** \`${member.user.bot ? "oui" : "non"}\`\n> **Date de création du compte:** <t:${Math.round(member.user.createdTimestamp / 1000)}:D> <t:${Math.round(member.user.createdTimestamp / 1000)}:R>`
                     },
                     {
                         name: "Information sur le membre",

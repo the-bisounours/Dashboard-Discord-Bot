@@ -19,8 +19,13 @@ module.exports = async (client) => {
                 if (item.id) collection.set(item.id, item);
 
                 if (item.data && item.data.name) {
-
-                    client.commands.set(item.data.name, item);
+                    
+                    if(item.data instanceof SlashCommandBuilder) {
+                        client.commands.set(item.data.name, item);
+                    } else {
+                        client.context.set(item.data.name, item);
+                    };
+                    
                     client.slashArray.push(item.data instanceof SlashCommandBuilder ? item.data.toJSON() : item.data);
                 };
             });

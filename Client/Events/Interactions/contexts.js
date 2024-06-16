@@ -14,7 +14,7 @@ module.exports = {
 
         if (interaction.isContextMenuCommand()) {
 
-            const context = client.context.get(interaction.contextName)
+            const context = client.context.get(interaction.commandName)
             if (!context) {
                 return await interaction.reply({
                     content: "Cette contexte n'existe plus.",
