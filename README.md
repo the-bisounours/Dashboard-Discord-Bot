@@ -5,9 +5,10 @@ Pour installer les dépendances, exécutez la commande suivante :
 npm install
 ```
 
-Ensuite, créez un fichier .env à la racine du projet et ajoutez-y votre token :
+Ensuite, créez un fichier .env à la racine du projet et ajoutez-y votre token ainsi que l'URL de connexion à MongoDB :
 ```bash
 token=votre_token_ici
+mongoDB=mongodb+srv://<Utilisateur>:<MotDePasse>@<NomDeLaDb>.<codeDb>.mongodb.net/<NomDuBot>
 ```
 
 ## Lancement
