@@ -22,7 +22,7 @@ module.exports = async (client) => {
 
                     client.commands.set(item.data.name, item);
                     client.slashArray.push(item.data instanceof SlashCommandBuilder ? item.data.toJSON() : item.data);
-                }
+                };
             });
         });
     };
@@ -41,8 +41,8 @@ module.exports = async (client) => {
     
         } catch (err) {
             console.error("\x1b[31m", "Erreur lors de la création des commandes Slash :", err);
-        }
+        };
     });
 
     console.log("\x1b[34m", "\x1b[34mLes \x1b[31mboutons\x1b[37m\x1b[34m, les \x1b[31mmodales\x1b[37m\x1b[34m, les \x1b[31mselects\x1b[37m\x1b[34m, les \x1b[31mcommandes\x1b[37m \x1b[34met les \x1b[31mcontexts\x1b[37m \x1b[34mont bien été chargés avec succès!");
-}
+};
