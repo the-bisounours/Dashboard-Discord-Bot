@@ -10,7 +10,6 @@ module.exports = {
      * @param {Client} client 
      * @param {ContextMenuCommandInteraction} interaction 
      */
-
     execute: async (client, interaction) => {
 
         if (interaction.isContextMenuCommand()) {

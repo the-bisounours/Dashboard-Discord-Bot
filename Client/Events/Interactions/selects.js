@@ -11,7 +11,6 @@ module.exports = {
      * @param {Client} client 
      * @param {StringSelectMenuInteraction} interaction 
      */
-
     execute: async (client, interaction) => {
 
         if(interaction.isAnySelectMenu()) {
