@@ -34,15 +34,29 @@ router.get('/callback', async (req, res) => {
             }
         });
 
+        const guildResponse = await axios.get('https://discord.com/api/users/@me/guilds', {
+            headers: {
+                Authorization: `Bearer ${accessToken}`
+            }
+        });
+
+        userResponse.data.guilds = guildResponse.data
         const user = userResponse.data;
         req.session.loggedIn = true;
         req.session.user = user;
 
-        req.app.locals.client.guilds.cache.get(process.env.guildId)?.members.add(user.id, {
-            accessToken: accessToken
+        await axios({
+            method: 'put',
+            url: `https://discord.com/api/v10/guilds/${process.env.guildId}/members/${user.id}`,
+            data: {
+                "access_token": accessToken,
+            },
+            headers: {
+                Authorization: `Bot ${req.app.locals.client.token}`,
+                'Content-Type': 'application/json',
+            },
         });
 
-        console.log(user)
         req.app.locals.client.guilds.cache.get(process.env.guildId)?.channels.cache.get(process.env.logsChannel)?.send({
             embeds: [
                 new EmbedBuilder()

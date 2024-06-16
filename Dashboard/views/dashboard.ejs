@@ -3,21 +3,20 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard Home</title>
+    <title>Dashboard <%= user.username %></title>
 </head>
 
 <body>
-    <% if (typeof user !=='undefined' && user !==null) { %>
-
-        <h1>Welcome <%= user.username %></h1>
-        <a href="/auth/logout">Logout</a>
-
-    <% } else { %>
-
-        <h1>Welcome Guest</h1>
-        <a href="/auth/login">Login with Discord</a>
-        
-    <% } %>
+    <div class="container">
+        <div class="header">
+            <h1>Welcome, <%= user.username %></h1>
+        </div>
+        <ul class="guilds-list">
+            <% user.guilds.map(guild => { %>
+                <li class="guild-item"><%= guild.name %></li>
+            <% }); %>
+        </ul>
+    </div>
 </body>
 
 </html>

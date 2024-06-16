@@ -10,6 +10,7 @@
     <% if (typeof user !=='undefined' && user !==null) { %>
 
         <h1>Welcome <%= user.username %></h1>
+        <a href="/dashboard">Dashboard</a>
         <a href="/auth/logout">Logout</a>
 
     <% } else { %>
