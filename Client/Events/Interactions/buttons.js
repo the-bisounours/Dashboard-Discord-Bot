@@ -15,14 +15,15 @@ module.exports = {
 
         if (interaction.isButton()) {
             
+            let buttons = null;
             if(buttonPrefixes.length > 0) {
                 for (const prefix of buttonPrefixes) {
                     if (interaction.customId.startsWith(prefix)) {
                         buttons = client.buttons.get(prefix);
-                    } else {
-                        buttons = client.buttons.get(interaction.customId)
                     };
                 };
+            } else {
+                buttons = client.buttons.get(interaction.customId);
             };
 
             if (!buttons) {

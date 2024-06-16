@@ -1,17 +1,13 @@
-const { SlashCommandBuilder, Client, ChatInputCommandInteraction, ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } = require("discord.js");
+const { Client, ButtonInteraction, ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } = require("discord.js");
 const mongoose = require("mongoose");
 
 module.exports = {
-    data: new SlashCommandBuilder()
-        .setName("ping")
-        .setDescription("Permet de connaitre la latence du robot.")
-        .setDMPermission(true)
-        .setDefaultMemberPermissions(null),
+    id: "refreshping",
 
     /**
      * 
      * @param {Client} client 
-     * @param {ChatInputCommandInteraction} interaction 
+     * @param {ButtonInteraction} interaction 
      */
     execute: async (client, interaction) => {
 
@@ -19,7 +15,7 @@ module.exports = {
         await mongoose.connection.db.collection("admin").findOne();
         const ping = Date.now() - startTime;
 
-        return await interaction.reply({
+        return await interaction.update({
             embeds: [
                 new EmbedBuilder()
                     .setTitle("Informations des latences")

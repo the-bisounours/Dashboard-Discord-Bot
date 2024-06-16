@@ -15,14 +15,15 @@ module.exports = {
 
         if(interaction.isAnySelectMenu()) {
             
+            let selects = null;
             if(selectPrefixes.length > 0) {
                 for (const prefix of selectPrefixes) {
                     if (interaction.customId.startsWith(prefix)) {
                         selects = client.selects.get(prefix);
-                    } else {
-                        selects = client.selects.get(interaction.customId)
                     };
                 };
+            } else {
+                selects = client.selects.get(interaction.customId)
             };
 
             if (!selects) {

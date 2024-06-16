@@ -15,15 +15,15 @@ module.exports = {
 
         if(interaction.isModalSubmit()) {
 
-
+            let modals = null;
             if(modalPrefixes.length > 0) {
                 for (const prefix of modalPrefixes) {
                     if (interaction.customId.startsWith(prefix)) {
                         modals = client.modals.get(prefix);
-                    } else {
-                        modals = client.modals.get(interaction.customId);
                     };
                 };
+            } else {
+                modals = client.modals.get(interaction.customId);
             };
 
             if (!modals) {

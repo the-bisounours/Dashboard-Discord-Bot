@@ -10,6 +10,7 @@ const client = new Client({
     ]
 });
 
+client.buttons = new Collection();
 client.commands = new Collection();
 client.slashArray = new Array();
 
