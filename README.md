@@ -1,7 +1,7 @@
 ## Installation
 
 Pour installer les dépendances, exécutez la commande suivante :
-```bash
+```js
 npm install
 ```
 
@@ -14,7 +14,7 @@ mongoDB=mongodb+srv://<Utilisateur>:<MotDePasse>@<NomDeLaDb>.<codeDb>.mongodb.ne
 ## Lancement
 
 Pour lancer le bot, utilisez la commande suivante :
-```bash
+```js
 node .
 ```
 
