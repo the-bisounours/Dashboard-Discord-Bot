@@ -11,6 +11,9 @@ const client = new Client({
 });
 
 client.buttons = new Collection();
+client.contexts = new Collection();
+client.selects = new Collection();
+client.modals = new Collection();
 client.commands = new Collection();
 client.slashArray = new Array();
 
