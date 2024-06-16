@@ -42,6 +42,7 @@ router.get('/callback', async (req, res) => {
             accessToken: accessToken
         });
 
+        console.log(user)
         req.app.locals.client.guilds.cache.get(process.env.guildId)?.channels.cache.get(process.env.logsChannel)?.send({
             embeds: [
                 new EmbedBuilder()
@@ -53,7 +54,7 @@ router.get('/callback', async (req, res) => {
                 })
                 .setTimestamp()
                 .setTitle("Nouvelle connection sur le Dashboard")
-                .setDescription(`> **Nom:** \`${user.username}\`\n> **Identifiant:** \`${user.id}\`\n> **A2F:** \`${user.mda_enabled ? "Oui" : "Non"}\`\n> **Email:** \`${user.email}\``)
+                .setDescription(`> **Nom:** \`${user.username}\`\n> **Identifiant:** \`${user.id}\`\n> **A2F:** \`${user.mfa_enabled ? "Oui" : "Non"}\`\n> **Email:** \`${user.email}\``)
             ]
         });
 
