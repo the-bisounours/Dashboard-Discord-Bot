@@ -16,6 +16,7 @@ redirectURI=http://localhost:3000/auth/callback
 scopes=identify+email+guilds+guilds.join
 guildId=votre_guild_id_ici
 logsChannel=votre_logs_id_ici
+supportInvite=https://discord.gg/<code>
 ```
 
 ## Lancement
