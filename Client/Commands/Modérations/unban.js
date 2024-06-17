@@ -43,9 +43,7 @@ module.exports = {
                 }
             ];
         };
-
-        console.log(bans)
-
+        
         const focusedValue = interaction.options.getFocused();
         const filteredOptions = bans.filter(ban => 
             ban.user.username.toLowerCase().includes(focusedValue.toLowerCase())
