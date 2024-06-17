@@ -28,7 +28,7 @@ Pour lancer le bot, utilisez la commande suivante :
 ```js
 node .
 ```
-![.env](https://i.ibb.co/30VMHSF/image.png)
+![node .](https://i.ibb.co/30VMHSF/image.png)
 
 ## Contribuer
 Si vous souhaitez contribuer à ce projet, veuillez soumettre une pull request avec vos modifications.
