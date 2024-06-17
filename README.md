@@ -4,7 +4,7 @@ Pour installer les dépendances, exécutez la commande suivante :
 ```js
 npm install
 ```
-![Commandes](https://i.ibb.co/WcGcGX1/image.png)
+![npm install](https://i.ibb.co/WcGcGX1/image.png)
 
 
 Ensuite, créez un fichier .env à la racine du projet et ajoutez-y votre token ainsi que l'URL de connexion à MongoDB :
@@ -20,6 +20,7 @@ guildId=votre_guild_id_ici
 logsChannel=votre_logs_id_ici
 supportInvite=https://discord.gg/<code>
 ```
+![.env](https://i.ibb.co/vDkFV7y/image.png)
 
 ## Lancement
 
