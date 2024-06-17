@@ -34,3 +34,6 @@ Ce projet est sous licence MIT. Voir le fichier LICENSE pour plus d’informatio
 
 
 ### Assurez-vous de remplacer `votre_token_ici` par le token réel de votre bot. Ce `README.md` fournit des instructions de base pour l'installation, la configuration du fichier `.env` et le lancement du bot. Vous pouvez l'ajuster selon les besoins spécifiques de votre projet.
+
+## Images
+https://ibb.co/kqnVynJ
