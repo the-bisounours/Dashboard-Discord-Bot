@@ -19,6 +19,10 @@ module.exports = client => {
     
     app.use('/', require("./Routes/index"));
     app.use('/auth', require("./routes/auth"));
+    app.use('/invite', require("./Routes/index"));
+    app.use('/support', require("./Routes/index"));
+    app.use('/commandes', require("./Routes/index"));
+    app.use('/dashbaord', require("./Routes/index"));
 
     app.listen(process.env.port, () => {
         console.log(`Le serveur fonctionne sur http://localhost:${process.env.port}`);

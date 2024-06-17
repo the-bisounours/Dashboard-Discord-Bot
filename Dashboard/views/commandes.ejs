@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard Home</title>
+    <title>Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.2/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -37,7 +37,32 @@
             <% } %>
           </ul>
         </div>
-    </div>  
+    </div>
+    <table class="table table-zebra" style="margin: 20px;">
+        <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Description</th>
+              <th>Dm Permissions</th>
+              <th>Permission Requise</th>
+              <th>NSFW</th>
+              <th>Options</th>
+            </tr>
+          </thead>
+          <% client.commands.map(command => { %>
+            <tbody>
+              <tr>
+                <td><%= command.data.name %></td>
+                <td><%= command.data.description %></td>
+                <td><%= command.data.dm_permission ? "oui" : "non" %></td>
+                <td><%= command.data.default_member_permissions ? command.data.default_member_permissions : "Aucune" %></td>
+                <td><%= command.data.nsfw ? "oui" : "non" %></td>
+                <td><%= command.data.options.length ? "oui" : "non" %></td>
+              </tr>
+            </tbody>
+        </div>
+        <% }); %>
+    </table>
 </body>
 
 </html>
