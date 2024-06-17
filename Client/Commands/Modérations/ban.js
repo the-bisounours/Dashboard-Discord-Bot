@@ -5,7 +5,7 @@ module.exports = {
         .setName("ban")
         .setDescription("Permet de bannir un utilisateur du serveur discord.")
         .setDMPermission(false)
-        .setDefaultMemberPermissions(PermissionFlagsBits.KickMembers)
+        .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
         .addUserOption(option => option
             .setName("membre")
             .setDescription("Le membre à bannir du serveur discord.")
