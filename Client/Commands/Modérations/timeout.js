@@ -2,27 +2,27 @@ const { SlashCommandBuilder, PermissionFlagsBits, Client, ChatInputCommandIntera
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName("ban")
-        .setDescription("Permet de bannir un utilisateur du serveur discord.")
+        .setName("timeout")
+        .setDescription("Permet de rendre muet un utilisateur du serveur discord.")
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
         .addUserOption(option => option
             .setName("membre")
-            .setDescription("Le membre à bannir du serveur discord.")
+            .setDescription("Le membre à rendre muet du serveur discord.")
             .setRequired(true)
         )
         .addStringOption(option => option
+            .setName("temps")
+            .setDescription("La durée de la mise en sourdine du membre.")
+            .setRequired(false)
+            .setAutocomplete(true)
+        )
+        .addStringOption(option => option
             .setName("raison")
-            .setDescription("La raison du bannissement du membre.")
+            .setDescription("La raison de la mise en sourdine du membre.")
             .setRequired(false)
             .setMaxLength(200)
             .setMinLength(1)
-        )
-        .addStringOption(option => option
-            .setName("messages")
-            .setDescription("Les messages du membre a bannir du serveur discord.")
-            .setRequired(false)
-            .setAutocomplete(true)
         )
         .addAttachmentOption(option => option
             .setName("preuve")
@@ -81,42 +81,42 @@ module.exports = {
 
         if (member.user.id === interaction.guild.ownerId) {
             return await interaction.reply({
-                content: ":x: Vous ne pouvez pas bannir propriétaire du serveur discord.",
+                content: ":x: Vous ne pouvez pas rendre muet propriétaire du serveur discord.",
                 ephemeral: true
             });
         };
 
         if (member.user.id === interaction.user.id) {
             return await interaction.reply({
-                content: ":x: Pourquoi essayez-vous de vous bannir ?",
+                content: ":x: Pourquoi essayez-vous de vous rendre muet ?",
                 ephemeral: true
             });
         };
 
         if (member.user.id === client.user.id) {
             return await interaction.reply({
-                content: ":x: Vous ne pouvez pas me bannir, essayer la commande /leave.",
+                content: ":x: Vous ne pouvez pas me rendre muet, essayer la commande /leave.",
                 ephemeral: true
             });
         };
 
         if (interaction.user.id !== interaction.guild.ownerId && interaction.member.roles.highest.comparePositionTo(member.roles.highest) <= 0) {
             return await interaction.reply({
-                content: ":x: Vous ne pouvez pas bannir un membre plus haut que vous.",
+                content: ":x: Vous ne pouvez pas rendre muet un membre plus haut que vous.",
                 ephemeral: true
             });
         };
 
         if (interaction.guild.members.me.roles.highest.comparePositionTo(member.roles.highest) <= 0) {
             return await interaction.reply({
-                content: ":x: Je ne peux pas bannir un membre plus haut que moi.",
+                content: ":x: Je ne peux pas rendre muet un membre plus haut que moi.",
                 ephemeral: true
             });
         };
 
         if (!member.bannable) {
             return await interaction.reply({
-                content: ":x: Je ne peux pas bannir ce membre.",
+                content: ":x: Je ne peux pas rendre muet ce membre.",
                 ephemeral: true
             });
         };

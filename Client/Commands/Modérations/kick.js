@@ -13,14 +13,14 @@ module.exports = {
         )
         .addStringOption(option => option
             .setName("raison")
-            .setDescription("La raison de l'exclusion du serveur discord.")
+            .setDescription("La raison de l'exclusion du membre.")
             .setRequired(false)
             .setMaxLength(200)
             .setMinLength(1)
         )
         .addAttachmentOption(option => option
             .setName("preuve")
-            .setDescription("La preuve de l'exclusion du serveur discord.")
+            .setDescription("La preuve de l'exclusion du membre.")
             .setRequired(false)
         ),
 
