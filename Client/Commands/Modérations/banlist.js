@@ -31,7 +31,7 @@ module.exports = {
                 new EmbedBuilder()
                 .setTitle(`Informations des bannissements sur le serveur ${interaction.guild.name}`)
                 .setColor("Blurple")
-                .setDescription(`> **Utilisateur:** \`${ban.user.displayName}\` ${ban.user}\n> **Identifiant:** \`${ban.user.id}\`\n> **Robot:** \`${ban.user.bot ? "oui" : "non"}\`> **Date de création du compte:** <t:${Math.round(ban.user.createdTimestamp / 1000)}:D> <t:${Math.round(ban.user.createdTimestamp / 1000)}:R>`)
+                .setDescription(`> **Utilisateur:** \`${ban.user.displayName}\` ${ban.user}\n> **Identifiant:** \`${ban.user.id}\`\n> **Robot:** \`${ban.user.bot ? "oui" : "non"}\`\n> **Date de création du compte:** <t:${Math.round(ban.user.createdTimestamp / 1000)}:D> <t:${Math.round(ban.user.createdTimestamp / 1000)}:R>`)
                 .setFooter({
                     text: client.user.displayName,
                     iconURL: client.user.displayAvatarURL()
