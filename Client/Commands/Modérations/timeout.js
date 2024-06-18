@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, PermissionFlagsBits, Client, ChatInputCommandInteraction, ActionRowBuilder, ButtonBuilder, ButtonStyle, AutocompleteInteraction } = require("discord.js");
-const { convert } = require("../../Functions/convert");
+const convert = require("../../Functions/convert");
 
 module.exports = {
     data: new SlashCommandBuilder()
