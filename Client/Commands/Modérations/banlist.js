@@ -26,18 +26,19 @@ module.exports = {
         const embeds = [];
         for (let index = 0; index < bans.length; index++) {
             const ban = bans[index][1];
+            const user = await ban.user.fetch({ force: true });
 
             embeds.push(
                 new EmbedBuilder()
                 .setTitle(`Informations des bannissements sur le serveur ${interaction.guild.name}`)
-                .setThumbnail(ban.user.displayAvatarURL())
+                .setThumbnail(user.displayAvatarURL())
                 .setColor("Blurple")
-                .setDescription(`> **Utilisateur:** \`${ban.user.displayName}\` ${ban.user}\n> **Identifiant:** \`${ban.user.id}\`\n> **Raison:** \`${ban.reason ? ban.reason : "aucune raison"}\`\n> **Robot:** \`${ban.user.bot ? "oui" : "non"}\`\n> **Date de création du compte:** <t:${Math.round(ban.user.createdTimestamp / 1000)}:D> <t:${Math.round(ban.user.createdTimestamp / 1000)}:R>`)
+                .setDescription(`> **Utilisateur:** \`${user.displayName}\` ${user}\n> **Identifiant:** \`${user.id}\`\n> **Raison:** \`${ban.reason ? ban.reason : "aucune raison"}\`\n> **Robot:** \`${user.bot ? "oui" : "non"}\`\n> **Date de création du compte:** <t:${Math.round(user.createdTimestamp / 1000)}:D> <t:${Math.round(user.createdTimestamp / 1000)}:R>`)
                 .setFooter({
                     text: client.user.displayName,
                     iconURL: client.user.displayAvatarURL()
                 })
-                .setImage(ban.user.bannerURL())
+                .setImage(user.banner ? `https://cdn.discordapp.com/banners/${user.id}/${user.banner}.png?size=1024` : null)
                 .setTimestamp()
             );
         };
