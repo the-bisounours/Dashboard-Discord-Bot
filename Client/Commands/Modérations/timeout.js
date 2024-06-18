@@ -123,13 +123,6 @@ module.exports = {
             });
         };
 
-        if (!member.bannable) {
-            return await interaction.reply({
-                content: ":x: Je ne peux pas rendre muet ce membre.",
-                ephemeral: true
-            });
-        };
-
         if (!member.user.bot) {
             try {
                 await member.send({
