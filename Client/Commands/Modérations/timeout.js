@@ -143,7 +143,7 @@ module.exports = {
         return await member.timeout(number, raison)
             .then(async timeoutInfo => {
                 return await interaction.reply({
-                    content: `Vous avez mis en sourdine \`${timeoutInfo.user.displayName}\` pendant ${convert(number)} pour \`${raison}\`.${interaction.options.getAttachment("preuve") ? ` [\`preuve\`](${interaction.options.getAttachment("preuve").url})` : ""}`,
+                    content: `Vous avez mis en sourdine \`${timeoutInfo.user.displayName}\` pendant ${convert(number, "millisecondes")} pour \`${raison}\`.${interaction.options.getAttachment("preuve") ? ` [\`preuve\`](${interaction.options.getAttachment("preuve").url})` : ""}`,
                 });
             })
             .catch(async err => {
