@@ -10,19 +10,24 @@ module.exports = (number, unit) => {
     switch (unit) {
         case 'millisecondes':
             number;
+        break;
         case 'secondes':
             number = number * 1000;
+        break;
         case 'mimutes':
             number = number * 1000 * 60;
+        break;
         case 'heures':
             number = number * 1000 * 60 * 60;
+        break;
         case 'jours':
             number = number * 1000 * 60 * 60 * 24;
+        break;
         default:
             number;
         break;
     };
-
+    
     const day = 24 * 60 * 60 * 1000;
     const hour = 60 * 60 * 1000;
     const minute = 60 * 1000;
