@@ -6,7 +6,7 @@ module.exports = {
         .setName("timeout")
         .setDescription("Permet de rendre muet un utilisateur du serveur discord.")
         .setDMPermission(false)
-        .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
+        .setDefaultMemberPermissions(PermissionFlagsBits.MuteMembers)
         .addUserOption(option => option
             .setName("membre")
             .setDescription("Le membre à rendre muet du serveur discord.")

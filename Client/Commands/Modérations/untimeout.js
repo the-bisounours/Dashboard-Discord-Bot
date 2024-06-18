@@ -5,7 +5,7 @@ module.exports = {
         .setName("untimeout")
         .setDescription("Permet de rendre la parole à un utilisateur du serveur discord.")
         .setDMPermission(false)
-        .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
+        .setDefaultMemberPermissions(PermissionFlagsBits.MuteMembers)
         .addUserOption(option => option
             .setName("membre")
             .setDescription("Le membre à rendre la parole du serveur discord.")
