@@ -79,6 +79,14 @@ module.exports = {
             });
         };
 
+        if (member.isCommunicationDisabled()) {
+            return await interaction.reply({
+                content: ":x: Le membre est actuellement muet.",
+                ephemeral: true
+            });
+        };
+
+
         if (member.user.id === interaction.guild.ownerId) {
             return await interaction.reply({
                 content: ":x: Vous ne pouvez pas rendre muet propriétaire du serveur discord.",
