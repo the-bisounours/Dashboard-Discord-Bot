@@ -39,6 +39,6 @@ module.exports = {
             );
         };
 
-        return await paginations(interaction, embeds, 60 * 1000, true);
+        return await paginations(interaction, embeds, 60 * 1000, false);
     }
 };
