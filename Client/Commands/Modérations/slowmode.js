@@ -80,7 +80,7 @@ module.exports = {
         const number = new Number(interaction.options.getString("temps"));
         const channel = interaction.options.getChannel("salon") ? interaction.options.getChannel("salon") : interaction.channel;
         const raison = interaction.options.getString("raison") ? interaction.options.getString("raison") : "aucune raison";
-        console.log(channel.rateLimitPerUser)
+
         if(![
             ChannelType.GuildForum, 
             ChannelType.GuildMedia, 
