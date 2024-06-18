@@ -1,4 +1,5 @@
 const { SlashCommandBuilder, PermissionFlagsBits, Client, ChatInputCommandInteraction, ActionRowBuilder, ButtonBuilder, ButtonStyle, AutocompleteInteraction } = require("discord.js");
+const { convert } = require("../../Functions/convert");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -132,7 +133,7 @@ module.exports = {
         if (!member.user.bot) {
             try {
                 await member.send({
-                    content: `Vous avez été mis en sourdine par \`${interaction.user.displayName}\` pour \`${raison}\`.${interaction.options.getAttachment("preuve") ? ` [\`preuve\`](${interaction.options.getAttachment("preuve").url})` : ""}`,
+                    content: `Vous avez été mis en sourdine par \`${interaction.user.displayName}\` pendant ${convert(number)} pour \`${raison}\`.${interaction.options.getAttachment("preuve") ? ` [\`preuve\`](${interaction.options.getAttachment("preuve").url})` : ""}`,
                     components: [
                         new ActionRowBuilder()
                             .addComponents(
@@ -149,7 +150,7 @@ module.exports = {
         return await member.timeout(number, raison)
             .then(async timeoutInfo => {
                 return await interaction.reply({
-                    content: `Vous avez mis en sourdine \`${timeoutInfo.user.displayName}\` pour \`${raison}\`.${interaction.options.getAttachment("preuve") ? ` [\`preuve\`](${interaction.options.getAttachment("preuve").url})` : ""}`,
+                    content: `Vous avez mis en sourdine \`${timeoutInfo.user.displayName}\` pendant ${convert(number)} pour \`${raison}\`.${interaction.options.getAttachment("preuve") ? ` [\`preuve\`](${interaction.options.getAttachment("preuve").url})` : ""}`,
                 });
             })
             .catch(async err => {
