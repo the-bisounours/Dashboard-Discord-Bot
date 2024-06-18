@@ -1,6 +1,11 @@
 const { ChannelType } = require("discord.js");
 
-function channelType(channelType) {
+/**
+ * 
+ * @param {Number} channelType 
+ * @returns {String}
+ */
+module.exports = channelType => {
     switch (channelType) {
         case ChannelType.AnnouncementThread:
             return 'Discussion d\'annonce';

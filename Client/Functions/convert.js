@@ -1,4 +1,10 @@
-function convert(ms) {
+
+/**
+ * 
+ * @param {Number} ms 
+ * @returns {String}
+ */
+module.exports = ms => {
     const day = 24 * 60 * 60 * 1000;
     const hour = 60 * 60 * 1000;
     const minute = 60 * 1000;
@@ -31,7 +37,3 @@ function convert(ms) {
 
     return result.trim();
 };
-
-module.exports = {
-    convert
-}
