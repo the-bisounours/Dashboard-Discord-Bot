@@ -27,10 +27,7 @@ module.exports = {
             };
 
             if (!buttons) {
-                return await interaction.reply({
-                    content: "Ce bouton n'existe plus.",
-                    ephemeral: true
-                });
+                return;
             };
 
             try { 
