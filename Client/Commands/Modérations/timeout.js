@@ -27,7 +27,7 @@ module.exports = {
         )
         .addAttachmentOption(option => option
             .setName("preuve")
-            .setDescription("La preuve de bannissement du membre.")
+            .setDescription("La preuve de la mise en sourdine du membre.")
             .setRequired(false)
         ),
 
