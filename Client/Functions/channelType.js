@@ -35,9 +35,5 @@ module.exports = channelType => {
             return 'Discussion publique';
         default:
             return 'Inconnu';
-    }
-}
-
-module.exports = {
-    channelType
+    };
 };
