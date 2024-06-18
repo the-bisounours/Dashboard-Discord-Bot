@@ -6,10 +6,9 @@ const { ButtonInteraction, ButtonBuilder, ButtonStyle, ActionRowBuilder, Compone
  * @param {[EmbedBuilder]} pages 
  * @param {Number} time 
  * @param {Boolean} editMessage 
- * @param {[ActionRowBuilder]} components 
  */
 
-module.exports = async (interaction, pages, time = 30 * 1000, editMessage, components) => {
+module.exports = async (interaction, pages, time = 30 * 1000, editMessage) => {
 
     try {
 
@@ -21,9 +20,9 @@ module.exports = async (interaction, pages, time = 30 * 1000, editMessage, compo
 
         if (pages.length === 1) {
             if(editMessage) {
-                return await interaction.message.edit({ embeds: pages, components: [components[0]], fetchReply: true });
+                return await interaction.message.edit({ embeds: pages, fetchReply: true });
             } else {
-                return await interaction.editReply({ embeds: pages, components: [components[0]], fetchReply: true });
+                return await interaction.editReply({ embeds: pages, fetchReply: true });
             }
         };
 
@@ -67,7 +66,7 @@ module.exports = async (interaction, pages, time = 30 * 1000, editMessage, compo
         if(editMessage) {
             const msg = await interaction.message.edit({
                 embeds: [pages[index]],
-                components: [components[index], buttons], 
+                components: [buttons], 
                 fetchReply: true
             });
 
@@ -123,7 +122,7 @@ module.exports = async (interaction, pages, time = 30 * 1000, editMessage, compo
     
                 await msg.edit({
                     embeds: [pages[index]],
-                    components: [components[index], buttons]
+                    components: [buttons]
                 }).catch(err => {});
     
                 collector.resetTimer();
@@ -132,7 +131,7 @@ module.exports = async (interaction, pages, time = 30 * 1000, editMessage, compo
             collector.on("end", async () => {
                 await msg.edit({
                     embeds: [pages[index]],
-                    components: [components[index]]
+                    components: []
                 }).catch(err => {});
             });
     
@@ -140,7 +139,7 @@ module.exports = async (interaction, pages, time = 30 * 1000, editMessage, compo
         } else {
             const msg = await interaction.editReply({
                 embeds: [pages[index]],
-                components: [components[index], buttons], 
+                components: [buttons], 
                 fetchReply: true
             });
 
@@ -196,7 +195,7 @@ module.exports = async (interaction, pages, time = 30 * 1000, editMessage, compo
     
                 await msg.edit({
                     embeds: [pages[index]],
-                    components: [components[index], buttons]
+                    components: [buttons]
                 }).catch(err => {});
     
                 collector.resetTimer();
@@ -205,7 +204,7 @@ module.exports = async (interaction, pages, time = 30 * 1000, editMessage, compo
             collector.on("end", async () => {
                 await msg.edit({
                     embeds: [pages[index]],
-                    components: [components[index]]
+                    components: []
                 }).catch(err => {});
             });
     
