@@ -14,7 +14,7 @@ module.exports = {
         .addStringOption(option => option
             .setName("temps")
             .setDescription("La durée de la mise en sourdine du membre.")
-            .setRequired(false)
+            .setRequired(true)
             .setAutocomplete(true)
         )
         .addStringOption(option => option
@@ -38,12 +38,12 @@ module.exports = {
     autocomplete: async (client, interaction) => {
 
         const options = [
-            { name: 'Dernière heure', value: "3600" },
-            { name: 'Dernières 6 heures', value: "21600" },
-            { name: 'Dernières 12 heures', value: "43200" },
-            { name: 'Dernières 24 heures', value: "86400" },
-            { name: '3 derniers jours', value: "259200" },
-            { name: '7 derniers jours', value: "604800" }
+            { name: '60 secondes', value: "60000" },
+            { name: '5 minutes', value: "300000" },
+            { name: '10 minutes', value: "600000" },
+            { name: '1 heure', value: "3600000" },
+            { name: '1 jour', value: "86400000" },
+            { name: '1 semaine', value: "604800000" }
         ];
 
         const focusedValue = interaction.options.getFocused();
@@ -70,7 +70,7 @@ module.exports = {
         const member = interaction.guild.members.cache.get(user.id);
 
         const raison = interaction.options.getString("raison") ? interaction.options.getString("raison") : "aucune raison";
-        const messages = interaction.options.getString("messages") ? new Number(interaction.options.getString("messages")) : 3600
+        const number = new Number(interaction.options.getString("temps"));
 
         if (!member) {
             return await interaction.reply({
@@ -124,7 +124,7 @@ module.exports = {
         if (!member.user.bot) {
             try {
                 await member.send({
-                    content: `Vous avez été bannis par \`${interaction.user.displayName}\` pour \`${raison}\`.${interaction.options.getAttachment("preuve") ? ` [\`preuve\`](${interaction.options.getAttachment("preuve").url})` : ""}`,
+                    content: `Vous avez été mis en sourdine par \`${interaction.user.displayName}\` pour \`${raison}\`.${interaction.options.getAttachment("preuve") ? ` [\`preuve\`](${interaction.options.getAttachment("preuve").url})` : ""}`,
                     components: [
                         new ActionRowBuilder()
                             .addComponents(
@@ -138,18 +138,15 @@ module.exports = {
             } catch (err) {};
         };
 
-        return await interaction.guild.members.ban(member.user.id, {
-            reason: raison,
-            deleteMessageSeconds: messages
-        })
-            .then(async banInfo => {
+        return await member.timeout(number, raison)
+            .then(async timeoutInfo => {
                 return await interaction.reply({
-                    content: `Vous avez bannis \`${banInfo.username}\` pour \`${raison}\`.${interaction.options.getAttachment("preuve") ? ` [\`preuve\`](${interaction.options.getAttachment("preuve").url})` : ""}`,
+                    content: `Vous avez mis en sourdine \`${timeoutInfo.user.displayName}\` pour \`${raison}\`.${interaction.options.getAttachment("preuve") ? ` [\`preuve\`](${interaction.options.getAttachment("preuve").url})` : ""}`,
                 });
             })
             .catch(async err => {
                 return await interaction.reply({
-                    content: `\`${member.user.displayName}\` n'a pas été bannis à cause d'une erreur.`,
+                    content: `\`${member.user.displayName}\` n'a pas été mis en sourdine à cause d'une erreur.`,
                     ephemeral: true
                 });
             });
