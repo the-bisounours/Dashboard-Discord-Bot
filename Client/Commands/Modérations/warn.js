@@ -7,7 +7,7 @@ module.exports = {
         .setName("warn")
         .setDescription("Permet d'avertir un utilisateur du serveur discord.")
         .setDMPermission(false)
-        .setDefaultMemberPermissions(PermissionFlagsBits.KickMembers)
+        .setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers)
         .addUserOption(option => option
             .setName("membre")
             .setDescription("Le membre à avertir du serveur discord.")
