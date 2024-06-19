@@ -66,7 +66,7 @@ module.exports = {
                 .setTitle(`Informations des avertissementss sur le serveur ${interaction.guild.name}`)
                 .setThumbnail(user.displayAvatarURL())
                 .setColor("Blurple")
-                .setDescription(`> **Utilisateur:** \`${user.displayName}\` ${user}\n> **Identifiant:** \`${user.id}\`\n> **Raison:** \`${warn.raison ? warn.raison : "aucune raison"}\`\n> **Par:** \`${interaction.guild.members.cache.get(warn.by).displayName}\` ${interaction.guild.members.cache.get(warn.by)}\n> **Date de l'avertissement:** <t:${Math.round(warn.time / 1000)}:D> <t:${Math.round(warn.time / 1000)}:R>`)
+                .setDescription(`> **Utilisateur:** \`${user.displayName}\` ${user}\n> **Identifiant:** \`${warn.warnId}\`\n> **Raison:** \`${warn.raison ? warn.raison : "aucune raison"}\`\n> **Par:** \`${interaction.guild.members.cache.get(warn.by).displayName}\` ${interaction.guild.members.cache.get(warn.by)}\n> **Date de l'avertissement:** <t:${Math.round(warn.time / 1000)}:D> <t:${Math.round(warn.time / 1000)}:R>`)
                 .setFooter({
                     text: client.user.displayName,
                     iconURL: client.user.displayAvatarURL()
