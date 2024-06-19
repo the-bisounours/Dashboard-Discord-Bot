@@ -3,7 +3,7 @@ const { SlashCommandBuilder, EmbedBuilder, Client, ChatInputCommandInteraction, 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("help")
-        .setDescription("Permet d'obtenir des informations concernant les commandes disponibles du roclient.")
+        .setDescription("Permet d'obtenir des informations.")
         .setDMPermission(false)
         .setDefaultMemberPermissions(null)
         .addStringOption(option => option
@@ -53,13 +53,13 @@ module.exports = {
                 .setTimestamp()
                 .setFooter({ text: `${client.user.username} - help`, iconURL: client.user.displayAvatarURL({ dynamic: true }) });
 
-            await categories.sort().forEach(async category => {
+            categories.sort().forEach(async category => {
                 const commands = client.commands.filter(cmd => cmd.category === category);
                 const categoryEmpty = commands.map(cmd => interaction.member.permissions.has(new PermissionsBitField(cmd.permission)));
 
                 if (categoryEmpty.every(element => element === false)) return;
                 embed.addFields({
-                    name: `${category}`, value: `>>> ${commands.map(cmd => `${interaction.member.permissions.has(new PermissionsBitField(cmd.permission)) ? `\`/${cmd.name}\` : ${cmd.description}\n` : ""}`).join("")}`
+                    name: `${category}`, value: `>>> ${commands.map(cmd => `${interaction.member.permissions.has(new PermissionsBitField(cmd.permission)) ? `\`${cmd.data.name}\`: ${cmd.data.description}\n` : ""}`).join("")}`
                 });
             });
 

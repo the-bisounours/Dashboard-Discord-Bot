@@ -4,7 +4,7 @@ const paginations = require("../../Functions/paginations");
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("banlist")
-        .setDescription("Permet de lister tous les bannissements du serveur discord.")
+        .setDescription("Liste tous les bannissements.")
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
 

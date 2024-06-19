@@ -4,7 +4,7 @@ const channelType = require("../../Functions/channelType");
 module.exports = {
     data: new SlashCommandBuilder()
     .setName("salon")
-    .setDescription("Permet d'avoir des informations sur un salon.")
+    .setDescription("Informatime toi d'un salon discord.")
     .setDMPermission(false)
     .setDefaultMemberPermissions(null)
     .addChannelOption(option => option
@@ -14,7 +14,7 @@ module.exports = {
     ),
 
     category: "Informations",
-    
+
     /**
      * 
      * @param {Client} client 

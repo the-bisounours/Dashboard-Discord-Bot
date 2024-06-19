@@ -4,7 +4,7 @@ const convert = require("../../Functions/convert");
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("slowmode")
-        .setDescription("Permet de ralentir le nombre de message du serveur discord.")
+        .setDescription("Modifie le flux des messages.")
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages)
         .addStringOption(option => option

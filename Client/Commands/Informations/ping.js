@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("ping")
-        .setDescription("Permet de connaitre la latence du robot.")
+        .setDescription("Permet de connaitre la latence.")
         .setDMPermission(true)
         .setDefaultMemberPermissions(null),
 

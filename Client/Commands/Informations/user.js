@@ -3,7 +3,7 @@ const { SlashCommandBuilder, Client, ChatInputCommandInteraction, EmbedBuilder }
 module.exports = {
     data: new SlashCommandBuilder()
     .setName("user")
-    .setDescription("Permet d'avoir des informations sur un utilisateur.")
+    .setDescription("Informatime toi d'un utilisateur.")
     .setDMPermission(false)
     .setDefaultMemberPermissions(null)
     .addUserOption(option => option

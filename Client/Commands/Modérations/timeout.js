@@ -4,7 +4,7 @@ const convert = require("../../Functions/convert");
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("timeout")
-        .setDescription("Permet de rendre muet un utilisateur du serveur discord.")
+        .setDescription("Permet de rendre muet.")
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.MuteMembers)
         .addUserOption(option => option

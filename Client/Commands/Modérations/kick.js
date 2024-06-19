@@ -3,7 +3,7 @@ const { SlashCommandBuilder, PermissionFlagsBits, Client, ChatInputCommandIntera
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("kick")
-        .setDescription("Permet d'exclure un utilisateur du serveur discord.")
+        .setDescription("Permet d'exclure un utilisateur.")
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.KickMembers)
         .addUserOption(option => option

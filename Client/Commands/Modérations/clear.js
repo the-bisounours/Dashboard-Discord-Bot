@@ -3,7 +3,7 @@ const { SlashCommandBuilder, PermissionFlagsBits, Client, ChatInputCommandIntera
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("clear")
-        .setDescription("Permet de supprimer des messages dans un salon discord.")
+        .setDescription("Permet de supprimer des messages.")
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages)
         .addNumberOption(option => option

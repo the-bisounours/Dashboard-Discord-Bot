@@ -3,7 +3,7 @@ const { SlashCommandBuilder, PermissionFlagsBits, Client, ChatInputCommandIntera
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("unban")
-        .setDescription("Permet de débannir un utilisateur du serveur discord.")
+        .setDescription("Permet de débannir un membre.")
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
         .addStringOption(option => option

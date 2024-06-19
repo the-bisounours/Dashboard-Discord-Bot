@@ -5,7 +5,7 @@ const id = require("../../Functions/id");
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("warn")
-        .setDescription("Permet d'avertir un utilisateur du serveur discord.")
+        .setDescription("Permet d'avertir un membre. ")
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers)
         .addUserOption(option => option

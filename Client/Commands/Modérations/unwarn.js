@@ -5,7 +5,7 @@ const id = require("../../Functions/id");
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("unwarn")
-        .setDescription("Permet de retirer un avertissement a un utilisateur du serveur discord.")
+        .setDescription("Permet de retirer un avertissement.")
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers)
         .addUserOption(option => option

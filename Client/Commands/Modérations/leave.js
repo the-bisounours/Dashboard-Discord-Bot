@@ -3,7 +3,7 @@ const { SlashCommandBuilder, PermissionFlagsBits, Client, ChatInputCommandIntera
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("leave")
-        .setDescription("Permet de faire quitter le robot du serveur discord.")
+        .setDescription("Permet de faire quitter le robot.")
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
 

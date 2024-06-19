@@ -5,7 +5,7 @@ const { Warns } = require("../../Models");
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("warnings")
-        .setDescription("Permet de lister tous les avertissements d'un utilisateur.")
+        .setDescription("Liste tous les avertissements")
         .setDMPermission(true)
         .setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers)
         .addUserOption(option => option

@@ -3,7 +3,7 @@ const { SlashCommandBuilder, PermissionFlagsBits, Client, ChatInputCommandIntera
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("untimeout")
-        .setDescription("Permet de rendre la parole à un utilisateur du serveur discord.")
+        .setDescription("Rend la parole à un membre.")
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.MuteMembers)
         .addUserOption(option => option

@@ -3,7 +3,7 @@ const { SlashCommandBuilder, PermissionFlagsBits, Client, ChatInputCommandIntera
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("renew")
-        .setDescription("Permet de créer et supprimer un salon pour supprimer tous les messages.")
+        .setDescription("Supprime tous les messages.")
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageChannels)
         .addChannelOption(option => option
