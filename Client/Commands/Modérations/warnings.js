@@ -7,7 +7,7 @@ module.exports = {
         .setName("warnings")
         .setDescription("Permet de lister tous les avertissements d'un utilisateur.")
         .setDMPermission(false)
-        .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
+        .setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers)
         .addUserOption(option => option
             .setName("membre")
             .setDescription("Le membre à lister tous les avertissements.")
