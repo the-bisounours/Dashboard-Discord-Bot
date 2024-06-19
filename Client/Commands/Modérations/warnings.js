@@ -6,12 +6,12 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName("warnings")
         .setDescription("Permet de lister tous les avertissements d'un utilisateur.")
-        .setDMPermission(false)
+        .setDMPermission(true)
         .setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers)
         .addUserOption(option => option
             .setName("membre")
             .setDescription("Le membre à lister tous les avertissements.")
-            .setRequired(true)
+            .setRequired(false)
         ),
 
     /**
@@ -22,7 +22,17 @@ module.exports = {
     execute: async (client, interaction) => {
 
         const user = interaction.options.getUser("membre") ? interaction.options.getUser("membre") : interaction.user;
-        const member = interaction.guild.members.cache.get(user.id);
+        if(!interaction.guild && interaction.user.id !== user.id) {
+            return await interaction.reply({
+                content: ":x: Vous ne pouvez seulement vous informez sur les avertissements de vous en message privé.",
+                ephemeral: true
+            });
+        };
+
+        let member = interaction.user;
+        if(interaction.user.id !== user.id) {
+            member = interaction.guild.members.cache.get(user.id);
+        };
 
         if (!member) {
             return await interaction.reply({
@@ -31,14 +41,15 @@ module.exports = {
             });
         };
 
-        const warns = await Warns.find({
-            guildId: interaction.guild.id,
-            userId: member.user.id
-        });
+        const warns = await Warns.find(
+            interaction.guild ? 
+            { guildId: interaction.guild.id, userId: user.id } : 
+            { userId: user.id }
+        );
 
         if(warns.length <= 0) {
             return await interaction.reply({
-                content: ":x: Il n'y a aucun avertissements dans le serveur discord.",
+                content: `${interaction.guild ? ":x: Il n'y a aucun avertissements dans le serveur discord." : ":x: Vous n'avez aucun avertissement."}`,
                 ephemeral: true
             });
         };
