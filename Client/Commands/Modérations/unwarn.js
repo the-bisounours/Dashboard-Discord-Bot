@@ -89,9 +89,8 @@ module.exports = {
         const warn = await Warns.findOne({
             guildId: interaction.guild.id,
             userId: member.user.id,
-            warnId: id
+            warnId: warnId
         });
-        console.log(warn)
 
         if (!warn) {
             return await interaction.reply({
@@ -120,7 +119,7 @@ module.exports = {
         return await Warns.findOneAndDelete({
             guildId: interaction.guild.id,
             userId: member.user.id,
-            warnId: id
+            warnId: warnId
         })
             .then(async () => {
                 return await interaction.reply({
