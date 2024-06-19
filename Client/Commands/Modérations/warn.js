@@ -79,14 +79,7 @@ module.exports = {
                 ephemeral: true
             });
         };
-
-        if (!member.kickable) {
-            return await interaction.reply({
-                content: ":x: Je ne peux pas avertir ce membre.",
-                ephemeral: true
-            });
-        };
-
+        
         if (!member.user.bot) {
             try {
                 await member.send({
