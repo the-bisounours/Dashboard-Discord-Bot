@@ -35,6 +35,8 @@ module.exports = {
             .setMinLength(1)
         ),
 
+    category: "Modérations",
+
     /**
      * 
      * @param {Client} client 

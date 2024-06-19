@@ -21,6 +21,8 @@ module.exports = {
             )
         ),
 
+    category: "Modérations",
+
     /**
      * 
      * @param {Client} client 

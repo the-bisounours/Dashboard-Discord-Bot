@@ -26,6 +26,8 @@ module.exports = {
             .setRequired(false)
         ),
 
+    category: "Modérations",
+
     /**
      * 
      * @param {Client} client 
@@ -79,7 +81,7 @@ module.exports = {
                 ephemeral: true
             });
         };
-        
+
         if (!member.user.bot) {
             try {
                 await member.send({

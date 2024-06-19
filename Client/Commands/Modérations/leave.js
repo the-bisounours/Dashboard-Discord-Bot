@@ -7,6 +7,8 @@ module.exports = {
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
 
+    category: "Modérations",
+
     /**
      * 
      * @param {Client} client 

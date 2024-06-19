@@ -31,6 +31,8 @@ module.exports = {
             .setRequired(false)
         ),
 
+    category: "Modérations",
+
     /**
      * 
      * @param {Client} client 
