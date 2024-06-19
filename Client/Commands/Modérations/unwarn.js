@@ -89,8 +89,9 @@ module.exports = {
         const warn = await Warns.findOne({
             guildId: interaction.guild.id,
             userId: member.user.id,
-            id: id
+            warnId: id
         });
+        console.log(warn)
 
         if (!warn) {
             return await interaction.reply({
@@ -116,7 +117,11 @@ module.exports = {
             } catch (err) { };
         };
 
-        return await warn.deleteOne()
+        return await Warns.findOneAndDelete({
+            guildId: interaction.guild.id,
+            userId: member.user.id,
+            warnId: id
+        })
             .then(async () => {
                 return await interaction.reply({
                     content: `Vous avez retirer un avertissement de \`${member.user.username}\` pour \`${raison}\`.${interaction.options.getAttachment("preuve") ? ` [\`preuve\`](${interaction.options.getAttachment("preuve").url})` : ""}`,
