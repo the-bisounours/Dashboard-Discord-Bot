@@ -8,6 +8,8 @@ module.exports = {
         .setDMPermission(true)
         .setDefaultMemberPermissions(null),
 
+    category: "Informations",
+
     /**
      * 
      * @param {Client} client 

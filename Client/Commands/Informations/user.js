@@ -12,6 +12,8 @@ module.exports = {
         .setRequired(false)
     ),
 
+    category: "Informations",
+
     /**
      * 
      * @param {Client} client 
