@@ -110,7 +110,8 @@ module.exports = {
             warnId: id("warn", 8), 
             raison: raison, 
             time: Date.now(),
-            by: interaction.user.id, 
+            by: interaction.user.id,
+            preuve: interaction.options.getAttachment("preuve") ? interaction.options.getAttachment("preuve").url : ""
         }).save()
             .then(async () => {
                 return await interaction.reply({
