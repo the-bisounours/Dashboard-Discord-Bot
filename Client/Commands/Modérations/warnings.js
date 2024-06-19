@@ -43,6 +43,8 @@ module.exports = {
             });
         };
 
+        warns.sort((a, b) => new Date(a.time) - new Date(b.time));
+
         const embeds = [];
         for (let index = 0; index < warns.length; index++) {
             const warn = warns[index];
