@@ -1,4 +1,5 @@
 module.exports = {
     Guilds: require("./Guilds"),
-    Users: require("./Users")
+    Users: require("./Users"),
+    Warns: require("./Warns")
 };
