@@ -24,6 +24,10 @@ const warnSchema = new Schema({
     by: {
         type: String,
         default: ""
+    },
+    preuve: {
+        type: String,
+        default: ""
     }
 });
 
