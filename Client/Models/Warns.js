@@ -20,6 +20,10 @@ const warnSchema = new Schema({
     time: {
         type: Number,
         default: Date.now()
+    },
+    by: {
+        type: String,
+        default: ""
     }
 });
 
