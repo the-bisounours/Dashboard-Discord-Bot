@@ -3,7 +3,7 @@ const { SlashCommandBuilder, PermissionFlagsBits, Client, ChatInputCommandIntera
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("undeafen")
-        .setDescription("Assourdir un membre voice channel.")
+        .setDescription("Permet de mettre le casque.")
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.DeafenMembers)
         .addUserOption(option => option
