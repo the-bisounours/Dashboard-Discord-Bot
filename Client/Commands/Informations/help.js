@@ -92,6 +92,9 @@ module.exports = {
                     case "Modérations":
                         emojis = "💫"
                     break;
+                    case "Musiques":
+                        emojis = "🎵"
+                    break;
                     default:
                         break;
                 };
