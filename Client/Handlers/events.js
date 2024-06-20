@@ -25,7 +25,7 @@ module.exports = async (client) => {
                 } else {
                     client.on(event.name, (...args) => event.execute(client, ...args));
                 };
-            }
+            };
         };
     };
 
