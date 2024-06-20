@@ -34,9 +34,10 @@ module.exports = {
             });
         };
 
+        const currentTrack = player.queues.get(interaction.guild.id).currentTrack;
         player.queues.get(interaction.guild.id).node.stop();
         return await interaction.reply({
-            content: `La musique a été stopper.`,
+            content: `La musique \`${currentTrack.title}\` a été stopper.`,
             ephemeral: true
         });
     }
