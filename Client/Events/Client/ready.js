@@ -10,6 +10,6 @@ module.exports = {
      */
     execute: (client) => {
 
-        console.log("\x1b[34m", `${client.user.displayName} est connecté sur ${client.guilds.cache.size} serveurs.`);
+        console.log(`${client.user.displayName} est connecté sur ${client.guilds.cache.size} serveurs.`);
     }
 };

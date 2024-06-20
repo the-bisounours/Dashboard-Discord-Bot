@@ -10,7 +10,7 @@ module.exports = (client) => {
     mongoose.connect(process.env.mongoDB);
 
     mongoose.connection.on("connected", () => {
-        console.log("\x1b[36m", "La base de donnée est connectée.");
+        console.log("La base de donnée est connectée.");
     });
 
     mongoose.connection.on("error", (err) => {

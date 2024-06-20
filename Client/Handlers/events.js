@@ -33,5 +33,5 @@ module.exports = async (client) => {
         await loadEvents(dir);
     };
 
-    console.log("\x1b[32m", "Les évènements ont été mis en place avec succès !");
+    console.log("Les évènements ont été mis en place avec succès !");
 };

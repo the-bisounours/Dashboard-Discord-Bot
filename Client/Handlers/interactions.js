@@ -42,12 +42,12 @@ module.exports = async (client) => {
         try {
 
             await rest.put(Routes.applicationCommands(client.user.id), { body: client.slashArray });
-            console.log("\x1b[32m", "Les commandes slash ont été mises en place avec succès !");
+            console.log("Les commandes slash ont été mises en place avec succès !");
     
         } catch (err) {
-            console.error("\x1b[31m", "Erreur lors de la création des commandes Slash :", err);
+            console.error("Erreur lors de la création des commandes Slash :", err);
         };
     });
 
-    console.log("\x1b[34m", "\x1b[34mLes \x1b[31mboutons\x1b[37m\x1b[34m, les \x1b[31mmodales\x1b[37m\x1b[34m, les \x1b[31mselects\x1b[37m\x1b[34m, les \x1b[31mcommandes\x1b[37m \x1b[34met les \x1b[31mcontexts\x1b[37m \x1b[34mont bien été chargés avec succès!");
+    console.log("Les boutons, les modales, les selects, les commandes et les contexts ont bien été chargés avec succès!");
 };
