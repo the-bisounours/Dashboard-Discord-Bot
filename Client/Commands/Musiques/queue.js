@@ -35,6 +35,13 @@ module.exports = {
             });
         };
 
+        if (player.queues.get(interaction.guild.id).tracks.toArray().length <= 0) {
+            return await interaction.reply({
+                content: "Il n'y a pas d'autre musique que celle actuelle.",
+                ephemeral: true
+            });
+        };
+
         const embeds = [];
         const tracks = player.queues.get(interaction.guild.id).tracks.toArray()
 
