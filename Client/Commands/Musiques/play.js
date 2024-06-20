@@ -33,7 +33,9 @@ module.exports = {
         };
 
         const query = interaction.options.getString("song");
-        await interaction.deferReply();
+        await interaction.deferReply({
+            ephemeral: true
+        });
 
         try {
             const { track } = await player.play(channel, query, {
@@ -43,7 +45,7 @@ module.exports = {
             });
 
             return await interaction.followUp({
-                content: `\`${track.title}\` mis en file d'attente.`
+                content: `\`${track.playlist ? track.playlist.title : track.title}\` mis en file d'attente.`
             });
         } catch (err) {
             return interaction.followUp({
