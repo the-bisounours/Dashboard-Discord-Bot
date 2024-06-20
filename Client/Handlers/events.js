@@ -19,10 +19,6 @@ module.exports = async (client) => {
                 const player = useMainPlayer();
                 player.events.on(event.name, (...args) => event.execute(client, ...args));
 
-            } else if (dir === "Extractors") {
-                const player = useMainPlayer();
-                player.extractors.on(event.name, (...args) => event.execute(client, ...args));
-
             } else {
                 if (event.once) {
                     client.once(event.name, (...args) => event.execute(client, ...args));
