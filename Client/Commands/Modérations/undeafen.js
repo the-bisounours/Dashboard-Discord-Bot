@@ -45,7 +45,7 @@ module.exports = {
             });
         };
 
-        /*if (member.user.id === interaction.guild.ownerId) {
+        if (member.user.id === interaction.guild.ownerId) {
             return await interaction.reply({
                 content: ":x: Vous ne pouvez pas mettre le casque du propriétaire du serveur discord.",
                 ephemeral: true
@@ -78,7 +78,7 @@ module.exports = {
                 content: ":x: Je ne peux pas mettre le casque d'un membre plus haut que moi.",
                 ephemeral: true
             });
-        };*/
+        };
 
         if (!member.voice || !member.voice?.channel) {
             return await interaction.reply({
