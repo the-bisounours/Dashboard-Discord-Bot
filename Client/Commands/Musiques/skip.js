@@ -37,7 +37,7 @@ module.exports = {
         const currentTrack = player.queues.get(interaction.guild.id).currentTrack;
         player.queues.get(interaction.guild.id).node.skip();
         return await interaction.reply({
-            content: `${player.queues.get(interaction.guild.id).tracks.size > 0 ? `Passé: \`${currentTrack.title}\`` : `Il n'y a plus de musique dans la file d'attente.`}`,
+            content: `${player.queues.get(interaction.guild.id).tracks.size > 0 ? `La musique \`${currentTrack.title}\` a été passée.` : `Il n'y a plus de musique dans la file d'attente.`}`,
             ephemeral: true
         });
     }
