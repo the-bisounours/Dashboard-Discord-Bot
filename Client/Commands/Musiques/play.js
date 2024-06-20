@@ -41,7 +41,8 @@ module.exports = {
             const { track } = await player.play(channel, query, {
                 nodeOptions: {
                     metadata: interaction
-                }
+                },
+                requestedBy: interaction.user
             });
 
             return await interaction.followUp({
