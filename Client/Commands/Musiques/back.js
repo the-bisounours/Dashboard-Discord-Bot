@@ -46,7 +46,6 @@ module.exports = {
             });
         };
         
-        
         const previousTrack = player.queues.get(interaction.guild.id).history.previousTrack
         player.queues.get(interaction.guild.id).history.back(interaction.options.getBoolean("préserver-actuel"))
         return await interaction.reply({
