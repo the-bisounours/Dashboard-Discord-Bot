@@ -72,18 +72,33 @@ module.exports = {
             const embed = new EmbedBuilder()
                 .setColor("Blurple")
                 .setTitle(`Informations des commandes du robot`)
-                .setThumbnail(client.user.displayAvatarURL({ dynamic: true }))
+                .setThumbnail(client.user.displayAvatarURL())
                 .setDescription(`Commandes du robot : \`${client.commands.size}\`\nCommandes disponibles pour ${interaction.member} : \`${cmds.length}\``)
                 .setTimestamp()
-                .setFooter({ text: `${client.user.username} - help`, iconURL: client.user.displayAvatarURL({ dynamic: true }) });
+                .setFooter({ 
+                    text: client.user.username, 
+                    iconURL: client.user.displayAvatarURL() 
+                });
 
             categories.sort().forEach(async category => {
                 const commands = client.commands.filter(cmd => cmd.category === category);
                 const categoryEmpty = commands.map(cmd => interaction.member.permissions.has(new PermissionsBitField(cmd.permission)));
 
+                let emojis;
+                switch (category) {
+                    case "Informations":
+                        emojis = "🌟"
+                    break;
+                    case "Modérations":
+                        emojis = "💫"
+                    break;
+                    default:
+                        break;
+                };
+
                 if (categoryEmpty.every(element => element === false)) return;
                 embed.addFields({
-                    name: `${category}`, value: `>>> ${commands.map(cmd => `${interaction.member.permissions.has(new PermissionsBitField(cmd.permission)) ? `\`${cmd.data.name}\`: ${cmd.data.description}\n` : ""}`).join("")}`
+                    name: `${emojis} ${category} [\`${commands.size}\`]`, value: `>>> ${commands.map(cmd => `${interaction.member.permissions.has(new PermissionsBitField(cmd.permission)) ? `\`${cmd.data.name}\`: ${cmd.data.description}\n` : ""}`).join("")}`
                 });
             });
 
