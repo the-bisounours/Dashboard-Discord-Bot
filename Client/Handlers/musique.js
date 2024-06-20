@@ -7,8 +7,8 @@ const { Player } = require('discord-player');
  */
 module.exports = async (client) => {
     
-    client.player = new Player(client);
-    await client.player.extractors.loadDefault((ext) => ext !== 'YouTubeExtractor');
+    const player = new Player(client);
+    await player.extractors.loadDefault((ext) => ext !== 'YouTubeExtractor');
 
     console.log("\x1b[32m", "La musique à bien été mit en place.");
 };
