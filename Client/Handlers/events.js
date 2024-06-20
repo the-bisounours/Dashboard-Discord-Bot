@@ -1,3 +1,4 @@
+const { useMainPlayer } = require('discord-player');
 const { Client } = require("discord.js");
 const fs = require("fs");
 
@@ -14,11 +15,17 @@ module.exports = async (client) => {
         for (const file of events) {
             const event = require(`../Events/${dir}/${file}`);
 
-            if (event.once) {
-                client.once(event.name, (...args) => event.execute(client, ...args));
+            if(dir === "Musiques") {
+                const player = useMainPlayer();
+                player.events.on(event.name, (...args) => event.execute(client, ...args));
+
             } else {
-                client.on(event.name, (...args) => event.execute(client, ...args));
-            };
+                if (event.once) {
+                    client.once(event.name, (...args) => event.execute(client, ...args));
+                } else {
+                    client.on(event.name, (...args) => event.execute(client, ...args));
+                };
+            }
         };
     };
 
