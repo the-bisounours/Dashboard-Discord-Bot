@@ -28,7 +28,7 @@ module.exports = {
 
         const focusedValue = interaction.options.getFocused();
         const filtered = tracks.data.filter(choice => choice.title.startsWith(focusedValue));
-        await interaction.respond(filtered.map(choice =>
+        await interaction.respond(filtered.slice(0, 25).map(choice =>
             ({ 
                 name: choice.title, 
                 value: choice.id
