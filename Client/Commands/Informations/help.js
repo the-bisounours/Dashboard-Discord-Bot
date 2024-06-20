@@ -1,4 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder, Client, ChatInputCommandInteraction, PermissionFlagsBits, AutocompleteInteraction, PermissionsBitField } = require("discord.js");
+const PermissionFlags = require("../../Functions/PermissionFlags");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -81,13 +82,13 @@ module.exports = {
                     new EmbedBuilder()
                         .setTitle(`Information de la commande - ${command.data.name}`)
                         .setThumbnail(client.user.displayAvatarURL())
-                        .setColor(user.customPreferences.couleur)
+                        .setColor("Blurple")
                         .setFooter({
                             text: client.user.displayName,
                             iconURL: client.user.displayAvatarURL()
                         })
                         .setTimestamp()
-                        .setDescription(`> **Nom:** \`${command.data.name}\`\n> **Description:** \`${command.data.description}\`\n> **Catégorie:** \`${command.category}\`\n> **Prémium:** \`${command.premium ? 'oui' : 'non'}\`\n> **Message privé:** \`${command.data.dm_permission ? 'oui' : 'non'}\`\n> **NSFW:** \`${command.data.nsfw ? 'oui' : 'non'}\`\n> **Permissions Utilisateur:** \`${await client.function.PermissionFlags([command.data.default_member_permissions])}\`\n> **Permissions Roclient:** ${await client.function.PermissionFlags(command.permissionsclient).map(permission => `\`${permission}\``).join(" ")}\n> **Permissions Salon:** ${await client.function.PermissionFlags(command.permissionsChannel).map(permission => `\`${permission}\``).join(" ")}`)
+                        .setDescription(`> **Nom:** \`${command.data.name}\`\n> **Description:** \`${command.data.description}\`\n> **Catégorie:** \`${command.category}\`\n> **Prémium:** \`${command.premium ? 'oui' : 'non'}\`\n> **Message privé:** \`${command.data.dm_permission ? 'oui' : 'non'}\`\n> **NSFW:** \`${command.data.nsfw ? 'oui' : 'non'}\`\n> **Permissions Utilisateur:** \`${PermissionFlags(command.data.default_member_permissions)}\``)
                 ]
             });
         };
