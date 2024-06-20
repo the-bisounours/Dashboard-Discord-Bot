@@ -5,7 +5,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName("resume")
         .setDescription("Permet de mettre la musique.")
-        .setDMPermission(true)
+        .setDMPermission(false)
         .setDefaultMemberPermissions(null),
 
     category: "Musiques",

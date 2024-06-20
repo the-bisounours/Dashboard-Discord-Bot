@@ -5,7 +5,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName("play")
         .setDescription("Permet de jouer de la musique.")
-        .setDMPermission(true)
+        .setDMPermission(false)
         .setDefaultMemberPermissions(null)
         .addStringOption(option => option
             .setName("song")

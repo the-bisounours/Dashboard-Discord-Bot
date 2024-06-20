@@ -5,7 +5,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName("stop")
         .setDescription("Permet d'arrêter a la musique.")
-        .setDMPermission(true)
+        .setDMPermission(false)
         .setDefaultMemberPermissions(null),
 
     category: "Musiques",

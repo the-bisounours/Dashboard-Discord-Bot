@@ -5,7 +5,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName("pause")
         .setDescription("Permet de mettre pause.")
-        .setDMPermission(true)
+        .setDMPermission(false)
         .setDefaultMemberPermissions(null),
 
     category: "Musiques",

@@ -5,7 +5,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName("remove")
         .setDescription("Permet de retirer la musique.")
-        .setDMPermission(true)
+        .setDMPermission(false)
         .setDefaultMemberPermissions(null)
         .addStringOption(option => option
             .setName("song")
