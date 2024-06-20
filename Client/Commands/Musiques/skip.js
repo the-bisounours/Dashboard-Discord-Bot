@@ -27,7 +27,7 @@ module.exports = {
             });
         };
 
-        if (!player.queues.get(interaction.guild.id).isPlaying()) {
+        if (!player.queues.get(interaction.guild.id) || !player.queues.get(interaction.guild.id).isPlaying()) {
             return await interaction.reply({
                 content: "Il n'y a pas de musique en cours.",
                 ephemeral: true
