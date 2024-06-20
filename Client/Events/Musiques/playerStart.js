@@ -1,5 +1,5 @@
 const { GuildQueueEvent, GuildQueue, Track } = require("discord-player");
-const { Client, EmbedBuilder } = require("discord.js");
+const { Client } = require("discord.js");
 
 module.exports = {
     name: GuildQueueEvent.playerStart,
