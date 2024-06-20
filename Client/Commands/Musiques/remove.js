@@ -67,11 +67,11 @@ module.exports = {
                 ephemeral: true
             });
         };
-        
-        player.queues.get(interaction.guild.id).node.remove(currentTrack);
+
+        player.queues.get(interaction.guild.id).node.remove(track);
 
         return await interaction.reply({
-            content: `La musique \`${currentTrack.title}\` a été retiré.`
+            content: `La musique \`${track.title}\` a été retiré.`
         });
     }
 };
