@@ -12,22 +12,10 @@ module.exports = {
             .setDescription("Permet de répeter la musique")
             .setRequired(true)
             .addChoices(
-                {
-                    name: "Désactivé",
-                    value: QueueRepeatMode.OFF
-                },
-                {
-                    name: "Autoplay",
-                    value: QueueRepeatMode.AUTOPLAY
-                },
-                {
-                    name: "Queue",
-                    value: QueueRepeatMode.QUEUE
-                },
-                {
-                    name: "Song",
-                    value: QueueRepeatMode.TRACK
-                }
+                { name: "Désactivé", value: `${QueueRepeatMode.OFF}` },
+                { name: "Autoplay", value: `${QueueRepeatMode.AUTOPLAY}` },
+                { name: "Queue", value: `${QueueRepeatMode.QUEUE}` },
+                { name: "Song", value: `${QueueRepeatMode.TRACK}` }
             )
         ),
 
@@ -57,33 +45,38 @@ module.exports = {
             });
         };
         
-        if (player.queues.get(interaction.guild.id).repeatMode === interaction.options.getString("mode")) {
+        let mode;
+        let mode1;
+        switch (interaction.options.getString("mode")) {
+            case `${QueueRepeatMode.AUTOPLAY}`:
+                mode = "Autoplay";
+                mode1 = 3
+            break;
+            case `${QueueRepeatMode.OFF}`:
+                mode = "Désactivé";
+                mode1 = 0;
+            break;
+            case `${QueueRepeatMode.QUEUE}`:
+                mode = "Queue";
+                mode1 = 2;
+            break;
+            case `${QueueRepeatMode.TRACK}`:
+                mode = "Song";
+                mode1 = 1;
+            break;
+            default:
+                mode = "Inconnu";
+            break;
+        }
+
+        if (player.queues.get(interaction.guild.id).repeatMode === mode1) {
             return await interaction.reply({
                 content: "Ce mode est déjà en cours.",
                 ephemeral: true
             });
         };
 
-        player.queues.get(interaction.guild.id).setRepeatMode(interaction.options.getString("mode"));
-
-        let mode;
-        switch (interaction.options.getString("mode")) {
-            case QueueRepeatMode.AUTOPLAY:
-                mode = "Autoplay"
-            break;
-            case QueueRepeatMode.OFF:
-                mode = "Désactivé"
-            break;
-            case QueueRepeatMode.QUEUE:
-                mode = "Queue"
-            break;
-            case QueueRepeatMode.TRACK:
-                mode = "Song"
-            break;
-            default:
-                mode = "Inconnu"
-            break;
-        }
+        player.queues.get(interaction.guild.id).setRepeatMode(mode1);
         return await interaction.reply({
             content: `Le mode a bien été mis \`${mode}\`.`
         });
