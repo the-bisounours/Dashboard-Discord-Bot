@@ -94,7 +94,6 @@ module.exports = {
                 });
             })
             .catch(async err => {
-                console.log(err)
                 return await interaction.reply({
                     content: `\`${member.user.displayName}\` n'a pas été renommer à cause d'une erreur.`,
                     ephemeral: true
