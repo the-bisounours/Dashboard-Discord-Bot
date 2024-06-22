@@ -84,24 +84,9 @@ module.exports = {
                 const commands = client.commands.filter(cmd => cmd.category === category);
                 const categoryEmpty = commands.map(cmd => interaction.member.permissions.has(new PermissionsBitField(cmd.permission)));
 
-                let emojis;
-                switch (category) {
-                    case "Informations":
-                        emojis = "🌟"
-                    break;
-                    case "Modérations":
-                        emojis = "💫"
-                    break;
-                    case "Musiques":
-                        emojis = "🎵"
-                    break;
-                    default:
-                        break;
-                };
-
                 if (categoryEmpty.every(element => element === false)) return;
                 embed.addFields({
-                    name: `${emojis} ${category} [\`${commands.size}\`]`, value: `>>> ${commands.map(cmd => `${interaction.member.permissions.has(new PermissionsBitField(cmd.permission)) ? `\`${cmd.data.name}\`: ${cmd.data.description}\n` : ""}`).join("")}`
+                    name: `${category} [\`${commands.size}\`]`, value: `>>> ${commands.map(cmd => `${interaction.member.permissions.has(new PermissionsBitField(cmd.permission)) ? `[\`${cmd.data.name}\`](${process.env.supportInvite})` : ""}`).join(" ")}`
                 });
             });
 
