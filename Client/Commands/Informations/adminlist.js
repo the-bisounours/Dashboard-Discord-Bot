@@ -1,0 +1,40 @@
+const { SlashCommandBuilder, Client, ChatInputCommandInteraction, EmbedBuilder, PermissionFlagsBits } = require("discord.js");
+
+module.exports = {
+    data: new SlashCommandBuilder()
+        .setName("adminlist")
+        .setDescription("Permet de connaitre les administrateurs.")
+        .setDMPermission(true)
+        .setDefaultMemberPermissions(null),
+
+    category: "Informations",
+
+    /**
+     * 
+     * @param {Client} client 
+     * @param {ChatInputCommandInteraction} interaction 
+     */
+    execute: async (client, interaction) => {
+
+        if(interaction.guild.members.cache.filter(member => member.permissions.has(PermissionFlagsBits.Administrator) && !member.user.bot).size <= 0) {
+            return await interaction.reply({
+                content: `Il n'y a aucun administrateur.`,
+                ephemeral: true
+            });
+        };
+
+        return await interaction.reply({
+            embeds: [
+                new EmbedBuilder()
+                .setTitle("Information de la liste des administrateurs")
+                .setDescription(`${interaction.guild.members.cache.filter(member => member.permissions.has(PermissionFlagsBits.Administrator) && !member.user.bot).map(member => `${member}`).join(" ")}`)
+                .setColor("Blurple")
+                .setFooter({
+                    text: client.user.displayName,
+                    iconURL: client.user.displayAvatarURL()
+                })
+                .setTimestamp()
+            ]
+        });
+    }
+};
