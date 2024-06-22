@@ -1,5 +1,4 @@
-const { SlashCommandBuilder, Client, ChatInputCommandInteraction, ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } = require("discord.js");
-const mongoose = require("mongoose");
+const { SlashCommandBuilder, Client, ChatInputCommandInteraction } = require("discord.js");
 
 module.exports = {
     data: new SlashCommandBuilder()
