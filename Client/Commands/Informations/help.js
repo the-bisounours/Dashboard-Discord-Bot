@@ -80,7 +80,14 @@ module.exports = {
                     iconURL: client.user.displayAvatarURL() 
                 });
 
-            categories.sort().forEach(async category => {
+            const categoryOrder = {
+                'Modérations': 1, 
+                'Informations': 2, 
+                'Jeux': 3, 
+                'Musiques': 4
+            };
+
+            categories.sort((a, b) => categoryOrder[a] - categoryOrder[b]).forEach(async category => {
                 const commands = client.commands.filter(cmd => cmd.category === category);
                 const categoryEmpty = commands.map(cmd => interaction.member.permissions.has(new PermissionsBitField(cmd.permission)));
 
