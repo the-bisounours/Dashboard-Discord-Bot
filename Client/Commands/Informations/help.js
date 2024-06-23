@@ -88,7 +88,12 @@ module.exports = {
             };
 
             categories.sort((a, b) => categoryOrder[a] - categoryOrder[b]).forEach(async category => {
-                const commands = client.commands.filter(cmd => cmd.category === category);
+                let commands = client.commands.filter(cmd => cmd.category === category);
+                
+                if(interaction.user.id !== process.env.ownerId) {
+                    commands = commands.filter(cmd => cmd.category !== "Propriétaires");
+                };
+
                 const categoryEmpty = commands.map(cmd => interaction.member.permissions.has(new PermissionsBitField(cmd.permission)));
 
                 if (categoryEmpty.every(element => element === false)) return;
