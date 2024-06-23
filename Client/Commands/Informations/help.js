@@ -61,9 +61,9 @@ module.exports = {
                 ]
             });
         } else {
-            let viewcommands;
+            let viewcommands = client.commands
             if(interaction.user.id !== process.env.ownerId) {
-                viewcommands = client.commands.filter(cmd => cmd.category !== "Propriétaires");
+                viewcommands = viewcommands.filter(cmd => cmd.category !== "Propriétaires");
             };
             viewcommands = viewcommands.map(cmd => interaction.member.permissions.has(new PermissionsBitField(cmd.permission)));
             const cmds = viewcommands.filter(c => c === true);
