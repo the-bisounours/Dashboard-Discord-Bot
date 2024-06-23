@@ -42,7 +42,6 @@ module.exports = {
         const member = interaction.guild.members.cache.get(user.id);
         const role = interaction.guild.roles.cache.get(interaction.options.getRole("rôle").id);
         const raison = interaction.options.getString("raison") ? interaction.options.getString("raison") : "aucune raison";
-        const messages = interaction.options.getString("messages") ? new Number(interaction.options.getString("messages")) : 3600
 
         if (!member) {
             return await interaction.reply({
