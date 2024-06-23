@@ -81,15 +81,16 @@ module.exports = {
                 });
 
             const categoryOrder = {
-                'Modérations': 1, 
-                'Informations': 2, 
-                'Jeux': 3, 
-                'Musiques': 4
+                'Propriétaires': 1, 
+                'Modérations': 2, 
+                'Informations': 3, 
+                'Jeux': 4, 
+                'Musiques': 5
             };
 
             categories.sort((a, b) => categoryOrder[a] - categoryOrder[b]).forEach(async category => {
                 let commands = client.commands.filter(cmd => cmd.category === category);
-                
+
                 if(interaction.user.id !== process.env.ownerId) {
                     commands = commands.filter(cmd => cmd.category !== "Propriétaires");
                 };
