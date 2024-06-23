@@ -11,11 +11,11 @@ module.exports = {
     execute: async (client, interaction) => {
 
         const modal = new ModalBuilder()
-            .setCustomId("botconfig")
             .setTitle("Informations du robot")
 
         switch (interaction.values[0]) {
             case "name":
+                modal.setCustomId("configName")
                 modal.addComponents(
                     new ActionRowBuilder()
                         .addComponents(
@@ -31,6 +31,7 @@ module.exports = {
                 );
             break;
             case "description":
+                modal.setCustomId("configDescription")
                 modal.addComponents(
                     new ActionRowBuilder()
                         .addComponents(
