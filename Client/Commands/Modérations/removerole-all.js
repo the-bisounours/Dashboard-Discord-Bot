@@ -3,13 +3,13 @@ const convert = require("../../Functions/convert");
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName("addrole-all")
-        .setDescription("Permet de donner un rôle aux membres.")
+        .setName("removerole-all")
+        .setDescription("Permet de retirer un rôle aux membres.")
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
         .addRoleOption(option => option
             .setName("rôle")
-            .setDescription("Le role a donner aux membres.")
+            .setDescription("Le role a retirer aux membres.")
             .setRequired(true)
         )
         .addStringOption(option => option
@@ -19,19 +19,19 @@ module.exports = {
             .addChoices(
                 { name: "Tous le monde", value: "everyone" },
                 { name: "Membres", value: "members" },
-                { name: "Robots", value: "bots" },
+                { name: "Robots", value: "bots" }
             )
         )
         .addStringOption(option => option
             .setName("raison")
-            .setDescription("La raison de donner le rôle aux membres.")
+            .setDescription("La raison de retirer le rôle aux membres.")
             .setRequired(false)
             .setMaxLength(200)
             .setMinLength(1)
         )
         .addAttachmentOption(option => option
             .setName("preuve")
-            .setDescription("La preuve de donner le rôle aux membres.")
+            .setDescription("La preuve de retirer le rôle aux membres.")
             .setRequired(false)
         ),
 
@@ -60,8 +60,8 @@ module.exports = {
                 if (interaction.guild.members.me.roles.highest.comparePositionTo(member.roles.highest) > 0) {
                     if (interaction.guild.members.me.roles.highest.comparePositionTo(role) > 0) {
 
-                        if (!member.roles.cache.has(role.id)) {
-                            await interaction.guild.members.addRole({
+                        if (member.roles.cache.has(role.id)) {
+                            await interaction.guild.members.removeRole({
                                 user: member.user,
                                 role: role,
                                 reason: raison
@@ -77,7 +77,7 @@ module.exports = {
         await Promise.all(promises)
             .then(async () => {
                 return await interaction.followUp({
-                    content: `Vous avez donner \`${role.name}\` à \`${count}\` membres pour \`${raison}\`, réaliser en ${convert(Date.now() - time, "millisecondes")}.${interaction.options.getAttachment("preuve") ? ` [\`preuve\`](${interaction.options.getAttachment("preuve").url})` : ""}`,
+                    content: `Vous avez retirer \`${role.name}\` à \`${count}\` membres pour \`${raison}\`, réaliser en ${convert(Date.now() - time, "millisecondes")}.${interaction.options.getAttachment("preuve") ? ` [\`preuve\`](${interaction.options.getAttachment("preuve").url})` : ""}`,
                 });
             })
             .catch(async err => {
