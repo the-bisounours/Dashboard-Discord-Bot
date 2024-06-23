@@ -73,7 +73,7 @@ module.exports = {
                 .setColor("Blurple")
                 .setTitle(`Informations des commandes du robot`)
                 .setThumbnail(client.user.displayAvatarURL())
-                .setDescription(`Commandes du robot : \`${client.commands.size}\`\nCommandes disponibles pour ${interaction.member} : \`${cmds.length}\``)
+                .setDescription(`- Commandes du robot : \`${client.commands.size}\`\n- Commandes disponibles pour [${interaction.user.displayName}](${process.env.supportInvite}) : \`${cmds.length}\``)
                 .setTimestamp()
                 .setFooter({ 
                     text: client.user.username, 
