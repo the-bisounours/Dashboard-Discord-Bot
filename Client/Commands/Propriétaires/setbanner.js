@@ -3,13 +3,13 @@ const activity = require("../../Functions/activity");
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName("setavatar")
-        .setDescription("Permet de modifier l'avatar du robot.")
+        .setName("setbanner")
+        .setDescription("Permet de modifier la bannière du robot.")
         .setDMPermission(false)
         .setDefaultMemberPermissions(null)
         .addAttachmentOption(option => option
-            .setName("avatar")
-            .setDescription("Permet de modifier l'avatar du robot.")
+            .setName("bannière")
+            .setDescription("Permet de modifier la bannière du robot.")
             .setRequired(true)
         ),
 
@@ -30,17 +30,18 @@ module.exports = {
         };
 
         await interaction.deferReply({ ephemeral: true });
-        const attchement = interaction.options.getAttachment("avatar");
-        return await client.user.setAvatar(attchement.url)
+        const attchement = interaction.options.getAttachment("bannière");
+        return await client.user.setBanner(attchement.url)
             .then(async clientInfo => {
                 return await interaction.followUp({
-                    content: `Le robot a changé d'avatar: [\`clique ici\`](${clientInfo.displayAvatarURL()})`,
+                    content: `Le robot a changé de bannière: ${clientInfo.banner ? `[\`clique ici\`](${clientInfo.bannerURL()})` : "\`Aucune\`"}`,
                     ephemeral: true
                 });
             })
             .catch(async err => {
+                console.log(err)
                 return await interaction.followUp({
-                    content: `Le robot n'a pas changé d'avatar à cause d'une erreur.`,
+                    content: `Le robot n'a pas changé de bannière à cause d'une erreur.`,
                     ephemeral: true
                 });
             });
