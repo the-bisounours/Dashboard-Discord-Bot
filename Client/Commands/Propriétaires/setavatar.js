@@ -29,38 +29,20 @@ module.exports = {
             });
         };
 
-        return await interaction.reply({
-            embeds: [
-                new EmbedBuilder()
-                    .setTitle("Informations du robot")
-                    .setThumbnail(client.user.displayAvatarURL())
-                    .setColor("Blurple")
-                    .setFooter({
-                        text: client.user.displayName,
-                        iconURL: client.user.displayAvatarURL()
-                    })
-                    .setTimestamp()
-                    .setDescription(`> **Nom:** \`${client.user.username}\`\n> **Description:** \`${client.application.description ? client.application.description : "Aucune"}\`\n> **Avatar:** ${client.user.avatar ? `[\`clique ici\`](${client.user.displayAvatarURL()})` : "\`Aucun\`"}\n> **Bannière:** ${client.user.banner ? `[\`clique ici\`](${client.user.bannerURL()})` : "\`Aucune\`"}\n> **Satus:** \`${client.user.presence && client.user.presence.status ? client.user.presence.status : "Aucun"}\`\n> **Activité:** \`${client.user.presence && client.user.presence.activities.length > 0 ? `${activity(client.user.presence.activities[0].type)} ${client.user.presence.activities[0].name}` : "Aucune"}\``)
-            ],
-            components: [
-                new ActionRowBuilder()
-                    .addComponents(
-                        new StringSelectMenuBuilder()
-                            .setCustomId("botconfig")
-                            .setDisabled(false)
-                            .setMaxValues(1)
-                            .setMinValues(1)
-                            .setPlaceholder("Config les informations du robot")
-                            .addOptions(
-                                new StringSelectMenuOptionBuilder()
-                                    .setLabel("Modifier le nom")
-                                    .setValue("name"),
-                                new StringSelectMenuOptionBuilder()
-                                    .setLabel("Modifier la description")
-                                    .setValue("description")
-                            )
-                    )
-            ]
-        })
+        const attchement = interaction.options.getAttachment("avatar");
+        return await client.user.setAvatar(attchement.url)
+            .then(async err => {
+                return await interaction.reply({
+                    content: `Le robot n'a pas changé de nom à cause d'une erreur.`,
+                    ephemeral: true
+                });
+            })
+            .catch(async err => {
+                console.log(err)
+                return await interaction.reply({
+                    content: `Le robot n'a pas changé de nom à cause d'une erreur.`,
+                    ephemeral: true
+                });
+            });
     }
 };

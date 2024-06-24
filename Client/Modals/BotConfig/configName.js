@@ -37,7 +37,6 @@ module.exports = {
                 });
             })
             .catch(async err => {
-                console.log(err)
                 return await interaction.reply({
                     content: `Le robot n'a pas changé de nom à cause d'une erreur.`,
                     ephemeral: true
