@@ -1,4 +1,5 @@
 const { Events, Client, ActivityType } = require("discord.js");
+const { Activity } = require("../../Models");
 
 module.exports = {
     name: Events.ClientReady,
@@ -8,11 +9,26 @@ module.exports = {
      * 
      * @param {Client} client 
      */
-    execute: (client) => {
+    execute: async (client) => {
 
-        client.user.setActivity({
-            name: "the_bisounours",
-            type: ActivityType.Listening
-        });
+        let activity = await Activity.findOne({ clientId: client.user.id });
+        if(!activity) {
+            activity = await new Activity({
+                clientId: client.user.id
+            }).save();
+        };
+
+        client.user.setActivity(
+            activity.type === ActivityType.Streaming ?
+            {
+                name: activity.name,
+                type: activity.type,
+                url: activity.url
+            } :
+            {
+                name: activity.name,
+                type: activity.type
+            }
+        );
     }
 };
