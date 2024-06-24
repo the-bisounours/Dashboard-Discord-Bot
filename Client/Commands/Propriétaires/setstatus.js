@@ -1,4 +1,5 @@
 const { SlashCommandBuilder, Client, ChatInputCommandInteraction } = require("discord.js");
+const { Activity } = require("../../Models");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -33,7 +34,13 @@ module.exports = {
             });
         };
 
-        client.user.setStatus(`${interaction.options.getString("status")}`)
+        client.user.setStatus(`${interaction.options.getString("status")}`);
+
+        const activity = await Activity.findOne({ clientId: client.user.id });
+        await activity.updateOne({
+            status: interaction.options.getString("status")
+        });
+
         return await interaction.reply({
             content: `Le robot a changé de status: \`${interaction.options.getString("status")}\``,
             ephemeral: true

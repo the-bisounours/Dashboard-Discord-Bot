@@ -17,6 +17,10 @@ const activitySchema = new Schema({
     url: {
         type: String,
         default: "https://www.twitch.tv/thebisoubours"
+    },
+    status: {
+        type: String,
+        default: "online"
     }
 });
 
