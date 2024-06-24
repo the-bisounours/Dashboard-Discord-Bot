@@ -1,4 +1,5 @@
 const { SlashCommandBuilder, Client, ChatInputCommandInteraction, ActivityType } = require("discord.js");
+const { Activity } = require("../../Models");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -47,7 +48,6 @@ module.exports = {
         };
 
         if(interaction.options.getString("type") === ActivityType.Streaming.toString()) {
-            console.log("test")
             if(!interaction.options.getString("url") || !interaction.options.getString("url").includes("https://www.twitch.tv/")) {
                 return await interaction.reply({
                     content: `Vous devez mettre un lien du stream.`,
@@ -68,6 +68,14 @@ module.exports = {
                 name: interaction.options.getString("nom")
             }
         )
+
+        const activity = await Activity.findOne({ clientId: client.user.id });
+        await activity.updateOne({
+            name: interaction.options.getString("nom"),
+            type: interaction.options.getString("type"),
+            url: interaction.options.getString("url") ? interaction.options.getString("url") : activity.url
+        });
+
         return await interaction.reply({
             content: `Le robot a changé d'activité: \`${ActivityType[interaction.options.getString("type")]} ${interaction.options.getString("nom")}\``,
             ephemeral: true
