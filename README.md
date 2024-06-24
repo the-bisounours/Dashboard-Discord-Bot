@@ -19,6 +19,7 @@ scopes=identify+email+guilds+guilds.join
 guildId=votre_guild_id_ici
 logsChannel=votre_logs_id_ici
 supportInvite=https://discord.gg/<code>
+ownerId=votre_id_ici
 ```
 ![.env](https://i.ibb.co/vDkFV7y/image.png)
 
