@@ -32,7 +32,7 @@ module.exports = {
                 .setName("message")
                 .setDescription("Le message du rappel")
                 .setRequired(true)
-                .setAutocomplete(true)
+                .setAutocomplete(false)
             )
         )
         .addSubcommand(sub => sub
