@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder, Client, ChatInputCommandInteraction, PermissionFlagsBits, AutocompleteInteraction, PermissionsBitField } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder, Client, ChatInputCommandInteraction, PermissionFlagsBits, AutocompleteInteraction, PermissionsBitField, SlashCommandSubcommandBuilder } = require("discord.js");
 const PermissionFlags = require("../../Functions/PermissionFlags");
 
 module.exports = {
@@ -37,7 +37,7 @@ module.exports = {
 
     execute: async (client, interaction) => {
 
-        if(interaction.options.getString("commande")) {
+        if (interaction.options.getString("commande")) {
             const command = client.commands.filter(command => command.data.name === interaction.options.getString("commande")).first()
             if (!command) {
                 return await interaction.reply({
@@ -61,15 +61,22 @@ module.exports = {
                 ]
             });
         } else {
-            let viewcommands = client.commands
-            if(interaction.user.id !== process.env.ownerId) {
+            const totalCommandes = client.commands.map(command => {
+                const subcommands = command.data.options
+                    .filter(opt => opt instanceof SlashCommandSubcommandBuilder)
+                    .map(sub => ({ ...command, data: { ...sub, name: `${command.data.name}-${sub.name}` } }));
+                return [command, ...subcommands];
+            }).flat();
+
+            let viewcommands = totalCommandes;
+            if (interaction.user.id !== process.env.ownerId) {
                 viewcommands = viewcommands.filter(cmd => cmd.category !== "Propriétaires");
             };
-            viewcommands = viewcommands.map(cmd => interaction.member.permissions.has(new PermissionsBitField(cmd.permission)));
-            const cmds = viewcommands.filter(c => c === true);
+
+            const cmds = viewcommands.filter(cmd => interaction.member.permissions.has(new PermissionsBitField(cmd.permission)));
 
             const categories = [];
-            client.commands.forEach(command => {
+            viewcommands.forEach(command => {
                 if (!categories.includes(command.category)) categories.push(command.category);
             });
 
@@ -77,37 +84,37 @@ module.exports = {
                 .setColor("Blurple")
                 .setTitle(`Informations des commandes du robot`)
                 .setThumbnail(client.user.displayAvatarURL())
-                .setDescription(`- Commandes du robot : \`${client.commands.size}\`\n- Commandes disponibles pour [${interaction.user.displayName}](${process.env.supportInvite}) : \`${cmds.length}\``)
+                .setDescription(`- Commandes du robot : \`${totalCommandes.length}\`\n- Commandes disponibles pour [${interaction.user.displayName}](${process.env.supportInvite}) : \`${cmds.length}\``)
                 .setTimestamp()
-                .setFooter({ 
-                    text: client.user.username, 
-                    iconURL: client.user.displayAvatarURL() 
+                .setFooter({
+                    text: client.user.username,
+                    iconURL: client.user.displayAvatarURL()
                 });
 
             const categoryOrder = {
-                'Propriétaires': 1, 
-                'Modérations': 2, 
-                'Informations': 3, 
-                'Jeux': 4, 
+                'Propriétaires': 1,
+                'Modérations': 2,
+                'Informations': 3,
+                'Jeux': 4,
                 'Musiques': 5
             };
 
-            categories.sort((a, b) => categoryOrder[a] - categoryOrder[b]).forEach(async category => {
-                let commands = client.commands.filter(cmd => cmd.category === category);
+            categories.sort((a, b) => categoryOrder[a] - categoryOrder[b]).forEach(category => {
+                let commands = viewcommands.filter(cmd => cmd.category === category);
 
-                if(interaction.user.id !== process.env.ownerId) {
+                if (interaction.user.id !== process.env.ownerId) {
                     commands = commands.filter(cmd => cmd.category !== "Propriétaires");
-                };
+                }
 
                 const categoryEmpty = commands.map(cmd => interaction.member.permissions.has(new PermissionsBitField(cmd.permission)));
-
                 if (categoryEmpty.every(element => element === false)) return;
+
                 embed.addFields({
-                    name: `${category} [\`${commands.size}\`]`, value: `>>> ${commands.map(cmd => `${interaction.member.permissions.has(new PermissionsBitField(cmd.permission)) ? `[\`${cmd.data.name}\`](${process.env.supportInvite})` : ""}`).join(" ")}`
+                    name: `${category} [\`${commands.length}\`]`, value: `>>> ${commands.map(cmd => `${interaction.member.permissions.has(new PermissionsBitField(cmd.permission)) ? `[\`${cmd.data.name}\`](${process.env.supportInvite})` : ""}`).join(" ")}`
                 });
             });
 
-            return await interaction.reply({ 
+            return await interaction.reply({
                 embeds: [embed],
             });
         };
