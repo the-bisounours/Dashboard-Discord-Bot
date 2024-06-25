@@ -2,5 +2,6 @@ module.exports = {
     Guilds: require("./Guilds"),
     Users: require("./Users"),
     Warns: require("./Warns"),
-    Activity: require("./Activity")
+    Activity: require("./Activity"),
+    Schedule: require("./Schedule")
 };
