@@ -4,5 +4,6 @@ module.exports = {
     Warns: require("./Warns"),
     Activity: require("./Activity"),
     Schedule: require("./Schedule"),
-    Invite: require("./Invite")
+    Invites: require("./Invites"),
+    memberInvite: require("./memberInvite")
 };
