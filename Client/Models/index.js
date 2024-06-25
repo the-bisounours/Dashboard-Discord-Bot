@@ -3,5 +3,6 @@ module.exports = {
     Users: require("./Users"),
     Warns: require("./Warns"),
     Activity: require("./Activity"),
-    Schedule: require("./Schedule")
+    Schedule: require("./Schedule"),
+    Invite: require("./Invite")
 };
