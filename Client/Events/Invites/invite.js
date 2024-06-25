@@ -1,5 +1,5 @@
 const { Events, Client } = require("discord.js");
-const Invite = require("../../Models");
+const { Invite } = require("../../Models");
 
 module.exports = {
     name: Events.ClientReady,
@@ -16,7 +16,7 @@ module.exports = {
             const invites = await guild.invites.fetch();
             invites.forEach(async invite => {
 
-                const existingInvite = await Invite.findOne({
+                const existingInvite = await Invite.({
                     guildId: invite.guild.id,
                     code: invite.code
                 });
