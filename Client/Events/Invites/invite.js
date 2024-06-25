@@ -16,7 +16,7 @@ module.exports = {
             const invites = await guild.invites.fetch();
             invites.forEach(async invite => {
 
-                const existingInvite = await Invite.({
+                const existingInvite = await Invite.findOne({
                     guildId: invite.guild.id,
                     code: invite.code
                 });
