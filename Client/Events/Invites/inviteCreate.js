@@ -1,4 +1,4 @@
-const { Events, Client, Invite } = require("discord.js");
+const { Events, Client } = require("discord.js");
 const Invite = require("../../Models");
 
 module.exports = {
