@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder, Client, ChatInputCommandInteraction, PermissionFlagsBits, AutocompleteInteraction, PermissionsBitField, SlashCommandSubcommandBuilder } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder, Client, ChatInputCommandInteraction, PermissionFlagsBits, AutocompleteInteraction, PermissionsBitField, SlashCommandSubcommandBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, OAuth2Scopes } = require("discord.js");
 const PermissionFlags = require("../../Functions/PermissionFlags");
 
 module.exports = {
@@ -117,6 +117,24 @@ module.exports = {
 
             return await interaction.reply({
                 embeds: [embed],
+                components: [
+                    new ActionRowBuilder()
+                        .addComponents(
+                            new ButtonBuilder()
+                                .setEmoji("🔗")
+                                .setLabel(`Invite ${client.user.displayName}`)
+                                .setStyle(ButtonStyle.Link)
+                                .setURL(client.generateInvite({
+                                    scopes: [OAuth2Scopes.Bot, OAuth2Scopes.ApplicationsCommands],
+                                    permissions: [PermissionFlagsBits.Administrator]
+                                })),
+                            new ButtonBuilder()
+                                .setEmoji("🔗")
+                                .setLabel(`Support ${client.user.displayName}`)
+                                .setStyle(ButtonStyle.Link)
+                                .setURL(process.env.supportInvite)
+                        )
+                ]
             });
         };
     }
