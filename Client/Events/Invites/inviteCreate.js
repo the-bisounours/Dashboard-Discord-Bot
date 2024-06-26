@@ -11,7 +11,6 @@ module.exports = {
      * @param {Invite} invite 
      */
     execute: async (client, invite) => {
-        console.log("ok", invite.code);
 
         const newInvite = new Invites({
             guildId: invite.guild.id,

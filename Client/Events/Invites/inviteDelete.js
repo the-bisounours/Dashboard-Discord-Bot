@@ -11,7 +11,6 @@ module.exports = {
      * @param {Invite} invite 
      */
     execute: async (client, invite) => {
-        console.log("ok", invite.code);
 
         await Invites.findOneAndDelete({
             guildId: invite.guild.id,
