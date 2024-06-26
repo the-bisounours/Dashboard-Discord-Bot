@@ -43,7 +43,7 @@ module.exports = {
                                 .setValue(data.invites.leaveMessage.unknown)
                                 .setRequired(true)
                                 .setStyle(TextInputStyle.Paragraph)
-                                .setCustomId("name")
+                                .setCustomId("message")
                         )
                 )
         )

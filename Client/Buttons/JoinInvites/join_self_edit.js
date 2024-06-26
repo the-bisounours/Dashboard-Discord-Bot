@@ -43,7 +43,7 @@ module.exports = {
                                 .setValue(data.invites.joinMessage.self)
                                 .setRequired(true)
                                 .setStyle(TextInputStyle.Paragraph)
-                                .setCustomId("name")
+                                .setCustomId("message")
                         )
                 )
         )

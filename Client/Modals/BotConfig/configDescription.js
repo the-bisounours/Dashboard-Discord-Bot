@@ -11,6 +11,13 @@ module.exports = {
      */
     execute: async (client, interaction) => {
 
+        if(interaction.user.id !== interaction.message.interaction.user.id) {
+            return await interaction.reply({
+                content: "Vous n'êtes pas l'auteur de cette commande.",
+                ephemeral: true
+            });
+        };
+        
         const description = interaction.fields.getTextInputValue("description");
 
         return await client.application.edit({
