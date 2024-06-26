@@ -46,6 +46,10 @@ const guildSchema = new Schema({
                 default: "**{memberName}** est parti. Il a été invité à l’aide d’une invitation personnalisée."
             }
         },
+        message: {
+            type: String,
+            default: "💡 Saviez-vous que vous pouvez ajouter votre propre message personnalisé ici. Obtenez plus d’informations avec la commande \`/sources-setmessage\`."
+        },
         ranks: {
             type: Array,
             default: []

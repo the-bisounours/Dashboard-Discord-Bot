@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, Client, ChatInputCommandInteraction, PermissionFlagsBits, EmbedBuilder } = require("discord.js");
-const { Users } = require("../../Models");
+const { Users, Guilds } = require("../../Models");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -33,6 +33,17 @@ module.exports = {
         };
 
         const date = new Date();
+        const guild = await Guilds.findOne({
+            guildId: interaction.guild.id
+        });
+
+        if (!guild) {
+            return await interaction.reply({
+                content: "Impossible de trouver la base de donnée du serveur.",
+                ephemeral: true
+            });
+        };
+
         const data = await Users.findOne({
             userId: member.user.id,
             guildId: interaction.guild.id
@@ -50,7 +61,7 @@ module.exports = {
                 new EmbedBuilder()
                 .setTitle(`Informations des invites de ${member.user.displayName}`)
                 .setThumbnail(member.user.displayAvatarURL())
-                .setDescription(`Votre nombre d'invitations a été généré en \`${new Date() - date}\`ms\n\n> ✅ \`${data.invites.join}\` joins\n> ❌ \`${data.invites.leave}\` leaves\n> 💩 \`${data.invites.fake}\` fake\n> ✨ \`${data.invites.bonus}\` bonus\n\nVous avez \`${data.invites.join + data.invites.bonus - data.invites.leave - data.invites.fake}\` invitations ! 👏\n\n💡 Saviez-vous que vous pouvez ajouter votre propre message personnalisé ici. Obtenez plus d’informations avec la commande \`/sources setmessage\`.`)
+                .setDescription(`Votre nombre d'invitations a été généré en \`${new Date() - date}\`ms\n\n> ✅ \`${data.invites.join}\` joins\n> ❌ \`${data.invites.leave}\` leaves\n> 💩 \`${data.invites.fake}\` fake\n> ✨ \`${data.invites.bonus}\` bonus\n\nVous avez \`${data.invites.join + data.invites.bonus - data.invites.leave - data.invites.fake}\` invitations ! 👏\n\n${guild.invites.message}`)
                 .setFooter({
                     text: client.user.displayName,
                     iconURL: client.user.displayAvatarURL()
