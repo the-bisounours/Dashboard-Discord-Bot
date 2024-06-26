@@ -1,6 +1,7 @@
 const { Events, Client, GuildMember } = require("discord.js");
 const { Invites, Users, memberInvite, Guilds } = require("../../Models");
 const replace = require("../../Functions/replace");
+const checkInvites = require("../../Functions/checkInvites");
 
 module.exports = {
     name: Events.GuildMemberAdd,
@@ -85,5 +86,9 @@ module.exports = {
                 guild: member.guild
             })}`
         });
+
+        if(usedInvite) {
+            await checkInvites(member, usedInvite);
+        };
     }
 };
