@@ -44,7 +44,7 @@ module.exports = {
                 inviter.invites.fake += 1;
                 joinMessage = data.invites.joinMessage.self;
             } else {
-                inviter.invites.real += 1;
+                inviter.invites.join += 1;
                 joinMessage = data.invites.joinMessage.normal;
             };
 
@@ -57,7 +57,7 @@ module.exports = {
             }).save();
 
             inviterName = usedInvite.inviter.tag;
-            inviteCount = inviter.invites.real;
+            inviteCount = inviter.invites.join;
 
             const inviteInDb = await Invites.findOne({ code: usedInvite.code });
             inviteInDb.uses = usedInvite.uses;

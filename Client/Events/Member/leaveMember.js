@@ -27,9 +27,7 @@ module.exports = {
             inviter = await Users.findOne({ userId: memberInv.inviterId });
             if (inviter) {
 
-                inviter.invites.real -= 1;
                 inviter.invites.leave += 1;
-
                 await inviter.save();
 
                 leaveMessage = data.invites.leaveMessage.normal;

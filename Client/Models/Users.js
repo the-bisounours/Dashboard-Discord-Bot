@@ -6,7 +6,7 @@ const userSchema = new Schema({
         default: ""
     },
     invites: {
-        real: {
+        join: {
             type: Number,
             default: 0
         },
