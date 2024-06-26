@@ -31,12 +31,14 @@ module.exports = {
 
         if (usedInvite) {
             let inviter = await Users.findOne({
-                userId: usedInvite.inviter.id
+                userId: usedInvite.inviter.id,
+                guildId: member.guild.id
             });
 
             if (!inviter) {
                 inviter = new Users({
-                    userId: usedInvite.inviter.id
+                    userId: usedInvite.inviter.id,
+                    guildId: member.guild.id
                 });
             };
 
@@ -70,7 +72,8 @@ module.exports = {
         let inviter = null;
         if (usedInvite) {
             inviter = await Users.findOne({
-                userId: usedInvite.inviter.id
+                userId: usedInvite.inviter.id,
+                guildId: member.guild.id
             });
         };
 

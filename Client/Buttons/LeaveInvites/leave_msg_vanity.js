@@ -31,7 +31,8 @@ module.exports = {
         };
 
         const user = await Users.findOne({
-            userId: interaction.user.id
+            userId: interaction.user.id,
+            guildId: interaction.guild.id
         });
 
         return await interaction.update({

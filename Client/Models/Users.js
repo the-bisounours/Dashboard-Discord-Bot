@@ -5,6 +5,10 @@ const userSchema = new Schema({
         type: String,
         default: ""
     },
+    guildId: {
+        type: String,
+        default: ""
+    },
     invites: {
         join: {
             type: Number,

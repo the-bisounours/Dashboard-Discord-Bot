@@ -24,7 +24,10 @@ module.exports = {
         inviter = null;
         const memberInv = await memberInvite.findOne({ memberId: member.id, guildId: member.guild.id });
         if (memberInv) {
-            inviter = await Users.findOne({ userId: memberInv.inviterId });
+            inviter = await Users.findOne({ 
+                userId: memberInv.inviterId,
+                guildId: member.guild.id
+            });
             if (inviter) {
 
                 inviter.invites.leave += 1;

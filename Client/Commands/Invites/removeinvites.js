@@ -29,7 +29,7 @@ module.exports = {
      */
     execute: async (client, interaction) => {
 
-        const user = interaction.options.getUser("membre") ? interaction.options.getUser("membre") : interaction.user;
+        const user = interaction.options.getUser("membre");
         const member = interaction.guild.members.cache.get(user.id);
 
         if (!member) {
@@ -39,18 +39,19 @@ module.exports = {
             });
         };
 
+        const date = new Date();
         const data = await Users.findOne({
-            userId: member.user.id
+            userId: member.user.id,
+            guildId: interaction.guild.id
         });
 
         if (!data) {
             return await interaction.reply({
-                content: "Impossible de trouver la base de donnée du serveur.",
+                content: "Impossible de trouver la base de donnée de l'utilisateur.",
                 ephemeral: true
             });
         };
 
-        const date = new Date();
         data.invites.bonus = data.invites.bonus - interaction.options.getNumber("bonus");
         await data.save();
 

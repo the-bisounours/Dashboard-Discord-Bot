@@ -3,21 +3,14 @@ const { Users } = require("../../Models");
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName("addinvites")
-        .setDescription("Permet d'ajouter des invitations.")
+        .setName("invites")
+        .setDescription("Permet de regarder les invitations.")
         .setDMPermission(false)
-        .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
+        .setDefaultMemberPermissions(null)
         .addUserOption(option => option
             .setName("membre")
-            .setDescription("Permet d'ajouter des invitations au membre.")
-            .setRequired(true)
-        )
-        .addNumberOption(option => option
-            .setName("bonus")
-            .setDescription("Permet d'ajouter des invitations au membre.")
-            .setRequired(true)
-            .setMinValue(1)
-            .setMaxValue(1000)
+            .setDescription("Permet de regarder les invitations du membre.")
+            .setRequired(false)
         ),
 
     category: "Invites",
@@ -29,7 +22,7 @@ module.exports = {
      */
     execute: async (client, interaction) => {
 
-        const user = interaction.options.getUser("membre");
+        const user = interaction.options.getUser("membre") ? interaction.options.getUser("membre") : interaction.user;
         const member = interaction.guild.members.cache.get(user.id);
 
         if (!member) {
@@ -52,13 +45,12 @@ module.exports = {
             });
         };
 
-        data.invites.bonus = data.invites.bonus + interaction.options.getNumber("bonus");
-        await data.save();
-
         return await interaction.reply({
             embeds: [
                 new EmbedBuilder()
-                .setDescription(`✅ Vous avez ajouté avec succès \`${interaction.options.getNumber("bonus")}\` invitations bonus à ${member} en \`${new Date() - date}\`ms.`)
+                .setTitle(`Informations des invites de ${member.user.displayName}`)
+                .setThumbnail(member.user.displayAvatarURL())
+                .setDescription(`Votre nombre d'invitations a été généré en \`${new Date() - date}\`ms\n\n> ✅ \`${data.invites.join}\` joins\n> ❌ \`${data.invites.leave}\` leaves\n> 💩 \`${data.invites.fake}\` fake\n> ✨ \`${data.invites.bonus}\` bonus\n\nVous avez \`${data.invites.join + data.invites.bonus - data.invites.leave - data.invites.fake}\` invitations ! 👏\n\n💡 Saviez-vous que vous pouvez ajouter votre propre message personnalisé ici. Obtenez plus d’informations avec la commande \`/sources setmessage\`.`)
                 .setFooter({
                     text: client.user.displayName,
                     iconURL: client.user.displayAvatarURL()
