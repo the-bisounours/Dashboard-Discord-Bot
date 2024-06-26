@@ -94,7 +94,7 @@ module.exports = {
             const categoryOrder = {
                 'Propriétaires': 1,
                 'Modérations': 2,
-                'invites': 3,
+                'Invites': 3,
                 'Informations': 4,
                 'Jeux': 5,
                 'Musiques': 6
