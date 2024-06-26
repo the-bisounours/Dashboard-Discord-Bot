@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, Client, ChatInputCommandInteraction, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
+const { SlashCommandBuilder, Client, ChatInputCommandInteraction, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, PermissionFlagsBits } = require("discord.js");
 const { Guilds } = require("../../Models");
 
 module.exports = {
@@ -6,7 +6,7 @@ module.exports = {
         .setName("setmessages")
         .setDescription("Permet paramètrer les messages.")
         .setDMPermission(false)
-        .setDefaultMemberPermissions(null)
+        .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
         .addStringOption(option => option
             .setName("type")
             .setDescription("Permet de choisir le type de message.")
