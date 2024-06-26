@@ -44,7 +44,7 @@ module.exports = {
                         invite: interaction.user,
                         invites: user ? user.invites : null,
                         guild: interaction.guild
-                    })}\n\nCliquez sur le ✏️ pour le modifier.\nCliquez sur le 🗑️ pour le supprimer.\nCliquez sur le ❌ pour annuler.`)
+                    })}\n\nCliquez sur le ✏️ pour le modifier.\nCliquez sur le 🗑️ pour le réinitialiser.\nCliquez sur le ❌ pour annuler.`)
                     .setFooter({
                         text: client.user.displayName,
                         iconURL: client.user.displayAvatarURL()
@@ -61,10 +61,10 @@ module.exports = {
                             .setLabel("Modifier")
                             .setStyle(ButtonStyle.Primary),
                         new ButtonBuilder()
-                            .setCustomId("join_vanity_delete")
+                            .setCustomId("join_vanity_reset")
                             .setDisabled(false)
                             .setEmoji("🗑️")
-                            .setLabel("Supprimer")
+                            .setLabel("Réinitialiser")
                             .setStyle(ButtonStyle.Danger),
                         new ButtonBuilder()
                             .setCustomId("delete")
