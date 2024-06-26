@@ -20,7 +20,7 @@ module.exports = {
             .setMaxValue(1000)
         ),
 
-    category: "Administrateurs",
+    category: "Invites",
 
     /**
      * 

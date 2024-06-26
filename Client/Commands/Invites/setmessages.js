@@ -17,7 +17,7 @@ module.exports = {
             .setRequired(true)
         ),
 
-    category: "Administrateurs",
+    category: "Invites",
 
     /**
      * 

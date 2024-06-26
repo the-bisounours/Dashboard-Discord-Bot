@@ -94,9 +94,10 @@ module.exports = {
             const categoryOrder = {
                 'Propriétaires': 1,
                 'Modérations': 2,
-                'Informations': 3,
-                'Jeux': 4,
-                'Musiques': 5
+                'invites': 3,
+                'Informations': 4,
+                'Jeux': 5,
+                'Musiques': 6
             };
 
             categories.sort((a, b) => categoryOrder[a] - categoryOrder[b]).forEach(category => {
