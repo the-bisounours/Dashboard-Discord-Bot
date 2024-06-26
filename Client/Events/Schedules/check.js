@@ -19,7 +19,7 @@ module.exports = {
                 const channel = await client.channels.fetch(reminder.channelId);
                 if (channel) {
                     channel.send({
-                        content: `<@${reminder.userId}> Rappel: ${reminder.message}`
+                        content: `<@${reminder.userId}> **Rappel:** \`${reminder.message}\`.`
                     });
                     await reminder.deleteOne();
                 };
