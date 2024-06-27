@@ -1,23 +1,24 @@
-const { SlashCommandBuilder, Client, ChatInputCommandInteraction, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, PermissionFlagsBits } = require("discord.js");
+const { Client, ButtonInteraction, ActionRowBuilder, ButtonStyle, ButtonBuilder, EmbedBuilder } = require("discord.js");
 const { Guilds } = require("../../Models");
 const fakeMessage = require("../../Functions/fakeMessage");
 
 module.exports = {
-    data: new SlashCommandBuilder()
-        .setName("fakeconfig")
-        .setDescription("Permet paramètrer le système de fausse invite.")
-        .setDMPermission(false)
-        .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
-
-    category: "Invites",
+    id: "fake_config",
 
     /**
      * 
      * @param {Client} client 
-     * @param {ChatInputCommandInteraction} interaction 
+     * @param {ButtonInteraction} interaction 
      */
     execute: async (client, interaction) => {
 
+        if(interaction.user.id !== interaction.message.interaction.user.id) {
+            return await interaction.reply({
+                content: "Vous n'êtes pas l'auteur de cette commande.",
+                ephemeral: true
+            });
+        };
+        
         const data = await Guilds.findOne({
             guildId: interaction.guild.id
         });
@@ -28,8 +29,11 @@ module.exports = {
                 ephemeral: true
             });
         };
+        
+        data.invites.fake.enabled = data.invites.fake.enabled ? false : true
+        await data.save();
 
-        return await interaction.reply({
+        return await interaction.update({
             embeds: [
                 new EmbedBuilder()
                     .setTitle("Informations du système de fake invite")
