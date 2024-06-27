@@ -53,6 +53,16 @@ const guildSchema = new Schema({
         ranks: {
             type: Array,
             default: []
+        },
+        fake: {
+            enabled: {
+                type: Boolean,
+                default: true
+            },
+            obligation: {
+                type: Array,
+                default: [1, 2]
+            }
         }
     }
 });
