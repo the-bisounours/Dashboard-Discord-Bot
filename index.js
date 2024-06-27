@@ -13,8 +13,6 @@ const client = new Client({
     ]
 });
 
-dd
-
 client.buttons = new Collection();
 client.context = new Collection();
 client.selects = new Collection();
