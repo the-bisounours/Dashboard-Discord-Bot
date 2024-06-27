@@ -1,24 +1,24 @@
-const { Client, ButtonInteraction, ActionRowBuilder, ButtonStyle, ButtonBuilder, EmbedBuilder } = require("discord.js");
+const { Client, StringSelectMenuInteraction, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
 const { Guilds } = require("../../Models");
 const fakeMessage = require("../../Functions/fakeMessage");
 
 module.exports = {
-    id: "obligation_fake_edit",
+    id: "remove_fake",
 
     /**
      * 
      * @param {Client} client 
-     * @param {ButtonInteraction} interaction 
+     * @param {StringSelectMenuInteraction} interaction 
      */
     execute: async (client, interaction) => {
 
-        if (interaction.user.id !== interaction.message.interaction.user.id) {
+        if(interaction.user.id !== interaction.message.interaction.user.id) {
             return await interaction.reply({
                 content: "Vous n'êtes pas l'auteur de cette commande.",
                 ephemeral: true
             });
         };
-
+        
         const data = await Guilds.findOne({
             guildId: interaction.guild.id
         });
@@ -29,6 +29,17 @@ module.exports = {
                 ephemeral: true
             });
         };
+
+        if (!data.invites.fake.obligation.includes(interaction.values[0])) {
+            return await interaction.reply({
+                content: "L'obligation n'existe pas.",
+                ephemeral: true
+            });
+        };
+
+        const index = data.invites.fake.obligation.findIndex(number => number === interaction.values[0])
+        data.invites.fake.obligation.splice(index, 1);
+        await data.save();
 
         return await interaction.update({
             embeds: [
