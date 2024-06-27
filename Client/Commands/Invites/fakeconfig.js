@@ -32,7 +32,7 @@ module.exports = {
         return await interaction.reply({
             embeds: [
                 new EmbedBuilder()
-                    .setTitle("Informations du système de fake invite")
+                    .setTitle("Informations du système de fausse invite")
                     .setColor("Blurple")
                     .setFooter({
                         text: client.user.displayName,

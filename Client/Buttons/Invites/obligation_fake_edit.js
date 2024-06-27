@@ -3,7 +3,7 @@ const { Guilds } = require("../../Models");
 const fakeMessage = require("../../Functions/fakeMessage");
 
 module.exports = {
-    id: "fake_config",
+    id: "obligation_fake_edit",
 
     /**
      * 
