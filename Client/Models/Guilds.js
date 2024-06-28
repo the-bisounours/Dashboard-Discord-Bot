@@ -64,6 +64,33 @@ const guildSchema = new Schema({
                 default: [1, 2]
             }
         }
+    },
+    tickets: {
+        settings: {
+            autoclose: {
+                type: Boolean,
+                default: false
+            },
+            support: {
+                type: String,
+                default: ""
+            },
+            openedTicketPerUser: {
+                type: Number,
+                default: 1
+            }
+        },
+        panels: {
+            type: [{
+                panelId: String,
+                channelId: String,
+                categoryId: String,
+                roles: Array,
+                name: String,
+                buttons: Object
+            }],
+            default: []
+        }
     }
 });
 
