@@ -71,6 +71,16 @@ const guildSchema = new Schema({
                 type: Boolean,
                 default: false
             },
+            threads: {
+                enabled: {
+                    type: Boolean,
+                    default: false
+                },
+                channelId: {
+                    type: String,
+                    default: ""
+                }
+            },
             support: {
                 type: String,
                 default: ""
@@ -83,11 +93,12 @@ const guildSchema = new Schema({
         panels: {
             type: [{
                 panelId: String,
+                messageId: String,
                 channelId: String,
                 categoryId: String,
                 roles: Array,
                 name: String,
-                buttons: Object
+                buttons: Array
             }],
             default: []
         }

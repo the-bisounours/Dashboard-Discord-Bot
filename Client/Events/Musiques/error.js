@@ -12,10 +12,6 @@ module.exports = {
      */
     execute: (client, error) => {
         
-        if(queue.metadata && queue.metadata.channel) {
-            queue.metadata.channel.send({
-                content: `Une erreur est survenue \`${error.name}\`.`
-            });
-        };
+        console.log(error)
     }
 };

@@ -22,7 +22,9 @@ module.exports = {
                         modals = client.modals.get(prefix);
                     };
                 };
-            } else {
+            };
+
+            if(modals === null) {
                 modals = client.modals.get(interaction.customId);
             };
 

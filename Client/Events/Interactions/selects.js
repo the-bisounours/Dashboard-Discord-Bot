@@ -1,5 +1,9 @@
 const { Events, Client, StringSelectMenuInteraction } = require("discord.js");
-const selectPrefixes = [];
+const selectPrefixes = [
+    "channel_panel_edit_",
+    "category_panel_edit_",
+    "roles_panel_edit_"
+];
 
 module.exports = {
 
@@ -22,8 +26,10 @@ module.exports = {
                         selects = client.selects.get(prefix);
                     };
                 };
-            } else {
-                selects = client.selects.get(interaction.customId)
+            };
+
+            if(selects === null) {
+                selects = client.selects.get(interaction.customId);
             };
 
             if (!selects) {

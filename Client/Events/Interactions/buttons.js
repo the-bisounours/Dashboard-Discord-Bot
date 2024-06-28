@@ -22,7 +22,9 @@ module.exports = {
                         buttons = client.buttons.get(prefix);
                     };
                 };
-            } else {
+            };
+
+            if(selects === null) {
                 buttons = client.buttons.get(interaction.customId);
             };
 
