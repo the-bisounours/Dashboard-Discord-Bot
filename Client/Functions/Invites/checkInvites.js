@@ -1,5 +1,5 @@
 const { GuildMember, Invite } = require("discord.js");
-const { Users, Guilds } = require("../Models");
+const { Users, Guilds } = require("../../Models");
 
 /**
  * 

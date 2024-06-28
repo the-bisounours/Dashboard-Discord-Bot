@@ -1,6 +1,6 @@
 const { Client, StringSelectMenuInteraction, EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, ChannelSelectMenuBuilder, ChannelType, RoleSelectMenuBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
 const { Guilds } = require("../../Models");
-const messagePanel = require("../../Functions/messagePanel");
+const messagePanel = require("../../Functions/Panneaux/messagePanel");
 
 module.exports = {
     id: "options_panel_edit_",

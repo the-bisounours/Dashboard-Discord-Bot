@@ -1,8 +1,8 @@
 const { Client, ButtonInteraction, EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, ChannelSelectMenuBuilder, ChannelType, RoleSelectMenuBuilder } = require("discord.js");
 const { Guilds } = require("../../Models");
-const id = require("../../Functions/id");
-const messagePanel = require("../../Functions/messagePanel");
-const componentsPanel = require("../../Functions/componentsPanel");
+const id = require("../../Functions/Gestions/id");
+const messagePanel = require("../../Functions/Panneaux/messagePanel");
+const componentsPanel = require("../../Functions/Panneaux/componentsPanel");
 
 module.exports = {
     id: "create_panel",
