@@ -3,7 +3,8 @@ const selectPrefixes = [
     "channel_panel_edit_",
     "category_panel_edit_",
     "roles_panel_edit_",
-    "options_panel_edit_"
+    "options_panel_edit_",
+    "ticket_name_edit_"
 ];
 
 module.exports = {

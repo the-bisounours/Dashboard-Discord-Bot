@@ -2,6 +2,7 @@ const { Client, StringSelectMenuInteraction, EmbedBuilder, ActionRowBuilder, Str
 const { Guilds } = require("../../Models");
 const messagePanel = require("../../Functions/Panneaux/messagePanel");
 const options = require("../../Functions/Panneaux/options");
+const componentsOptions = require("../../Functions/Panneaux/componentsOptions");
 
 module.exports = {
     id: "options_panel_edit_",
@@ -168,7 +169,7 @@ module.exports = {
                 break;
             case "options":
 
-                return interaction.update({
+                await interaction.update({
                     embeds: [
                         options(panel, new EmbedBuilder())
                             .setColor("Blurple")
@@ -180,29 +181,44 @@ module.exports = {
                             .setTimestamp()
                             .setDescription(`- Personnalise tes options d'ouverture de ticket:\n> **Identifiant:** \`${panel.panelId}\`\n> **Boutons:** \`${panel.buttons.length}/7\``)
                     ],
+                    components: componentsOptions(panel)
+                });
+
+                break;
+            case "name":
+
+                await interaction.update({
+                    embeds: [],
                     components: [
                         new ActionRowBuilder()
                             .addComponents(
                                 new StringSelectMenuBuilder()
-                                    .setCustomId(`manage_options_panel_${panel.panelId}`)
+                                    .setCustomId(`ticket_name_edit_${panel.panelId}`)
                                     .setDisabled(false)
                                     .setMaxValues(1)
                                     .setMinValues(1)
-                                    .setPlaceholder("Modifie les options.")
+                                    .setPlaceholder("Quels noms préfèrez-vous ?")
                                     .addOptions(
                                         new StringSelectMenuOptionBuilder()
-                                            .setLabel("Ajouter un nouveau bouton.")
-                                            .setValue("add_button"),
+                                            .setDefault(panel.name === "ticket-{user}" ? true : false)
+                                            .setLabel("ticket-{user}")
+                                            .setValue("ticket-{user}"),
                                         new StringSelectMenuOptionBuilder()
-                                            .setLabel("Supprimer toutes les options.")
-                                            .setValue("delete_all"),
+                                            .setDefault(panel.name === "{user}-ticket" ? true : false)
+                                            .setLabel("{user}-ticket")
+                                            .setValue("{user}-ticket"),
                                         new StringSelectMenuOptionBuilder()
-                                            .setLabel("Retourner au menu principal.")
-                                            .setValue("return")
+                                            .setDefault(panel.name === "{user}" ? true : false)
+                                            .setLabel("{user}")
+                                            .setValue("{user}"),
+                                        new StringSelectMenuOptionBuilder()
+                                            .setDefault(panel.name === "ticket-{number}" ? true : false)
+                                            .setLabel("ticket-{number}")
+                                            .setValue("ticket-{number}")
                                     )
                             )
                     ]
-                });
+                })
 
                 break;
             default:
