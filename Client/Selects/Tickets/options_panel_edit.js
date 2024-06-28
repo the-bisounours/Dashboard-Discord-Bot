@@ -1,10 +1,9 @@
-const { Client, StringSelectMenuInteraction, EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, ChannelSelectMenuBuilder, ChannelType, RoleSelectMenuBuilder } = require("discord.js");
+const { Client, StringSelectMenuInteraction, EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, ChannelSelectMenuBuilder, ChannelType, RoleSelectMenuBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
 const { Guilds } = require("../../Models");
 const messagePanel = require("../../Functions/messagePanel");
-const componentsPanel = require("../../Functions/componentsPanel");
 
 module.exports = {
-    id: "category_panel_edit_",
+    id: "options_panel_edit_",
 
     /**
      * 
@@ -99,12 +98,73 @@ module.exports = {
                     )
                 };
 
-                return await interaction.reply({
+                await interaction.update({
                     embeds: [embed],
                     components: components
                 });
 
-                break;
+            break;
+            case "return":
+
+                const embed1 = new EmbedBuilder()
+                    .setTitle("Informations des panneaux des tickets")
+                    .setThumbnail(client.user.displayAvatarURL())
+                    .setColor("Blurple")
+                    .setFooter({
+                        text: client.user.displayName,
+                        iconURL: client.user.displayAvatarURL()
+                    })
+                    .setTimestamp();
+
+                let components1 = [
+                    new ActionRowBuilder()
+                        .addComponents(
+                            new ButtonBuilder()
+                                .setCustomId("create_panel")
+                                .setDisabled(data.tickets.panels.length >= 3 ? true : false)
+                                .setLabel("Créer un panneau de ticket")
+                                .setStyle(ButtonStyle.Primary),
+                            new ButtonBuilder()
+                                .setCustomId("settings_ticket")
+                                .setDisabled(false)
+                                .setLabel("Modifier les paramètres généraux")
+                                .setStyle(ButtonStyle.Primary)
+                        )
+                ];
+
+                if (data.tickets.panels.length === 0) {
+                    embed1.setDescription("Explorez la création de panneaux de configuration pour vos tickets en toute simplicité ! Ajoutez-en un nouveau en un clic grâce au bouton situé juste en bas.");
+                } else {
+                    components1.push(
+                        new ActionRowBuilder()
+                            .addComponents(
+                                new StringSelectMenuBuilder()
+                                    .setCustomId("edit_panel")
+                                    .setDisabled(false)
+                                    .setMaxValues(1)
+                                    .setMinValues(1)
+                                    .setPlaceholder("Modifie les paramètres des panneaux.")
+                            )
+                    );
+                };
+
+                for (let index = 0; index < data.tickets.panels.length; index++) {
+                    const panel = data.tickets.panels[index];
+                    embed1.addFields(messagePanel(panel, interaction));
+
+                    components1[1].components[0].addOptions(
+                        new StringSelectMenuOptionBuilder()
+                            .setLabel(`Modifier - ${panel.panelId}`)
+                            .setValue(panel.panelId)
+                    )
+                };
+
+                await interaction.update({
+                    embeds: [embed1],
+                    components: components1
+                });
+
+            break;
             default:
                 break;
         }

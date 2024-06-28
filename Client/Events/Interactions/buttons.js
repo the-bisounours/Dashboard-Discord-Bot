@@ -24,7 +24,7 @@ module.exports = {
                 };
             };
 
-            if(selects === null) {
+            if(buttons === null) {
                 buttons = client.buttons.get(interaction.customId);
             };
 
