@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, PermissionFlagsBits, Client, ChatInputCommandInteraction, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
 const { Warns } = require("../../Models");
-const id = require("../../Functions/id");
+const id = require("../../Functions/Gestions/id");
 
 module.exports = {
     data: new SlashCommandBuilder()

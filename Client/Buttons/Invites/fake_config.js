@@ -1,6 +1,6 @@
 const { Client, ButtonInteraction, ActionRowBuilder, ButtonStyle, ButtonBuilder, EmbedBuilder } = require("discord.js");
 const { Guilds } = require("../../Models");
-const fakeMessage = require("../../Functions/fakeMessage");
+const fakeMessage = require("../../Functions/Invites/fakeMessage");
 
 module.exports = {
     id: "fake_config",

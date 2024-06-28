@@ -1,5 +1,5 @@
 const { Client, ModalSubmitInteraction, EmbedBuilder } = require("discord.js");
-const activity = require("../../Functions/activity");
+const activity = require("../../Functions/Gestions/activity");
 
 module.exports = {
     id: "configDescription",

@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder, Client, ChatInputCommandInteraction, PermissionFlagsBits, AutocompleteInteraction, PermissionsBitField, SlashCommandSubcommandBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, OAuth2Scopes } = require("discord.js");
-const PermissionFlags = require("../../Functions/PermissionFlags");
+const PermissionFlags = require("../../Functions/Gestions/PermissionFlags");
 
 module.exports = {
     data: new SlashCommandBuilder()

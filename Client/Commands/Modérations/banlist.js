@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, PermissionFlagsBits, Client, ChatInputCommandInteraction, EmbedBuilder } = require("discord.js");
-const paginations = require("../../Functions/paginations");
+const paginations = require("../../Functions/Gestions/paginations");
 
 module.exports = {
     data: new SlashCommandBuilder()

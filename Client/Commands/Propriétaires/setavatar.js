@@ -1,5 +1,4 @@
 const { SlashCommandBuilder, Client, ChatInputCommandInteraction, EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder } = require("discord.js");
-const activity = require("../../Functions/activity");
 
 module.exports = {
     data: new SlashCommandBuilder()

@@ -1,7 +1,7 @@
 const { Client, ButtonInteraction, ActionRowBuilder, ChannelSelectMenuBuilder, ButtonStyle, ButtonBuilder, ChannelType, EmbedBuilder } = require("discord.js");
 const { Guilds, Users } = require("../../Models");
-const replace = require("../../Functions/replace");
-const defaultDb = require("../../Functions/defaultDb");
+const replace = require("../../Functions/Invites/replace");
+const defaultDb = require("../../Functions/Gestions/defaultDb");
 
 module.exports = {
     id: "leave_unknown_reset",

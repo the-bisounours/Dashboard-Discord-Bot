@@ -1,6 +1,7 @@
 const { Client, StringSelectMenuInteraction, EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, ChannelSelectMenuBuilder, ChannelType, RoleSelectMenuBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
 const { Guilds } = require("../../Models");
 const messagePanel = require("../../Functions/Panneaux/messagePanel");
+const options = require("../../Functions/Panneaux/options");
 
 module.exports = {
     id: "options_panel_edit_",
@@ -103,7 +104,7 @@ module.exports = {
                     components: components
                 });
 
-            break;
+                break;
             case "return":
 
                 const embed1 = new EmbedBuilder()
@@ -164,7 +165,46 @@ module.exports = {
                     components: components1
                 });
 
-            break;
+                break;
+            case "options":
+
+                return interaction.update({
+                    embeds: [
+                        options(panel, new EmbedBuilder())
+                            .setColor("Blurple")
+                            .setTitle("Informations des panneaux des tickets")
+                            .setFooter({
+                                text: client.user.displayName,
+                                iconURL: client.user.displayAvatarURL()
+                            })
+                            .setTimestamp()
+                            .setDescription(`- Personnalise tes options d'ouverture de ticket:\n> **Identifiant:** \`${panel.panelId}\`\n> **Boutons:** \`${panel.buttons.length}/7\``)
+                    ],
+                    components: [
+                        new ActionRowBuilder()
+                            .addComponents(
+                                new StringSelectMenuBuilder()
+                                    .setCustomId(`manage_options_panel_${panel.panelId}`)
+                                    .setDisabled(false)
+                                    .setMaxValues(1)
+                                    .setMinValues(1)
+                                    .setPlaceholder("Modifie les options.")
+                                    .addOptions(
+                                        new StringSelectMenuOptionBuilder()
+                                            .setLabel("Ajouter un nouveau bouton.")
+                                            .setValue("add_button"),
+                                        new StringSelectMenuOptionBuilder()
+                                            .setLabel("Supprimer toutes les options.")
+                                            .setValue("delete_all"),
+                                        new StringSelectMenuOptionBuilder()
+                                            .setLabel("Retourner au menu principal.")
+                                            .setValue("return")
+                                    )
+                            )
+                    ]
+                });
+
+                break;
             default:
                 break;
         }

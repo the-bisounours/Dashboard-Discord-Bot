@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, Client, ChatInputCommandInteraction, EmbedBuilder } = require("discord.js");
-const channelType = require("../../Functions/channelType");
+const channelType = require("../../Functions/Gestions/channelType");
 
 module.exports = {
     data: new SlashCommandBuilder()

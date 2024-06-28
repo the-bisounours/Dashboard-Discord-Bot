@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, Client, ChatInputCommandInteraction, PermissionFlagsBits, ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, ActionRow, StringSelectMenuBuilder, StringSelectMenuOptionBuilder } = require("discord.js");
 const { Guilds } = require("../../Models");
-const messagePanel = require("../../Functions/messagePanel");
+const messagePanel = require("../../Functions/Panneaux/messagePanel");
 
 module.exports = {
     data: new SlashCommandBuilder()

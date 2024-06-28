@@ -1,7 +1,7 @@
 const { SlashCommandBuilder, Client, ChatInputCommandInteraction, EmbedBuilder, PermissionFlagsBits } = require("discord.js");
-const duration = require("../../Functions/duration");
+const duration = require("../../Functions/Gestions/duration");
 const { Schedule } = require("../../Models");
-const paginations = require("../../Functions/paginations");
+const paginations = require("../../Functions/Gestions/paginations");
 
 module.exports = {
     data: new SlashCommandBuilder()

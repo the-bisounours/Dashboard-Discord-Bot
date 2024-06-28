@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, Client, ChatInputCommandInteraction, EmbedBuilder } = require("discord.js");
-const paginations = require("../../Functions/paginations");
+const paginations = require("../../Functions/Gestions/paginations");
 const { useMainPlayer } = require('discord-player');
 
 module.exports = {

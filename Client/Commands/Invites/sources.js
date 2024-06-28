@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, Client, ChatInputCommandInteraction, PermissionFlagsBits, EmbedBuilder } = require("discord.js");
 const { Guilds } = require("../../Models");
-const defaultDb = require("../../Functions/defaultDb");
+const defaultDb = require("../../Functions/Gestions/defaultDb");
 
 module.exports = {
     data: new SlashCommandBuilder()

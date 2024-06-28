@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, Client, ChatInputCommandInteraction, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, PermissionFlagsBits } = require("discord.js");
 const { Guilds } = require("../../Models");
-const fakeMessage = require("../../Functions/fakeMessage");
+const fakeMessage = require("../../Functions/Invites/fakeMessage");
 
 module.exports = {
     data: new SlashCommandBuilder()
