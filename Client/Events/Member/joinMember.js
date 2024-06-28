@@ -44,12 +44,18 @@ module.exports = {
             };
 
             if (inviter.userId === member.user.id) {
-                inviter.invites.fake += 1;
                 joinMessage = data.invites.joinMessage.self;
             } else {
-                inviter.invites.join += 1;
                 joinMessage = data.invites.joinMessage.normal;
             };
+
+            if(inviter.userId === member.user.id) {
+                inviter.invites.fake += 1;
+            } else if(data.invites.fake.obligation.includes("2") && !member.user.avatar || data.invites.fake.obligation.includes("1") && (new Date() - member.user.createdAt) < 7 * 24 * 60 * 60 * 1000) {
+                inviter.invites.fake += 1;
+            };
+
+            inviter.invites.join += 1;
 
             await inviter.save();
 
