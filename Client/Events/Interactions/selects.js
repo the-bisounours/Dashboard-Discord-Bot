@@ -4,7 +4,10 @@ const selectPrefixes = [
     "category_panel_edit_",
     "roles_panel_edit_",
     "options_panel_edit_",
-    "ticket_name_edit_"
+    "ticket_name_edit_",
+    "manage_options_panel_",
+    "option_panel_edit_",
+    "button_panel_edit_"
 ];
 
 module.exports = {

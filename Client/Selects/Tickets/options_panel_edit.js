@@ -174,6 +174,7 @@ module.exports = {
                         options(panel, new EmbedBuilder())
                             .setColor("Blurple")
                             .setTitle("Informations des panneaux des tickets")
+                            .setThumbnail(client.user.displayAvatarURL())
                             .setFooter({
                                 text: client.user.displayName,
                                 iconURL: client.user.displayAvatarURL()

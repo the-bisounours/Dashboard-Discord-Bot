@@ -9,13 +9,31 @@ const { EmbedBuilder } = require("discord.js");
 module.exports = (panel, embed) => {
     for (let index = 0; index < panel.buttons.length; index++) {
         const button = panel.buttons[index];
-        console.log(button);
+
+        let color;
+        switch (button.color) {
+            case "1":
+                color = "Bleu"
+            break;
+            case "2":
+                color = "Gris"
+            break;
+            case "3":
+                color = "Vert"
+            break;
+            case "4":
+                color = "Rouge"
+            break;
+            default:
+                break;
+        }
+        
         embed.addFields(
             {
-                name: `\`${button}\``,
-                value: `> **Salon:** ${panel.channelId && interaction.guild.channels.cache.get(panel.channelId) ? `${interaction.guild.channels.cache.get(panel.channelId)} (\`${panel.channelId}\`)` : `\`Aucun\``}\n> **Catégorie:** ${panel.categoryId && interaction.guild.channels.cache.get(panel.categoryId) ? `\`${interaction.guild.channels.cache.get(panel.categoryId).name}\` (\`${panel.categoryId}\`)` : `\`Aucun\``}\n> **Rôles:** ${panel.roles.length > 0 ? `${panel.roles.map(roleId => interaction.guild.roles.cache.get(roleId)).join(" ")}` : "\`Aucun\`"}\n> **Nom:** \`${panel.name}\`\n> **Boutons:** \`${panel.buttons.length}\``
+                name: `Bouton [\`${index + 1}\`]`,
+                value: `> **Label:** \`${button.label}\`\n> **Couleur:** \`${color}\``
             }
-        )
+        );
     };
 
     return embed;

@@ -1,5 +1,9 @@
 const { Events, Client, ModalSubmitInteraction } = require("discord.js");
-const modalPrefixes = [];
+const modalPrefixes = [
+    "add_button_",
+    "button_label_edit_",
+    "button_color_edit_"
+];
 
 module.exports = {
 

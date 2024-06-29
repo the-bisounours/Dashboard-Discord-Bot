@@ -35,7 +35,7 @@ module.exports = (panel) => {
             new ActionRowBuilder()
                 .addComponents(
                     new StringSelectMenuBuilder()
-                        .setCustomId(`options_panel_edit_${panel.panelId}`)
+                        .setCustomId(`option_panel_edit_${panel.panelId}`)
                         .setDisabled(false)
                         .setMaxValues(1)
                         .setMinValues(1)
