@@ -67,6 +67,10 @@ const guildSchema = new Schema({
     },
     tickets: {
         settings: {
+            enabled: {
+                type: Boolean,
+                default: true
+            },
             autoclose: {
                 type: Boolean,
                 default: false

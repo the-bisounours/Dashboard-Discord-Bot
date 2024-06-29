@@ -3,6 +3,8 @@ const { Guilds } = require("../../Models");
 const messagePanel = require("../../Functions/Panneaux/messagePanel");
 const options = require("../../Functions/Panneaux/options");
 const componentsOptions = require("../../Functions/Panneaux/componentsOptions");
+const componentsPanel = require("../../Functions/Panneaux/componentsPanel");
+const buildButtons = require("../../Functions/Panneaux/buildButtons");
 
 module.exports = {
     id: "options_panel_edit_",
@@ -219,7 +221,66 @@ module.exports = {
                                     )
                             )
                     ]
-                })
+                });
+
+                break;
+                case "send":
+
+                if (!data.tickets.settings.enabled) {
+                    return interaction.reply({
+                        content: `Les tickets ne sont pas activé.`,
+                        ephemeral: true
+                    });
+                };
+
+                if (panel.buttons.length === 0 || panel.buttons.length > 7) {
+                    return interaction.reply({
+                        content: `Vous devez configuré les boutons du ticket.`,
+                        ephemeral: true
+                    });
+                };
+
+                if (!panel.channelId || !interaction.guild.channels.cache.get(panel.channelId)) {
+                    return interaction.reply({
+                        content: `Vous devez configuré le salon du ticket.`,
+                        ephemeral: true
+                    });
+                };
+
+                await interaction.guild.channels.cache.get(panel.channelId).send({
+                    embeds: [
+                        new EmbedBuilder()
+                            .setTitle("Création d'un ticket")
+                            .setDescription("> Pour toute demande d'assistance, veuillez ouvrir un ticket de support ci-dessous. En ouvrant un ticket, vous acceptez que votre conversation soit enregistrée et stockée dans les logs du serveur. Merci de ne pas mentionner les membres du staff directement. Toute demande de support jugée inutile sera supprimée, et son auteur pourra être sanctionné.")
+                            .setFooter({
+                                text: client.user.displayName,
+                                iconURL: client.user.displayAvatarURL()
+                            })
+                            .setTimestamp()
+                            .setThumbnail(client.user.displayAvatarURL())
+                            .setColor("Blurple")
+                    ],
+                    components: buildButtons(panel)
+                }).then(async msg => {
+                    panel.messageId = msg.id;
+                    await data.save();
+                });
+
+                await interaction.update({
+                    embeds: [
+                        new EmbedBuilder()
+                            .setTitle("Informations des panneaux des tickets")
+                            .setThumbnail(client.user.displayAvatarURL())
+                            .setColor("Blurple")
+                            .setFooter({
+                                text: client.user.displayName,
+                                iconURL: client.user.displayAvatarURL()
+                            })
+                            .setTimestamp()
+                            .addFields(messagePanel(panel, interaction))
+                    ],
+                    components: componentsPanel(panel)
+                });
 
                 break;
             default:
