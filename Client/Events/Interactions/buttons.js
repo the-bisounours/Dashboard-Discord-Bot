@@ -1,5 +1,8 @@
 const { Events, Client, ButtonInteraction } = require("discord.js");
-const buttonPrefixes = [];
+const buttonPrefixes = [
+    "ticket-",
+    "join_ticket_"
+];
 
 module.exports = {
 

@@ -279,7 +279,7 @@ module.exports = {
                             .setTimestamp()
                             .addFields(messagePanel(panel, interaction))
                     ],
-                    components: componentsPanel(panel)
+                    components: componentsPanel(panel, interaction)
                 });
 
                 break;

@@ -3,9 +3,10 @@ const { ButtonInteraction, ActionRowBuilder, StringSelectMenuBuilder, StringSele
 /**
  * 
  * @param {Object} panel 
+ * @param {ButtonInteraction} interaction
  * @returns Array
  */
-module.exports = (panel) => {
+module.exports = (panel, interaction) => {
     return [
         new ActionRowBuilder()
             .addComponents(
@@ -58,7 +59,7 @@ module.exports = (panel) => {
                     new RoleSelectMenuBuilder()
                         .setCustomId(`roles_panel_edit_${panel.panelId}`)
                         .setDefaultRoles(panel.roles)
-                        .setMaxValues(1)
+                        .setMaxValues(interaction.guild.roles.cache.size > 25 ? 25 : interaction.guild.roles.cache.size)
                         .setMinValues(1)
                         .setPlaceholder("Configurez les rôles des tickets.")
                 )
