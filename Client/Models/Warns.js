@@ -29,6 +29,7 @@ const warnSchema = new Schema({
         type: String,
         default: ""
     }
-}).indexes({ warnId: 1 });
+});
 
+warnSchema.indexes({ warnId: 1 });
 module.exports = model("warns", warnSchema);

@@ -1,5 +1,6 @@
-const { Client, ButtonInteraction, EmbedBuilder, PermissionFlagsBits, PermissionsBitField, ChannelType, ThreadAutoArchiveDuration, ThreadChannel, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
-const { Guilds } = require("../../Models");
+const { Client, ButtonInteraction, EmbedBuilder, PermissionFlagsBits, PermissionsBitField, ChannelType, ThreadAutoArchiveDuration, ThreadChannel, ActionRowBuilder, ButtonBuilder, ButtonStyle, InteractionWebhook } = require("discord.js");
+const { Guilds, Tickets } = require("../../Models");
+const id = require("../../Functions/Gestions/id");
 
 module.exports = {
     id: "ticket-",
@@ -45,6 +46,19 @@ module.exports = {
             });
         };
 
+        const tickets = await Tickets.find({
+            userId: interaction.user.id,
+            guildId: interaction.guild.id,
+            closed: false
+        });
+
+        if(tickets.length >= data.tickets.settings.openedTicketPerUser) {
+            return await interaction.reply({
+                content: "Vous avez atteint la limite de ticket ouvert.",
+                ephemeral: true
+            });
+        };
+
         if (data.tickets.settings.threads.enabled) {
 
             await interaction.channel.threads.create({
@@ -58,6 +72,18 @@ module.exports = {
                      * @param {ThreadChannel} threadChannel 
                      */
                     async threadChannel => {
+
+                        await new Tickets({
+                            ticketId: id("TICKET", 8),
+                            guildId: interaction.guild.id,
+                            userId: interaction.user.id,
+                            channelId: threadChannel.id,
+                            reason: button.customId.split("-")[1],
+                            createdAt: Date.now(),
+                            closed: false,
+                            claimed: false,
+                            claimedId: ""
+                        }).save();
 
                         await interaction.reply({
                             content: `J'ai ouvert un nouveau ticket: ${threadChannel}`,
@@ -168,6 +194,19 @@ module.exports = {
                 ]
             })
                 .then(async channel => {
+
+                    await new Tickets({
+                        ticketId: id("TICKET", 8),
+                        guildId: interaction.guild.id,
+                        userId: interaction.user.id,
+                        channelId: channel.id,
+                        reason: button.customId.split("-")[1],
+                        createdAt: Date.now(),
+                        closed: false,
+                        claimed: false,
+                        claimedId: ""
+                    }).save();
+
                     await channel.send({
                         embeds: [
                             new EmbedBuilder()

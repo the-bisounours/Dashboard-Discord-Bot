@@ -21,6 +21,7 @@ const scheduleSchema = new Schema({
         type: Date,
         default: Date.now()
     }
-}).indexes({ userId: 1 });
+});
 
+scheduleSchema.indexes({ userId: 1 });
 module.exports = model("Schedule", scheduleSchema);

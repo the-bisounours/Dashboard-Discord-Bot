@@ -22,6 +22,7 @@ const activitySchema = new Schema({
         type: String,
         default: "online"
     }
-}).indexes({ clientId: 1 });
+});
 
+activitySchema.indexes({ clientId: 1 });
 module.exports = model("Activity", activitySchema);

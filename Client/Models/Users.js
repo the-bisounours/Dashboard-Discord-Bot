@@ -27,6 +27,7 @@ const userSchema = new Schema({
             default: 0
         }
     }
-}).indexes({ userId: 1 });
+});
 
+userSchema.indexes({ userId: 1 });
 module.exports = model("Users", userSchema);

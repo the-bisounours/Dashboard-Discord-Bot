@@ -41,6 +41,7 @@ const ticketSchema = new Schema({
         type: Boolean,
         default: false
     }
-}).indexes({ guildId: 1 });
+});
 
+ticketSchema.indexes({ guildId: 1 });
 module.exports = model("Tickets", ticketSchema);
