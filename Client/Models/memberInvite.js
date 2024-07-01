@@ -13,7 +13,6 @@ const inviteSchema = new Schema({
         type: String,
         default: ""
     }
-});
+}).indexes({ guildId: 1 });
 
-inviteSchema.indexes({ guildId: 1 });
 module.exports = model("memberInvite", inviteSchema);

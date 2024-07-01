@@ -107,7 +107,6 @@ const guildSchema = new Schema({
             default: []
         }
     }
-});
+}).indexes({ guildId: 1 });
 
-guildSchema.indexes({ guildId: 1 });
 module.exports = model("Guilds", guildSchema);
