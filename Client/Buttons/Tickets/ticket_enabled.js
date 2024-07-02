@@ -43,7 +43,7 @@ module.exports = {
                         iconURL: client.user.displayAvatarURL()
                     })
                     .setTimestamp()
-                    .setDescription(`> **Tickets:** \`${data.tickets.settings.enabled ? "Activé" : "Désactivé"}\`\n> **Autoclose:** \`${data.tickets.settings.autoclose ? "Activé" : "Désactivé"}\`\n> **Threads:** ${data.tickets.settings.threads.enabled ? `\`Activé\` ${data.tickets.settings.threads.channelId && interaction.guild.channels.cache.get(data.tickets.settings.threads.channelId) ? interaction.guild.channels.cache.get(data.tickets.settings.threads.channelId) : "\`Aucun salon\`"}` : "\`Désactivé\`"}\n> **Ticket ouvert:** \`${data.tickets.settings.openedTicketPerUser}/utilisateur\`\n> **Support:** ${data.tickets.settings.support && interaction.guild.roles.cache.get(data.tickets.settings.support) ? interaction.guild.roles.cache.get(data.tickets.settings.support) : "\`Aucun\`"}`)
+                    .setDescription(`> **Tickets:** \`${data.tickets.settings.enabled ? "Activé" : "Désactivé"}\`\n> **Autoclose:** \`${data.tickets.settings.autoclose ? "Activé" : "Désactivé"}\`\n> **Threads:** ${data.tickets.settings.threads.enabled ? `\`Activé\` ${data.tickets.settings.threads.channelId && interaction.guild.channels.cache.get(data.tickets.settings.threads.channelId) ? interaction.guild.channels.cache.get(data.tickets.settings.threads.channelId) : "\`Aucun salon\`"}` : "\`Désactivé\`"}\n> **Ticket ouvert:** \`${data.tickets.settings.openedTicketPerUser}/utilisateur\`\n> **Support:** ${data.tickets.settings.support && interaction.guild.roles.cache.get(data.tickets.settings.support) ? interaction.guild.roles.cache.get(data.tickets.settings.support) : "\`Aucun\`"}\n> **Transcript:** ${data.tickets.settings.transcriptId && interaction.guild.channels.cache.get(data.tickets.settings.transcriptId) ? interaction.guild.channels.cache.get(data.tickets.settings.transcriptId) : `\`Aucun\``}`)
             ],
             components: [
                 new ActionRowBuilder()
@@ -77,6 +77,17 @@ module.exports = {
                             .setMaxValues(1)
                             .setMinValues(1)
                             .setPlaceholder("Modifie le salon des notifications des threads.")
+                    ),
+                new ActionRowBuilder()
+                    .addComponents(
+                        new ChannelSelectMenuBuilder()
+                            .setCustomId("transcript_channel")
+                            .setDisabled(false)
+                            .setDefaultChannels(data.tickets.settings.transcriptId ? [data.tickets.settings.transcriptId] : [])
+                            .setChannelTypes(ChannelType.GuildText)
+                            .setMaxValues(1)
+                            .setMinValues(1)
+                            .setPlaceholder("Modifie le salon des transcriptions")
                     ),
                 new ActionRowBuilder()
                     .addComponents(

@@ -1,13 +1,13 @@
-const { Client, ButtonInteraction, EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, ChannelSelectMenuBuilder, ChannelType, RoleSelectMenuBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
+const { Client, ChannelSelectMenuInteraction, EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, ChannelSelectMenuBuilder, ChannelType, RoleSelectMenuBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
 const { Guilds } = require("../../Models");
 
 module.exports = {
-    id: "settings_ticket",
+    id: "transcript_channel",
 
     /**
      * 
      * @param {Client} client 
-     * @param {ButtonInteraction} interaction 
+     * @param {ChannelSelectMenuInteraction} interaction 
      */
     execute: async (client, interaction) => {
 
@@ -28,6 +28,9 @@ module.exports = {
                 ephemeral: true
             });
         };
+
+        data.tickets.settings.transcriptId = interaction.values[0];
+        await data.save();
 
         return await interaction.update({
             embeds: [
@@ -75,17 +78,17 @@ module.exports = {
                             .setMinValues(1)
                             .setPlaceholder("Modifie le salon des notifications des threads.")
                     ),
-                new ActionRowBuilder()
-                    .addComponents(
-                        new ChannelSelectMenuBuilder()
-                            .setCustomId("transcript_channel")
-                            .setDisabled(false)
-                            .setDefaultChannels(data.tickets.settings.transcriptId ? [data.tickets.settings.transcriptId] : [])
-                            .setChannelTypes(ChannelType.GuildText)
-                            .setMaxValues(1)
-                            .setMinValues(1)
-                            .setPlaceholder("Modifie le salon des transcriptions")
-                    ),
+                    new ActionRowBuilder()
+                        .addComponents(
+                            new ChannelSelectMenuBuilder()
+                                .setCustomId("transcript_channel")
+                                .setDisabled(false)
+                                .setDefaultChannels(data.tickets.settings.transcriptId ? [data.tickets.settings.transcriptId] : [])
+                                .setChannelTypes(ChannelType.GuildText)
+                                .setMaxValues(1)
+                                .setMinValues(1)
+                                .setPlaceholder("Modifie le salon des transcriptions")
+                        ),
                 new ActionRowBuilder()
                     .addComponents(
                         new RoleSelectMenuBuilder()

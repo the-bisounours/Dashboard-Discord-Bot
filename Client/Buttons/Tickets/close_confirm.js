@@ -59,24 +59,24 @@ module.exports = {
 
         const attachment = await transcript.createTranscript(interaction.channel);
 
-        try {
+        const components = [
+            new ButtonBuilder()
+                .setCustomId("send")
+                .setStyle(ButtonStyle.Secondary)
+                .setLabel(`Envoyé depuis ${interaction.guild.name}`)
+                .setDisabled(true)
+        ];
 
-            const components = [
+        if (interaction.channel.type !== ChannelType.GuildText) {
+            components.push(
                 new ButtonBuilder()
-                    .setCustomId("send")
-                    .setStyle(ButtonStyle.Secondary)
-                    .setLabel(`Envoyé depuis ${interaction.guild.name}`)
-                    .setDisabled(true)
-            ];
-
-            if (interaction.channel.type !== ChannelType.GuildText) {
-                components.push(
-                    new ButtonBuilder()
-                        .setStyle(ButtonStyle.Link)
-                        .setLabel("Voir le fil")
-                        .setURL(interaction.channel.url)
-                )
-            };
+                    .setStyle(ButtonStyle.Link)
+                    .setLabel("Voir le fil")
+                    .setURL(interaction.channel.url)
+            )
+        };
+        
+        try {
 
             await interaction.member.send({
                 embeds: [
