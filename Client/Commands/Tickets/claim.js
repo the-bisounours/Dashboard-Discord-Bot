@@ -1,13 +1,19 @@
-const { Client, ButtonInteraction, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
+const { SlashCommandBuilder, Client, ChatInputCommandInteraction, PermissionFlagsBits, EmbedBuilder, ChannelType } = require("discord.js");
 const { Guilds, Tickets } = require("../../Models");
 
 module.exports = {
-    id: "claim",
+    data: new SlashCommandBuilder()
+        .setName("claim")
+        .setDescription("Permet de réclamer un ticket.")
+        .setDMPermission(false)
+        .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages),
+
+    category: "Tickets",
 
     /**
      * 
      * @param {Client} client 
-     * @param {ButtonInteraction} interaction 
+     * @param {ChatInputCommandInteraction} interaction 
      */
     execute: async (client, interaction) => {
 
@@ -29,7 +35,14 @@ module.exports = {
 
         if (!ticket) {
             return await interaction.reply({
-                content: "Impossible de trouver la base du ticket.",
+                content: "Le salon n'est pas un ticket.",
+                ephemeral: true
+            });
+        };
+
+        if (interaction.channel.type === ChannelType.PrivateThread || interaction.channel.type === ChannelType.PublicThread) {
+            return await interaction.reply({
+                content: "Le système pour réclamer ne fonctionne pas dans les threads.",
                 ephemeral: true
             });
         };
@@ -44,26 +57,6 @@ module.exports = {
         ticket.claimed = true;
         ticket.claimedId = interaction.user.id;
         await ticket.save();
-
-        await interaction.message.edit({
-            components: [
-                new ActionRowBuilder()
-                    .addComponents(
-                        new ButtonBuilder()
-                            .setCustomId("close")
-                            .setDisabled(false)
-                            .setEmoji("🔒")
-                            .setLabel("Fermé")
-                            .setStyle(ButtonStyle.Danger),
-                        new ButtonBuilder()
-                            .setCustomId("close_reason")
-                            .setDisabled(false)
-                            .setEmoji("🔒")
-                            .setLabel("Fermé avec raison")
-                            .setStyle(ButtonStyle.Danger)
-                    )
-            ]
-        });
 
         return await interaction.reply({
             embeds: [

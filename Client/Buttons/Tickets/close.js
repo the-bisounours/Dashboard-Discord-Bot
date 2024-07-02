@@ -10,8 +10,6 @@ module.exports = {
      */
     execute: async (client, interaction) => {
 
-        
-
         return await interaction.reply({
             content: `${interaction.user}`,
             embeds: [
