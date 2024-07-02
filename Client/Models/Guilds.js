@@ -92,6 +92,14 @@ const guildSchema = new Schema({
             openedTicketPerUser: {
                 type: Number,
                 default: 1
+            },
+            number: {
+                type: Number,
+                default: 0
+            },
+            transcriptId: {
+                type: String,
+                default: ""
             }
         },
         panels: {

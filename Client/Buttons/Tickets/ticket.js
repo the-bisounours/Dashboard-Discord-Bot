@@ -64,7 +64,8 @@ module.exports = {
             await interaction.channel.threads.create({
                 name: interaction.user.username,
                 autoArchiveDuration: ThreadAutoArchiveDuration.OneWeek,
-                type: ChannelType.PrivateThread
+                type: ChannelType.PrivateThread,
+                topic: button.customId.split("-")[1]
             })
                 .then(
                     /**
@@ -81,9 +82,13 @@ module.exports = {
                             reason: button.customId.split("-")[1],
                             createdAt: Date.now(),
                             closed: false,
+                            closeReason: "",
                             claimed: false,
                             claimedId: ""
                         }).save();
+
+                        data.tickets.settings.number = data.tickets.settings.number + 1;
+                        await data.save();
 
                         await interaction.reply({
                             content: `J'ai ouvert un nouveau ticket: ${threadChannel}`,
@@ -182,6 +187,7 @@ module.exports = {
                 name: interaction.user.username,
                 type: ChannelType.GuildText,
                 parent: panel.categoryId && interaction.guild.channels.cache.get(panel.categoryId) ? panel.categoryId : null,
+                topic: button.customId.split("-")[1],
                 permissionOverwrites: [
                     {
                         id: interaction.guild.id,
@@ -203,9 +209,13 @@ module.exports = {
                         reason: button.customId.split("-")[1],
                         createdAt: Date.now(),
                         closed: false,
+                        closeReason: "",
                         claimed: false,
                         claimedId: ""
                     }).save();
+
+                    data.tickets.settings.number = data.tickets.settings.number + 1;
+                    await data.save();
 
                     await channel.send({
                         embeds: [

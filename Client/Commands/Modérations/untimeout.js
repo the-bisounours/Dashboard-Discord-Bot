@@ -96,13 +96,14 @@ module.exports = {
                         new ActionRowBuilder()
                             .addComponents(
                                 new ButtonBuilder()
+                                    .setCustomId("send")
                                     .setStyle(ButtonStyle.Secondary)
                                     .setLabel(`Envoyé depuis ${interaction.guild.name}`)
                                     .setDisabled(true)
                             )
                     ]
                 });
-            } catch (err) {};
+            } catch (err) { };
         };
 
         return await member.timeout(null, raison)

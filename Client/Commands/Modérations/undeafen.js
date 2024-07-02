@@ -102,7 +102,8 @@ module.exports = {
                         new ActionRowBuilder()
                             .addComponents(
                                 new ButtonBuilder()
-                                    .setStyle(ButtonStyle.Secondary)
+                                    .setCustomId("send")
+.setStyle(ButtonStyle.Secondary)
                                     .setLabel(`Envoyé depuis ${interaction.guild.name}`)
                                     .setDisabled(true)
                             )

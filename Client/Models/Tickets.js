@@ -25,10 +25,6 @@ const ticketSchema = new Schema({
         type: String,
         default: ""
     },
-    closed: {
-        type: Boolean,
-        default: false
-    },
     claimed: {
         type: Boolean,
         default: false
@@ -40,6 +36,10 @@ const ticketSchema = new Schema({
     closed: {
         type: Boolean,
         default: false
+    },
+    closeReason: {
+        type: String,
+        default: ""
     }
 });
 

@@ -49,7 +49,7 @@ module.exports = {
         ];
 
         const focusedValue = interaction.options.getFocused();
-        const filteredOptions = options.filter(option => 
+        const filteredOptions = options.filter(option =>
             option.name.toLowerCase().includes(focusedValue.toLowerCase())
         );
 
@@ -131,13 +131,14 @@ module.exports = {
                         new ActionRowBuilder()
                             .addComponents(
                                 new ButtonBuilder()
+                                    .setCustomId("send")
                                     .setStyle(ButtonStyle.Secondary)
                                     .setLabel(`Envoyé depuis ${interaction.guild.name}`)
                                     .setDisabled(true)
                             )
                     ]
                 });
-            } catch (err) {};
+            } catch (err) { };
         };
 
         return await interaction.guild.members.ban(member.user.id, {
