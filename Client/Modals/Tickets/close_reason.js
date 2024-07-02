@@ -1,23 +1,16 @@
-const { Client, ButtonInteraction, ChannelType, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
-const { Tickets, Guilds } = require("../../Models");
+const { Client, ModalSubmitInteraction, ChannelType, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
+const { Guilds, Tickets } = require("../../Models");
 const transcript = require('discord-html-transcripts');
 
 module.exports = {
-    id: "close_confirm",
+    id: "close_reason",
 
     /**
      * 
      * @param {Client} client 
-     * @param {ButtonInteraction} interaction 
+     * @param {ModalSubmitInteraction} interaction 
      */
     execute: async (client, interaction) => {
-
-        if (interaction.user.id !== interaction.message.content.replace("<", "").replace("@", "").replace(">", "")) {
-            return await interaction.reply({
-                content: "Vous n'êtes pas l'auteur de cette commande.",
-                ephemeral: true
-            });
-        };
 
         const data = await Guilds.findOne({
             guildId: interaction.guild.id
@@ -36,6 +29,7 @@ module.exports = {
         });
 
         ticket.closed = true;
+        ticket.closeReason = interaction.fields.getTextInputValue("reason");
         await ticket.save();
 
         if (ticket && interaction.channel.type === ChannelType.GuildText) {
@@ -53,6 +47,12 @@ module.exports = {
                             iconURL: client.user.displayAvatarURL()
                         })
                         .setDescription(`Le ticket a été fermé par ${interaction.user}`)
+                        .addFields(
+                            {
+                                name: "Raison",
+                                value: `\`\`\`\n${ticket.closeReason}\n\`\`\``
+                            }
+                        )
                 ]
             });
         };
@@ -75,7 +75,7 @@ module.exports = {
                     .setURL(interaction.channel.url)
             )
         };
-
+        
         try {
 
             await interaction.member.send({
