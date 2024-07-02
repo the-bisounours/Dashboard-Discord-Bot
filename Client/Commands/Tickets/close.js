@@ -4,7 +4,7 @@ const transcript = require('discord-html-transcripts');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName("close")
+        .setName("ticket-close")
         .setDescription("Permet de fermer un ticket.")
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages)
@@ -59,7 +59,7 @@ module.exports = {
             await interaction.channel.delete().catch(err => err);
         } else {
             await interaction.channel.setLocked(true).catch(err => err);
-            
+
             const embed = new EmbedBuilder()
                 .setTitle("Ticket Fermé")
                 .setColor("Blurple")

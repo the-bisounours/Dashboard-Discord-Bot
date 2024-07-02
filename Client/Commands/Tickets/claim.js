@@ -3,7 +3,7 @@ const { Guilds, Tickets } = require("../../Models");
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName("claim")
+        .setName("ticket-claim")
         .setDescription("Permet de réclamer un ticket.")
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages),
