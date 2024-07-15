@@ -17,11 +17,9 @@ module.exports = {
             guildId: message.guild.id
         });
 
-        if (data && message.guild.channels.cache.get(data.infini.channel) && data.infini.channel === message.channel.id) {
+        if (data && message.guild.channels.cache.get(data.infini.channel) && data.infini.channel === message.channel.id && message.author.id !== client.user.id && !message.author.bot) {
             
-            if(message.author.bot) return await message.delete();
             if(data.infini.maintenance) return await message.delete();
-
             if(numbers.test(new Number(message.content))) {
                 
                 const messages = await message.channel.messages.fetch();
