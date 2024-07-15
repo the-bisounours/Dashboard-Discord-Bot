@@ -259,14 +259,14 @@ module.exports = {
                     endTime: new Date().setMilliseconds(new Date().getMilliseconds() + time),
                     participants: [],
                     settings: {
-                        winners: winners,
-                        requiredGuild: serverRequired,
-                        inviteRequired: inviteRequired,
-                        requiredRoles: [roleRequired],
+                        winners: winners ? winners : 1,
+                        requiredGuild: serverRequired ? serverRequired : "",
+                        inviteRequired: inviteRequired ? inviteRequired : 0,
+                        requiredRoles: roleRequired ? [roleRequired]: [],
                         bonus: {
-                            roles: [roleBonus],
-                            users: [userBonus],
-                            number: bonus
+                            roles: roleBonus ? [roleBonus]: [],
+                            users: userBonus ? [userBonus]: [],
+                            number: bonus ? bonus : 0
                         }
                     }
                 });
