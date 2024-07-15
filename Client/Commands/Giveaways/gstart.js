@@ -134,7 +134,7 @@ module.exports = {
                 content: ":x: Pour ajouter un bonus vous devez ajouter un rôle ou un utilisateur.",
                 ephemeral: true
             });
-        } else {
+        } else if(bonus) {
 
             embed.addFields(
                 {
