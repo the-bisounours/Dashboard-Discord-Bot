@@ -253,6 +253,7 @@ module.exports = {
                     giveawayId: id("GIVEAWAY", 8),
                     messageId: message.id,
                     channelId: interaction.channel.id,
+                    userId: interaction.user.id,
                     pause: false,
                     prize: prize,
                     endTime: new Date().setMilliseconds(new Date().getMilliseconds() + time),

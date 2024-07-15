@@ -17,6 +17,10 @@ const giveawaySchema = new Schema({
         type: String,
         default: ""
     },
+    userId: {
+        type: String,
+        default: ""
+    },
     pause: {
         type: Boolean,
         default: false
