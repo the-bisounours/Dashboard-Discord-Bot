@@ -3,7 +3,7 @@ const { Tickets, Guilds } = require("../../Models");
 const transcript = require('discord-html-transcripts');
 
 module.exports = {
-    id: "close_confirm",
+    id: "accept_close",
 
     /**
      * 
@@ -11,13 +11,6 @@ module.exports = {
      * @param {ButtonInteraction} interaction 
      */
     execute: async (client, interaction) => {
-
-        if (interaction.user.id !== interaction.message.content.replace("<", "").replace("@", "").replace(">", "")) {
-            return await interaction.reply({
-                content: "Vous n'êtes pas l'auteur de cette commande.",
-                ephemeral: true
-            });
-        };
 
         const data = await Guilds.findOne({
             guildId: interaction.guild.id
@@ -34,6 +27,13 @@ module.exports = {
             guildId: interaction.guild.id,
             channelId: interaction.channel.id
         });
+
+        if (interaction.user.id !== ticket.userId) {
+            return await interaction.reply({
+                content: "Vous n'êtes pas l'auteur de ce ticket.",
+                ephemeral: true
+            });
+        };
 
         ticket.closed = true;
         await ticket.save();

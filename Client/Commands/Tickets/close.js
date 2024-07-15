@@ -30,7 +30,7 @@ module.exports = {
 
         if (!data) {
             return await interaction.reply({
-                content: "Impossible de trouver la base de donnée du serveur.",
+                content: ":x: Impossible de trouver la base de donnée du serveur.",
                 ephemeral: true
             });
         };
@@ -42,7 +42,7 @@ module.exports = {
 
         if (!ticket) {
             return await interaction.reply({
-                content: "Le salon n'est pas un ticket.",
+                content: ":x: Le salon n'est pas un ticket.",
                 ephemeral: true
             });
         };

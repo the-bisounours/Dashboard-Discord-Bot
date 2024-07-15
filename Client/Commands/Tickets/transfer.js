@@ -38,7 +38,7 @@ module.exports = {
 
         if (!data) {
             return await interaction.reply({
-                content: "Impossible de trouver la base de donnée du serveur.",
+                content: ":x: Impossible de trouver la base de donnée du serveur.",
                 ephemeral: true
             });
         };
@@ -50,35 +50,35 @@ module.exports = {
 
         if (!ticket) {
             return await interaction.reply({
-                content: "Le salon n'est pas un ticket.",
+                content: ":x: Le salon n'est pas un ticket.",
                 ephemeral: true
             });
         };
 
         if (interaction.channel.type === ChannelType.PrivateThread || interaction.channel.type === ChannelType.PublicThread) {
             return await interaction.reply({
-                content: "Le système pour réclamer ne fonctionne pas dans les threads.",
+                content: ":x: Le système pour réclamer ne fonctionne pas dans les threads.",
                 ephemeral: true
             });
         };
 
         if (member.user.id === interaction.user.id) {
             return await interaction.reply({
-                content: `Vous ne pouvez vous transférer la réclamation du ticket.`,
+                content: `:x: Vous ne pouvez vous transférer la réclamation du ticket.`,
                 ephemeral: true
             });
         };
 
         if (member.user.bot) {
             return await interaction.reply({
-                content: `Vous ne pouvez pas transférer la réclamation a un bot.`,
+                content: `:x: Vous ne pouvez pas transférer la réclamation a un bot.`,
                 ephemeral: true
             });
         };
 
         if (!ticket.claimed || !interaction.guild.members.cache.get(ticket.claimedId)) {
             return await interaction.reply({
-                content: `Personne ne s'occupe du ticket.`,
+                content: `:x: Personne ne s'occupe du ticket.`,
                 ephemeral: true
             });
         };

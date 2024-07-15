@@ -23,7 +23,7 @@ module.exports = {
 
         if (!data) {
             return await interaction.reply({
-                content: "Impossible de trouver la base de donnée du serveur.",
+                content: ":x: Impossible de trouver la base de donnée du serveur.",
                 ephemeral: true
             });
         };
@@ -35,21 +35,21 @@ module.exports = {
 
         if (!ticket) {
             return await interaction.reply({
-                content: "Le salon n'est pas un ticket.",
+                content: ":x: Le salon n'est pas un ticket.",
                 ephemeral: true
             });
         };
 
         if (interaction.channel.type === ChannelType.PrivateThread || interaction.channel.type === ChannelType.PublicThread) {
             return await interaction.reply({
-                content: "Le système pour réclamer ne fonctionne pas dans les threads.",
+                content: ":x: Le système pour réclamer ne fonctionne pas dans les threads.",
                 ephemeral: true
             });
         };
 
         if (ticket.claimed && interaction.guild.members.cache.get(ticket.claimedId)) {
             return await interaction.reply({
-                content: `${interaction.guild.members.cache.get(ticket.claimedId)} à déjà réclamé le ticket.`,
+                content: `:x: ${interaction.guild.members.cache.get(ticket.claimedId)} à déjà réclamé le ticket.`,
                 ephemeral: true
             });
         };
