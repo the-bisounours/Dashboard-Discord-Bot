@@ -248,7 +248,7 @@ module.exports = {
         })
             .then(async message => {
 
-                const giveaway = await new Giveaways({
+                const giveaway = new Giveaways({
                     guildId: interaction.guild.id,
                     giveawayId: id("GIVEAWAY", 8),
                     messageId: message.id,
