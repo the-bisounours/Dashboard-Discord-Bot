@@ -46,6 +46,10 @@ const giveawaySchema = new Schema({
             type: Number,
             default: 0
         },
+        requiredRoles: {
+            type: [String],
+            default: []
+        },
         bonus: {
             roles: {
                 type: [String],

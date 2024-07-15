@@ -23,7 +23,8 @@ module.exports = {
     autocomplete: async (client, interaction) => {
 
         const focusedValue = interaction.options.getFocused();
-        const filtered = client.commands.filter(choice => choice.data.name.startsWith(focusedValue));
+        const commandsArray = Array.from(client.commands.values());
+        const filtered = commandsArray.filter(choice => choice.data && choice.data.name && choice.data.name.startsWith(focusedValue)).slice(0, 25);
         await interaction.respond(filtered.map(choice =>
             ({ name: choice.data.name, value: choice.data.name })
         ));
