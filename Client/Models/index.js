@@ -6,5 +6,6 @@ module.exports = {
     Schedule: require("./Schedule"),
     Invites: require("./Invites"),
     memberInvite: require("./memberInvite"),
-    Tickets: require("./Tickets")
+    Tickets: require("./Tickets"),
+    Giveaways: require("./Giveaways")
 };
