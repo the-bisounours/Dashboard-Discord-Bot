@@ -5,6 +5,10 @@ const giveawaySchema = new Schema({
         type: String,
         default: ""
     },
+    giveawayId: {
+        type: String,
+        default: ""
+    },
     messageId: {
         type: String,
         default: ""
@@ -23,7 +27,7 @@ const giveawaySchema = new Schema({
     },
     endTime: {
         type: Date,
-        default: Date.now()
+        default: Date.now() + new Date().setHours(new Date().getHours + 1)
     },
     participants: {
         type: [String],
