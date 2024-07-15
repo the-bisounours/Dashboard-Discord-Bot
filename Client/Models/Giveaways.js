@@ -31,10 +31,10 @@ const giveawaySchema = new Schema({
     },
     endTime: {
         type: Date,
-        default: Date.now() + new Date().setHours(new Date().getHours + 1)
+        default: Date.now()
     },
     participants: {
-        type: [String],
+        type: [Object],
         default: []
     },
     settings: {

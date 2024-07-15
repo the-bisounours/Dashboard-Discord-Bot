@@ -262,10 +262,10 @@ module.exports = {
                         winners: winners ? winners : 1,
                         requiredGuild: serverRequired ? serverRequired : "",
                         inviteRequired: inviteRequired ? inviteRequired : 0,
-                        requiredRoles: roleRequired ? [roleRequired]: [],
+                        requiredRoles: roleRequired ? [roleRequired.id]: [],
                         bonus: {
-                            roles: roleBonus ? [roleBonus]: [],
-                            users: userBonus ? [userBonus]: [],
+                            roles: roleBonus ? [roleBonus.id]: [],
+                            users: userBonus ? [userBonus.id]: [],
                             number: bonus ? bonus : 0
                         }
                     }
