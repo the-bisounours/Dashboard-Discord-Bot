@@ -114,6 +114,16 @@ const guildSchema = new Schema({
             }],
             default: []
         }
+    },
+    infini: {
+        maintenance: {
+            type: Boolean,
+            default: false
+        },
+        channel: {
+            type: String,
+            default: ""
+        }
     }
 })
 
