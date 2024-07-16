@@ -15,6 +15,8 @@ module.exports = async (client, id) => {
         giveawayId: id
     });
 
+    if(!giveaway) return;
+
     if (!giveaway.guildId || !client.guilds.cache.get(giveaway.guildId)) return;
     const guild = client.guilds.cache.get(giveaway.guildId);
 

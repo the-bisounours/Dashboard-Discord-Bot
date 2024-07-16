@@ -1,7 +1,5 @@
 const { SlashCommandBuilder, PermissionFlagsBits, Client, ChatInputCommandInteraction, AutocompleteInteraction, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
-const duration = require("../../Functions/Gestions/duration");
 const { Giveaways } = require("../../Models");
-const id = require("../../Functions/Gestions/id");
 const endGiveaway = require("../../Functions/Giveaways/endGiveaway");
 
 module.exports = {
