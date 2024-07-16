@@ -21,9 +21,9 @@ const giveawaySchema = new Schema({
         type: String,
         default: ""
     },
-    pause: {
-        type: Boolean,
-        default: false
+    status: {
+        type: String,
+        default: ""
     },
     prize: {
         type: String,
