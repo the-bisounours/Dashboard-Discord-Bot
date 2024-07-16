@@ -1,4 +1,4 @@
-const regex = /(\d+d)?\s*(\d+h)?\s*(\d+m)?/;
+const regex = /(\d+d)?\s*(\d+h)?\s*(\d+m)?\s*(\d+s)?/;
 
 /**
  * 
@@ -8,7 +8,6 @@ const regex = /(\d+d)?\s*(\d+h)?\s*(\d+m)?/;
 module.exports = duration => {
 
     const matches = duration.match(regex);
-
     if (!matches) return null;
 
     const days = matches[1] ? parseInt(matches[1].replace('d', '')) : 0;

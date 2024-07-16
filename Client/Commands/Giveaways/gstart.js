@@ -2,6 +2,7 @@ const { SlashCommandBuilder, PermissionFlagsBits, Client, ChatInputCommandIntera
 const duration = require("../../Functions/Gestions/duration");
 const { Giveaways } = require("../../Models");
 const id = require("../../Functions/Gestions/id");
+const endGiveaway = require("../../Functions/Giveaways/endGiveaway");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -134,7 +135,7 @@ module.exports = {
                 content: ":x: Pour ajouter un bonus vous devez ajouter un rôle ou un utilisateur.",
                 ephemeral: true
             });
-        } else if(bonus) {
+        } else if (bonus) {
 
             embed.addFields(
                 {
@@ -262,20 +263,25 @@ module.exports = {
                         winners: winners ? winners : 1,
                         requiredGuild: serverRequired ? serverRequired : "",
                         inviteRequired: inviteRequired ? inviteRequired : 0,
-                        requiredRoles: roleRequired ? [roleRequired.id]: [],
+                        requiredRoles: roleRequired ? [roleRequired.id] : [],
                         bonus: {
-                            roles: roleBonus ? [roleBonus.id]: [],
-                            users: userBonus ? [userBonus.id]: [],
+                            roles: roleBonus ? [roleBonus.id] : [],
+                            users: userBonus ? [userBonus.id] : [],
                             number: bonus ? bonus : 0
                         }
                     }
                 });
                 await giveaway.save();
 
-                return await interaction.reply({
+                await interaction.reply({
                     content: `Un giveaway pour \`${prize}\` a été créé avec l'identifiant suivant: \`${giveaway.giveawayId}\`\nÇa finira <t:${Math.round(new Date().setMilliseconds(new Date().getMilliseconds() + time) / 1000)}:R>`,
                     ephemeral: true
                 });
+
+                const endTime = new Date(giveaway.endTime).getTime() - Date.now();
+                setTimeout(async () => {
+                    return await endGiveaway(client, giveaway.giveawayId);
+                }, endTime);
             })
             .catch(async err => {
                 return await interaction.reply({
