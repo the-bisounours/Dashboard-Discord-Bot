@@ -27,6 +27,13 @@ module.exports = async (client, id) => {
     });
     if (!message) return;
 
+    if(giveaway.status === "ended") {
+        return await message.reply({
+            content: ":x: Le giveaway est déjà terminé.",
+            ephemeral: true
+        });
+    };
+
     const participants = await filterParticipants(client, guild, giveaway);
     if (participants.length === 0) {
         await editComponentsAndStatus(message, giveaway);

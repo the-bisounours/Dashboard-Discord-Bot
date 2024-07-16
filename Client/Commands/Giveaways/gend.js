@@ -1,16 +1,18 @@
-const { SlashCommandBuilder, PermissionFlagsBits, Client, ChatInputCommandInteraction, EmbedBuilder, AutocompleteInteraction } = require("discord.js");
+const { SlashCommandBuilder, PermissionFlagsBits, Client, ChatInputCommandInteraction, AutocompleteInteraction, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
+const duration = require("../../Functions/Gestions/duration");
 const { Giveaways } = require("../../Models");
-const paginations = require("../../Functions/Gestions/paginations");
+const id = require("../../Functions/Gestions/id");
+const endGiveaway = require("../../Functions/Giveaways/endGiveaway");
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName("gdelete")
-        .setDescription("Permet de supprimer un giveaway.")
+        .setName("gend")
+        .setDescription("Permet d'arrêter un giveaway.")
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageEvents)
         .addStringOption(option => option
             .setName("identifiant")
-            .setDescription("Permet de supprimer un giveaway.")
+            .setDescription("Permet d'arrêter un giveaway.")
             .setAutocomplete(true)
             .setRequired(true)
         ),
@@ -23,7 +25,8 @@ module.exports = {
     autocomplete: async (client, interaction) => {
 
         const giveaways = await Giveaways.find({
-            guildId: interaction.guild.id
+            guildId: interaction.guild.id,
+            status: "started"
         });
 
         const focusedValue = interaction.options.getFocused();
@@ -51,27 +54,18 @@ module.exports = {
             });
         };
 
-        if(giveaway.messageId && giveaway.channelId && interaction.guild.channels.cache.get(giveaway.channelId)) {
-            try {
-                const channel = interaction.guild.channels.cache.get(giveaway.channelId);
-                if(channel) {
-                    const message = await channel.messages.fetch(giveaway.messageId).catch(err => {
-                        return null;
-                    });
-                
-                    if (message) {
-                        await message.delete().catch(err => err);
-                    };
-                };
-            } catch (err) {};
+        if(giveaway.status === "ended") {
+            return await interaction.reply({
+                content: ":x: Le giveaway est déjà terminé.",
+                ephemeral: true
+            });
         };
 
-        await Giveaways.deleteOne({
-            giveawayId: interaction.options.getString("identifiant")
+        await interaction.reply({
+            content: "Le giveaway sera terminé dans quelques secondes.",
+            ephemeral: true
         });
 
-        return await interaction.reply({
-            content: `Le giveaway avec l'identifiant \`${interaction.options.getString("identifiant")}\` a été supprimé.`
-        });
+        return await endGiveaway(client, giveaway.giveawayId);
     }
 };
