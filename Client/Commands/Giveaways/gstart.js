@@ -65,6 +65,8 @@ module.exports = {
             .setRequired(false)
         ),
 
+    category: "Giveaways",
+
     /**
      * 
      * @param {Client} client 

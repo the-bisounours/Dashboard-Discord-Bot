@@ -98,7 +98,9 @@ module.exports = {
                 'Invites': 3,
                 'Informations': 4,
                 'Jeux': 5,
-                'Musiques': 6
+                'Musiques': 6,
+                'Tickets': 7,
+                'Giveaways': 8
             };
 
             categories.sort((a, b) => categoryOrder[a] - categoryOrder[b]).forEach(category => {

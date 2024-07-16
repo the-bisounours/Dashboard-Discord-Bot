@@ -9,6 +9,8 @@ module.exports = {
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageEvents),
 
+    category: "Giveaways",
+
     /**
      * 
      * @param {Client} client 
