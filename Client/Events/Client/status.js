@@ -11,13 +11,15 @@ module.exports = {
      */
     execute: async (client) => {
 
-        let activity = await Activity.findOne({ clientId: client.user.id });
-        if(!activity) {
-            activity = await new Activity({
-                clientId: client.user.id
-            }).save();
-        };
+        setTimeout(async () => {
+            let activity = await Activity.findOne({ clientId: client.user.id });
+            if (!activity) {
+                activity = await new Activity({
+                    clientId: client.user.id
+                }).save();
+            };
 
-        client.user.setStatus(`${activity.status}`);
+            client.user.setStatus(`${activity.status}`);
+        }, 2000);
     }
 };
