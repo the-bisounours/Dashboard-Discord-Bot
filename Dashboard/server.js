@@ -17,12 +17,12 @@ module.exports = client => {
 
     app.locals.client = client;
     
-    app.use('/', require("./Routes/index"));
+    app.use('/', require("./routes/index"));
     app.use('/auth', require("./routes/auth"));
-    app.use('/invite', require("./Routes/index"));
-    app.use('/support', require("./Routes/index"));
-    app.use('/commandes', require("./Routes/index"));
-    app.use('/dashboard', require("./Routes/index"));
+    app.use('/invite', require("./routes/index"));
+    app.use('/support', require("./routes/index"));
+    app.use('/commandes', require("./routes/index"));
+    app.use('/dashboard', require("./routes/index"));
 
     app.listen(process.env.port, () => {
         console.log(`Le serveur fonctionne sur http://localhost:${process.env.port}`);
