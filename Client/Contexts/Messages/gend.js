@@ -39,6 +39,6 @@ module.exports = {
             ephemeral: true
         });
 
-        return await endGiveaway(client, giveaway.giveawayId);
+        return await endGiveaway(client, giveaway.giveawayId, false);
     }
 };

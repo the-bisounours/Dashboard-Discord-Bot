@@ -85,7 +85,7 @@ module.exports = {
                         }
                     )
                     .setFooter({
-                        text: `Fait par the_bisounours - Giveaway lancer par ${interaction.guild.members.cache.get(giveaway.userId)?.displayName}`,
+                        text: `Giveaway lancer par ${interaction.guild.members.cache.get(giveaway.userId)?.displayName}`,
                         iconURL: client.user.displayAvatarURL()
                     })
             );

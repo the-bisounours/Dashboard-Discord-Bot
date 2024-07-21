@@ -20,7 +20,7 @@ module.exports = {
             const endTime = new Date(giveaway.endTime).getTime() - Date.now();
 
             setTimeout(async () => {
-                return await endGiveaway(client, giveaway.giveawayId);
+                return await endGiveaway(client, giveaway.giveawayId, false);
             }, endTime);
         });
     }

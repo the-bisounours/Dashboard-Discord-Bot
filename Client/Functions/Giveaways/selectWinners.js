@@ -13,7 +13,6 @@ module.exports = (participants, numWinners) => {
             weightedParticipants.push(participant.userId);
         };
     });
-    console.log(weightedParticipants)
 
     const winners = new Set();
     while (winners.size < numWinners && weightedParticipants.length > 0) {

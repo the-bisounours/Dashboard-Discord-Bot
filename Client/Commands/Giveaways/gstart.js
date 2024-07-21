@@ -128,7 +128,7 @@ module.exports = {
                 }
             )
             .setFooter({
-                text: `Fait par the_bisounours - Giveaway lancer par ${interaction.user.displayName}`,
+                text: `Giveaway lancer par ${interaction.user.displayName}`,
                 iconURL: client.user.displayAvatarURL()
             });
 
@@ -282,7 +282,7 @@ module.exports = {
 
                 const endTime = new Date(giveaway.endTime).getTime() - Date.now();
                 setTimeout(async () => {
-                    return await endGiveaway(client, giveaway.giveawayId);
+                    return await endGiveaway(client, giveaway.giveawayId, false);
                 }, endTime);
             })
             .catch(async err => {

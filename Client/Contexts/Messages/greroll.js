@@ -1,9 +1,10 @@
 const { ContextMenuCommandBuilder, ApplicationCommandType, Client, ContextMenuCommandInteraction, PermissionFlagsBits } = require("discord.js");
 const { Giveaways } = require("../../Models");
+const endGiveaway = require("../../Functions/Giveaways/endGiveaway");
 
 module.exports = {
     data: new ContextMenuCommandBuilder()
-        .setName("Supprimé Giveaway")
+        .setName("Relancé Giveaway")
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageEvents)
         .setType(ApplicationCommandType.Message),
@@ -26,27 +27,17 @@ module.exports = {
             });
         };
 
-        if (giveaway.messageId && giveaway.channelId && interaction.guild.channels.cache.get(giveaway.channelId)) {
-            try {
-                const channel = interaction.guild.channels.cache.get(giveaway.channelId);
-                if (channel) {
-                    const message = await channel.messages.fetch(giveaway.messageId).catch(err => {
-                        return null;
-                    });
-
-                    if (message) {
-                        await message.delete().catch(err => err);
-                    };
-                };
-            } catch (err) { };
+        if(giveaway.status !== "ended") {
+            return await interaction.reply({
+                content: ":x: Le giveaway n'est pas terminé.",
+                ephemeral: true
+            });
         };
 
         await interaction.reply({
-            content: `Le giveaway avec l'identifiant \`${giveaway.giveawayId}\` a été supprimé.`
+            content: `Le giveaway avec l'identifiant \`${giveaway.giveawayId}\` a été relancer.`
         });
 
-        return await Giveaways.deleteOne({
-            messageId: interaction.targetId
-        });
+        return await endGiveaway(client, giveaway.giveawayId, true);
     }
 };

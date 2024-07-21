@@ -1,22 +1,22 @@
-const { SlashCommandBuilder, PermissionFlagsBits, Client, ChatInputCommandInteraction, AutocompleteInteraction, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
+const { SlashCommandBuilder, PermissionFlagsBits, Client, ChatInputCommandInteraction, EmbedBuilder, AutocompleteInteraction } = require("discord.js");
 const { Giveaways } = require("../../Models");
 const endGiveaway = require("../../Functions/Giveaways/endGiveaway");
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName("gend")
-        .setDescription("Permet d'arrêter un giveaway.")
+        .setName("greroll")
+        .setDescription("Permet de relancer un giveaway.")
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageEvents)
         .addStringOption(option => option
             .setName("identifiant")
-            .setDescription("Permet d'arrêter un giveaway.")
+            .setDescription("Permet de relancer un giveaway.")
             .setAutocomplete(true)
             .setRequired(true)
         ),
 
     category: "Giveaways",
-    
+
     /**
      * 
      * @param {Client} client 
@@ -26,7 +26,7 @@ module.exports = {
 
         const giveaways = await Giveaways.find({
             guildId: interaction.guild.id,
-            status: "started"
+            status: "ended"
         });
 
         const focusedValue = interaction.options.getFocused();
@@ -54,18 +54,17 @@ module.exports = {
             });
         };
 
-        if(giveaway.status === "ended") {
+        if(giveaway.status !== "ended") {
             return await interaction.reply({
-                content: ":x: Le giveaway est déjà terminé.",
+                content: ":x: Le giveaway n'est pas terminé.",
                 ephemeral: true
             });
         };
 
         await interaction.reply({
-            content: "Le giveaway sera terminé dans quelques secondes.",
-            ephemeral: true
+            content: `Le giveaway avec l'identifiant \`${interaction.options.getString("identifiant")}\` a été relancer.`
         });
 
-        return await endGiveaway(client, giveaway.giveawayId, false);
+        return await endGiveaway(client, giveaway.giveawayId, true);
     }
 };

@@ -7,9 +7,10 @@ const filterParticipants = require("./filterParticipants");
  * 
  * @param {Client} client 
  * @param {String} id
+ * @param {Boolean} rerollCommand
  * @returns
  */
-module.exports = async (client, id) => {
+module.exports = async (client, id, rerollCommand) => {
 
     const giveaway = await Giveaways.findOne({
         giveawayId: id
@@ -29,7 +30,7 @@ module.exports = async (client, id) => {
     });
     if (!message) return;
 
-    if(giveaway.status === "ended") {
+    if(giveaway.status === "ended" && !rerollCommand) {
         return await message.reply({
             content: ":x: Le giveaway est déjà terminé.",
             ephemeral: true
