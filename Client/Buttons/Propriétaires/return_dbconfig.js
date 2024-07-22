@@ -1,9 +1,8 @@
 const { Client, ButtonInteraction, StringSelectMenuOptionBuilder, EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
-const mongoose = require('mongoose');
 const models = require("../../Models");
 
 module.exports = {
-    id: "dbrestart",
+    id: "return_dbconfig",
 
     /**
      * 
@@ -26,13 +25,9 @@ module.exports = {
             });
         };
 
-        await interaction.deferUpdate({ fetchReply: true });
-        await mongoose.disconnect();
-        await mongoose.connect(process.env.mongoDB);
-
         const modelNames = Object.keys(models);
         if (modelNames.length === 0) {
-            return await interaction.editReply({
+            return await interaction.reply({
                 content: ":x: La database ne possède aucun model.",
                 ephemeral: true
             });
@@ -61,7 +56,7 @@ module.exports = {
             );
         };
 
-        await interaction.editReply({
+        await interaction.update({
             embeds: [embed
                 .setTitle(`Information de la database - ${client.user.displayName}`)
                 .setThumbnail(client.user.displayAvatarURL())
