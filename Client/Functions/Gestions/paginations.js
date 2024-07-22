@@ -20,7 +20,7 @@ module.exports = async (interaction, pages, time = 30 * 1000, editMessage) => {
 
         if (pages.length === 1) {
             if(editMessage) {
-                return await interaction.message.edit({ embeds: pages, fetchReply: true });
+                return await interaction.update({ embeds: pages, components: [], fetchReply: true });
             } else {
                 return await interaction.editReply({ embeds: pages, fetchReply: true });
             }
@@ -64,7 +64,7 @@ module.exports = async (interaction, pages, time = 30 * 1000, editMessage) => {
             .addComponents([first, prev, pageCount, next, last]);
 
         if(editMessage) {
-            const msg = await interaction.message.edit({
+            const msg = await interaction.update({
                 embeds: [pages[index]],
                 components: [buttons], 
                 fetchReply: true

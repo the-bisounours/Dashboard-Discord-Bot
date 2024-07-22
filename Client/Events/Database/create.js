@@ -8,7 +8,7 @@ module.exports = {
     /**
      * 
      * @param {Client} client 
-     * @param {Guild} client 
+     * @param {Guild} guild 
      */
     execute: async (client, guild) => {
 
