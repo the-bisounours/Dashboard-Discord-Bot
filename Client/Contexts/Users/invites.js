@@ -1,37 +1,29 @@
-const { SlashCommandBuilder, Client, ChatInputCommandInteraction, EmbedBuilder } = require("discord.js");
+const { ContextMenuCommandBuilder, ApplicationCommandType, Client, ContextMenuCommandInteraction, EmbedBuilder } = require("discord.js");
 const { Users, Guilds } = require("../../Models");
 
 module.exports = {
-    data: new SlashCommandBuilder()
-        .setName("invites")
-        .setDescription("Permet de regarder les invitations.")
-        .setDMPermission(false)
-        .setDefaultMemberPermissions(null)
-        .addUserOption(option => option
-            .setName("membre")
-            .setDescription("Permet de regarder les invitations du membre.")
-            .setRequired(false)
-        ),
-
-    category: "Invites",
+    data: new ContextMenuCommandBuilder()
+    .setName("User Invites")
+    .setDMPermission(false)
+    .setDefaultMemberPermissions(null)
+    .setType(ApplicationCommandType.User),
 
     /**
      * 
      * @param {Client} client 
-     * @param {ChatInputCommandInteraction} interaction 
+     * @param {ContextMenuCommandInteraction} interaction 
      */
     execute: async (client, interaction) => {
 
-        const user = interaction.options.getUser("membre") ? interaction.options.getUser("membre") : interaction.user;
-        const member = interaction.guild.members.cache.get(user.id);
+        const member = interaction.guild.members.cache.get(interaction.targetId);
 
-        if (!member) {
+        if(!member) { 
             return await interaction.reply({
                 content: ":x: Je n'arrive pas a trouver le membre.",
                 ephemeral: true
             });
         };
-
+        
         const date = new Date();
         const guild = await Guilds.findOne({
             guildId: interaction.guild.id
