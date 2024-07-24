@@ -20,9 +20,9 @@ module.exports = async (interaction, pages, time = 30 * 1000, editMessage) => {
 
         if (pages.length === 1) {
             if(editMessage) {
-                return await interaction.update({ embeds: pages, components: [], fetchReply: true });
+                return await interaction.update({ content: "", embeds: pages, components: [], fetchReply: true });
             } else {
-                return await interaction.editReply({ embeds: pages, fetchReply: true });
+                return await interaction.editReply({ content: "", embeds: pages, components: [], fetchReply: true });
             }
         };
 
@@ -65,6 +65,7 @@ module.exports = async (interaction, pages, time = 30 * 1000, editMessage) => {
 
         if(editMessage) {
             const msg = await interaction.update({
+                content: "",
                 embeds: [pages[index]],
                 components: [buttons], 
                 fetchReply: true
@@ -121,6 +122,7 @@ module.exports = async (interaction, pages, time = 30 * 1000, editMessage) => {
                 };
     
                 await msg.edit({
+                    content: "",
                     embeds: [pages[index]],
                     components: [buttons]
                 }).catch(err => {});
@@ -130,6 +132,7 @@ module.exports = async (interaction, pages, time = 30 * 1000, editMessage) => {
     
             collector.on("end", async () => {
                 await msg.edit({
+                    content: "",
                     embeds: [pages[index]],
                     components: []
                 }).catch(err => {});
@@ -138,6 +141,7 @@ module.exports = async (interaction, pages, time = 30 * 1000, editMessage) => {
             return msg;
         } else {
             const msg = await interaction.editReply({
+                content: "",
                 embeds: [pages[index]],
                 components: [buttons], 
                 fetchReply: true
@@ -194,6 +198,7 @@ module.exports = async (interaction, pages, time = 30 * 1000, editMessage) => {
                 };
     
                 await msg.edit({
+                    content: "",
                     embeds: [pages[index]],
                     components: [buttons]
                 }).catch(err => {});
@@ -203,6 +208,7 @@ module.exports = async (interaction, pages, time = 30 * 1000, editMessage) => {
     
             collector.on("end", async () => {
                 await msg.edit({
+                    content: "",
                     embeds: [pages[index]],
                     components: []
                 }).catch(err => {});

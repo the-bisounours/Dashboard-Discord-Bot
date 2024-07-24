@@ -1,67 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <title>Dashboard <%= user.username %></title>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.2/dist/full.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="/css/styles.css">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+        <%= client.user.username %> - a Discord Bot
+    </title>
+    <link rel="stylesheet" href="/css/bulma.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="/js/jquery-3.6.0.js"></script>
 </head>
 
 <body>
-    <div class="navbar bg-base-100">
-        <div class="flex-1">
-          <a class="btn btn-ghost text-xl" style="color: darkviolet;"><%= client.user.username %></a>
-        </div>
-        <div class="flex-none">
-          <ul class="menu menu-horizontal px-1" style="color: darkviolet;">
-            <li><a href="/">Accueil</a></li>
-            <li><a href="/commandes">Commandes</a></li>
-            <li><a href="/dashboard">Dashboard</a></li>
-            <li><a href="/invite">Invite</a></li>
-            <li><a href="/support">Support</a></li>
-            <% if (typeof user !=='undefined' && user !==null) { %>
-                <li>
-                    <details>
-                      <summary>
-                        <%= user.username %>
-                      </summary>
-                      <ul class="p-2 bg-base-100 rounded-t-none">
-                        <li><a href="/dashboard">Dashboard</a></li>
-                        <li><a href="/auth/logout" style="color: firebrick;">Se déconnecter</a></li>
-                      </ul>
-                    </details>
-                </li>
-            <% } else { %>
-                <li style="color: dodgerblue;"><a href="/auth/login">Se connecter</a></li>
-            <% } %>
-          </ul>
-        </div>
-    </div>
-    <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-around; align-content: space-around;width: 100%; box-sizing: border-box; margin: 20px 0px;">
-        <% user.guilds.map(guild => { %>
-            <div class="card w-96 bg-base-100 shadow-xl" style="margin: 5px;">
-                <figure>
-                    <% if(guild.icon){ %>
-                        <img src="https://cdn.discordapp.com/icons/<%= guild.id %>/<%= guild.icon %>.png" style="border-radius: 50%; width: 100px; height: 100px;" alt="Icon" />
-                    <% } else{ %>
-                        <img src="https://archive.org/download/discordprofilepictures/discordyellow.png" style="border-radius: 50%; width: 100px; height: 100px;" alt="Icon" />
-                    <% } %>
-                </figure>
-                <div class="card-body">
-                    <h2 class="card-title"><%= guild.name %></h2>
-                    <div class="card-actions justify-end">
-                    <% if(client.guilds.cache.get(guild.id)?.members.cache.get(user.id)?.permissions.has("ManageGuild")){ %>
-                        <button class="btn" style="background-color: darkviolet; color: black;">Configurer</button>
-                    <% } else{ %>
-                        <button class="btn btn-primary">Inviter</button>
-                    <% } %>
-                    </div>
+    <header>
+        <a id="backtotop" data-tippy-content="Back To Top.">
+            <i class="fa-solid fa-angle-up has-text-white fa-2xl mt-5"></i>
+        </a>
+
+        <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand mt-2 mb-2">
+                <a class="navbar-item" href="/">
+                    <img src="<%= client.user.displayAvatarURL() %>" alt="Avatar"
+                        style="border-radius: 50%; margin: 10px;">
+                    <strong>
+                        <%= client.user.username %>
+                    </strong>
+                </a>
+
+                <a role="button" class="navbar-burger has-text-white" data-target="navMenu" aria-label="menu"
+                    aria-expanded="false">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <a href="/" class="navbar-item is-tab">
+                        Accueil
+                    </a>
+
+                    <a href="/#features" class="navbar-item is-tab">
+                        Caractéristiques
+                    </a>
+
+                    <a href="/#stats" class="navbar-item is-tab">
+                        Statistiques
+                    </a>
+
+                    <a href="/dashboard" class="navbar-item is-tab">
+                        Tableau de bord
+                    </a>
+                </div>
+
+                <div class="navbar-end">
+                    <a href="/support" class="navbar-item is-tab" target="_blank">
+                        <i class="fa-brands fa-discord"></i>
+                    </a>
+                    <% if (typeof user !=='undefined' && user !==null) { %>
+                        <div class="navbar-item">
+                            <div class="buttons">
+                                <a href="/auth/logout" class="button is-blurple">
+                                    <strong><i class="fa-solid fa-right-to-bracket mr-2"></i>
+                                        <%= user.username %>
+                                    </strong>
+                                </a>
+                            </div>
+                        </div>
+                        <% } else { %>
+                            <div class="navbar-item">
+                                <div class="buttons">
+                                    <a href="/auth/login" class="button is-blurple">
+                                        <strong><i class="fa-solid fa-right-to-bracket mr-2"></i>
+                                            Se connecter</strong>
+                                    </a>
+                                </div>
+                            </div>
+                            <% } %>
                 </div>
             </div>
-        <% }); %>
-    </div>
+        </nav>
+    </header>
+    <section class="hero bg-base is-fullheight">
+    </section>
 </body>
-
 </html>

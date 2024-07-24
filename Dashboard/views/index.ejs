@@ -1,44 +1,272 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <title>Dashboard Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.2/dist/full.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="/css/styles.css">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+        <%= client.user.username %> - a Discord Bot
+    </title>
+    <link rel="stylesheet" href="/css/bulma.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="/js/jquery-3.6.0.js"></script>
 </head>
 
 <body>
-    <div class="navbar bg-base-100">
-        <div class="flex-1">
-          <a class="btn btn-ghost text-xl" style="color: darkviolet;"><%= client.user.username %></a>
+    <header>
+        <a id="backtotop" data-tippy-content="Back To Top.">
+            <i class="fa-solid fa-angle-up has-text-white fa-2xl mt-5"></i>
+        </a>
+
+        <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand mt-2 mb-2">
+                <a class="navbar-item" href="/">
+                    <img src="<%= client.user.displayAvatarURL() %>" alt="Avatar"
+                        style="border-radius: 50%; margin: 10px;">
+                    <strong>
+                        <%= client.user.username %>
+                    </strong>
+                </a>
+
+                <a role="button" class="navbar-burger has-text-white" data-target="navMenu" aria-label="menu"
+                    aria-expanded="false">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <a href="/" class="navbar-item is-tab">
+                        Accueil
+                    </a>
+
+                    <a href="#features" class="navbar-item is-tab">
+                        Caractéristiques
+                    </a>
+
+                    <a href="#stats" class="navbar-item is-tab">
+                        Statistiques
+                    </a>
+
+                    <a href="/dashboard" class="navbar-item is-tab">
+                        Tableau de bord
+                    </a>
+                </div>
+
+                <div class="navbar-end">
+                    <a href="/support" class="navbar-item is-tab" target="_blank">
+                        <i class="fa-brands fa-discord"></i>
+                    </a>
+                    <% if (typeof user !=='undefined' && user !==null) { %>
+                        <div class="navbar-item">
+                            <div class="buttons">
+                                <a href="/auth/logout" class="button is-blurple">
+                                    <strong><i class="fa-solid fa-right-to-bracket mr-2"></i>
+                                        <%= user.username %>
+                                    </strong>
+                                </a>
+                            </div>
+                        </div>
+                        <% } else { %>
+                            <div class="navbar-item">
+                                <div class="buttons">
+                                    <a href="/auth/login" class="button is-blurple">
+                                        <strong><i class="fa-solid fa-right-to-bracket mr-2"></i>
+                                            Se connecter</strong>
+                                    </a>
+                                </div>
+                            </div>
+                        <% } %>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <section class="hero bg-base is-fullheight">
+        <div class="hero-body line-center">
+            <div class="">
+                <div class="columns">
+                    <div class="column mr-6 mt-12" data-aos="fade-up">
+                        <p class="title has-text-white has-text-weight-bold">
+                            Il est temps d'ajouter <%= client.user.username %> à votre serveur.
+                        </p>
+                        <p class="subtitle has-text-grey-light is-size-6 mt-3">
+                            <%= client.user.description %>
+                        </p>
+                        <div class="buttons">
+                            <a href="/invite" class="button is-info">
+                                <strong><i class="fa-brands fa-discord"></i> Ajouter à Discord</strong>
+                            </a>
+
+                            <a href="/premium" class="button is-primary is-outlined">
+                                <strong><i class="fa-solid fa-crown"></i> Premium</strong>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="column mt-6" data-aos="fade-left">
+                        <img class="image has-image-centered vert-move mt-4" src="/img/relaunch_day.svg"
+                            alt="hero image" style="width: 20rem;" />
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="flex-none">
-          <ul class="menu menu-horizontal px-1" style="color: darkviolet;">
-            <li><a href="/">Accueil</a></li>
-            <li><a href="/commandes">Commandes</a></li>
-            <li><a href="/dashboard">Dashboard</a></li>
-            <li><a href="/invite">Invite</a></li>
-            <li><a href="/support">Support</a></li>
-            <% if (typeof user !=='undefined' && user !==null) { %>
-                <li>
-                    <details>
-                      <summary>
-                        <%= user.username %>
-                      </summary>
-                      <ul class="p-2 bg-base-100 rounded-t-none">
-                        <li><a href="/dashboard">Dashboard</a></li>
-                        <li><a href="/auth/logout" style="color: firebrick;">Se déconnecter</a></li>
-                      </ul>
-                    </details>
-                </li>
-            <% } else { %>
-                <li style="color: dodgerblue;"><a href="/auth/login">Se connecter</a></li>
-            <% } %>
-          </ul>
+        <div class="has-text-centered" data-tippy-content="Scroll Down">
+            <a href="#features"><i class="fa-solid fa-circle-chevron-down fa-lg vert-move2 has-text-white"></i></a>
         </div>
-    </div>  
+    </section>
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path fill="#1a2634" fill-opacity="1"
+            d="M0,288L24,261.3C48,235,96,181,144,154.7C192,128,240,128,288,149.3C336,171,384,213,432,202.7C480,192,528,128,576,133.3C624,139,672,213,720,213.3C768,213,816,139,864,101.3C912,64,960,64,1008,106.7C1056,149,1104,235,1152,240C1200,245,1248,171,1296,144C1344,117,1392,139,1416,149.3L1440,160L1440,0L1416,0C1392,0,1344,0,1296,0C1248,0,1200,0,1152,0C1104,0,1056,0,1008,0C960,0,912,0,864,0C816,0,768,0,720,0C672,0,624,0,576,0C528,0,480,0,432,0C384,0,336,0,288,0C240,0,192,0,144,0C96,0,48,0,24,0L0,0Z">
+        </path>
+    </svg>
+
+    <section id="features" class="section mt-6">
+        <div class="has-text-centered">
+            <h1 class="title lined">Caractéristiques</h1>
+            <div class="line line-center blurple"></div>
+        </div>
+
+        <div class="single-feature">
+            <div class="columns mt-6">
+                <div class="column mr-6">
+                    <h4 class="title">Caractéristique <span class="blurple">#1</span></h4>
+                    <p class="subtitle mt-3">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                        enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                        nisi ut aliquip ex ea commodo consequat.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="single-feature">
+            <div class="columns mt-6">
+                <div class="column">
+                    <h4 class="title">
+                        Caractéristique <span class="has-text-primary">#2</span>
+                    </h4>
+                    <p class="subtitle mt-3">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                        enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                        nisi ut aliquip ex ea commodo consequat.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="single-feature">
+            <div class="columns mt-6">
+                <div class="column mr-6">
+                    <h4 class="title">
+                        Caractéristique <span class="has-text-warning">#3</span>
+                    </h4>
+                    <p class="subtitle mt-3">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                        enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                        nisi ut aliquip ex ea commodo consequat.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="single-feature">
+            <div class="columns mt-6">
+                <div class="column">
+                    <h4 class="title">Caractéristique <span class="has-text-info">#4</span></h4>
+                    <p class="subtitle mt-3">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                        enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                        nisi ut aliquip ex ea commodo consequat.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="stats" class="section mt-6">
+        <div class="has-text-centered">
+            <h1 class="title lined">Statistiques</h1>
+            <div class="line line-center blurple"></div>
+        </div>
+
+        <div class="columns mt-6">
+            <div class="column has-text-centered">
+                <p class="title has-text-weight-bold lined">
+                    <%= client.guilds.cache.size %>
+                </p>
+                <span class="subtitle has-text-weight-bold blurple"><i class="fa-solid fa-server"></i> Serveurs</span>
+            </div>
+
+            <div class="column has-text-centered">
+                <p class="title has-text-weight-bold lined">
+                    <%= client.commands.size %>
+                </p>
+                <span class="subtitle has-text-weight-bold blurple"><i class="fa-solid fa-circle-info"></i>
+                    Commandes</span>
+            </div>
+
+            <div class="column has-text-centered">
+                <p class="title has-text-weight-bold lined">
+                    <%= client.users.cache.size %>
+                </p>
+                <span class="subtitle has-text-weight-bold blurple"><i class="fa-solid fa-users"></i>
+                    Utilisateurs</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="section mt-6">
+        <div class="columns">
+            <div class="column has-text-left">
+                <p class="title has-text-weight-bold">
+                    Prêt à essayer <span class="blurple">
+                        <%= client.user.displayName %>
+                    </span>?
+                </p>
+                <p class="subtitle mt-3 has-text-gray">
+                    <%= client.user.desciption %>
+                </p>
+                <a href="/invite" class="button is-blurple is-medium"><strong><i class="fa-solid fa-book"></i>
+                        Commencer</strong></a>
+            </div>
+
+            <div class="column"></div>
+        </div>
+    </section>
+    <footer class="footer bg-base">
+        <div class="content has-text-centered has-text-white">
+            <div class="mb-2">
+                <a href="/support" class="has-text-white" target="_blank">
+                    <i class="fa-brands fa-discord"></i>
+                </a>
+            </div>
+
+            <p>
+                <span class="has-text-weight-bold">
+                    <%= client.user.displayName %>
+                </span>
+                <br />
+                &copy; <span id="cp-year"></span> Copyright the_bisounours. All Rights
+                Reserved.
+            </p>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+    <script src="/js/script.js"></script>
 </body>
 
 </html>
