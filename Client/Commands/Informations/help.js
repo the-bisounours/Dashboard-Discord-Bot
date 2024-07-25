@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder, Client, ChatInputCommandInteraction, PermissionFlagsBits, AutocompleteInteraction, PermissionsBitField, SlashCommandSubcommandBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, OAuth2Scopes } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder, Client, ChatInputCommandInteraction, PermissionFlagsBits, AutocompleteInteraction, PermissionsBitField, SlashCommandSubcommandBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, OAuth2Scopes, StringSelectMenuBuilder } = require("discord.js");
 const PermissionFlags = require("../../Functions/Gestions/permissionFlags.js");
 
 module.exports = {
@@ -103,22 +103,17 @@ module.exports = {
                 'Giveaways': 8
             };
 
-            categories.sort((a, b) => categoryOrder[a] - categoryOrder[b]).forEach(category => {
-                let commands = viewcommands.filter(cmd => cmd.category === category);
+            categories.sort((a, b) => categoryOrder[a] - categoryOrder[b]);
 
-                if (interaction.user.id !== process.env.ownerId) {
-                    commands = commands.filter(cmd => cmd.category !== "Propriétaires");
-                }
+            const menu = new StringSelectMenuBuilder()
+                .setCustomId('help')
+                .setPlaceholder('Choisissez une catégorie')
+                .addOptions(categories.map(category => ({
+                    label: category,
+                    value: category
+                })));
 
-                const categoryEmpty = commands.map(cmd => interaction.member.permissions.has(new PermissionsBitField(cmd.permission)));
-                if (categoryEmpty.every(element => element === false)) return;
-
-                embed.addFields({
-                    name: `${category} [\`${commands.length}\`]`, value: `>>> ${commands.map(cmd => `${interaction.member.permissions.has(new PermissionsBitField(cmd.permission)) ? `[\`${cmd.data.name}\`](${process.env.supportInvite})` : ""}`).join(" ")}`
-                });
-            });
-
-            return await interaction.reply({
+            await interaction.reply({
                 embeds: [embed],
                 components: [
                     new ActionRowBuilder()
@@ -136,7 +131,9 @@ module.exports = {
                                 .setLabel(`Support ${client.user.displayName}`)
                                 .setStyle(ButtonStyle.Link)
                                 .setURL(process.env.supportInvite)
-                        )
+                        ),
+                    new ActionRowBuilder()
+                        .addComponents(menu)
                 ]
             });
         };
