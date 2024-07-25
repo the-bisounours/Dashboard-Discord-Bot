@@ -29,7 +29,6 @@ module.exports = {
         });
 
         const recipe = response.data.recipe
-        console.log(recipe.data);
 
         const embeds = [
             new EmbedBuilder()

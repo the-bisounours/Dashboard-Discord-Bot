@@ -5,10 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
-        <%= client.user.username %> - a Discord Bot
+        <%= client.user.username %> - a Discord client
     </title>
     <link rel="stylesheet" href="/css/bulma.min.css" />
     <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/dashboard.css" />
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
     <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale.css" />
 
@@ -91,6 +92,33 @@
         </nav>
     </header>
     <section class="hero bg-base is-fullheight">
+        <div class="container">
+            <h1 class="title has-text-white">Sélectionner un serveur Discord</h1>
+            <div class="columns is-multiline">
+                <% user.guilds.forEach(guild => { %>
+                    <div class="column is-one-quarter">
+                        <div class="card">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="<%= guild.icon ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png` : 'https://path.to/default/icon.png' %>" alt="<%= guild.name %>">
+                                </figure>
+                            </div>
+                            <div class="card-content">
+                                <div class="media">
+                                    <div class="media-content">
+                                        <p class="title is-4"><%= guild.name %></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <a href="/select-guild/<%= guild.id %>" class="card-footer-item">Sélectionner</a>
+                            </footer>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        </div>
     </section>
 </body>
+
 </html>

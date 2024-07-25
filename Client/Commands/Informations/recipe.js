@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, Client, ChatInputCommandInteraction, AutocompleteInteraction, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
 const url = "https://all-in-one-recipe-api.p.rapidapi.com";
 const axios = require('axios');
+const paginations = require("../../Functions/Gestions/paginations");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -174,8 +175,130 @@ module.exports = {
                         ]
                     });
                     break;
-                default:
+                case "search":
+
+                    const response2 = await axios.request({
+                        method: 'GET',
+                        url: `${url}/search/${interaction.options.getString("search")}`,
+                        headers: {
+                            'x-rapidapi-key': process.env.recipeAPI,
+                            'x-rapidapi-host': 'all-in-one-recipe-api.p.rapidapi.com'
+                        }
+                    });
+                    await interaction.reply({
+                        content: `> **Identifiant:** \`${response2.data.recipes.data[1].id}\`\n> **Nom:** \`${response2.data.recipes.data[1].name}\``,
+                        components: [
+                            new ActionRowBuilder()
+                                .addComponents(
+                                    new ButtonBuilder()
+                                        .setCustomId(`recipe_details_${response2.data.recipes.data[1].id}`)
+                                        .setDisabled(false)
+                                        .setEmoji("🍲")
+                                        .setLabel("Voir les détails de la recette")
+                                        .setStyle(ButtonStyle.Primary)
+                                )
+                        ]
+                    });
+
                     break;
+                case "details":
+
+                    const response3 = await axios.request({
+                        method: 'GET',
+                        url: `${url}/details/${interaction.options.getString("identifiant")}`,
+                        headers: {
+                            'x-rapidapi-key': process.env.recipeAPI,
+                            'x-rapidapi-host': 'all-in-one-recipe-api.p.rapidapi.com'
+                        }
+                    });
+
+                    if (response3.data.recipe.data.msg) {
+                        return await interaction.reply({
+                            content: response3.data.recipe.data.msg,
+                            ephemeral: true
+                        });
+                    };
+
+                    const recipe = response3.data.recipe
+
+                    const embeds = [
+                        new EmbedBuilder()
+                            .setTitle(`Informations de la recette - ${recipe.data.Name}`)
+                            .setDescription(`> ${recipe.data.Description ? recipe.data.Description : "Aucune"}\n\n**Informations du temps de la recette**\n${recipe.data.Time.map(time => `> \`${time}\``).join("\n")}\n\n**Informations des ingrédients**\n${recipe.data.Ingredients.map(ingredient => `> \`${ingredient}\``).join("\n")}`)
+                            .setFooter({
+                                text: client.user.displayName,
+                                iconURL: client.user.displayAvatarURL()
+                            })
+                            .setTimestamp()
+                            .setThumbnail(client.user.displayAvatarURL())
+                            .setColor("Blurple")
+                    ];
+
+                    for (let index = 0; index < recipe.data.Directions.length; index++) {
+                        const direction = recipe.data.Directions[index];
+                        embeds.push(
+                            new EmbedBuilder()
+                                .setTitle(`Informations de la recette - ${recipe.data.Name}`)
+                                .setDescription(`> - ${direction}`)
+                                .setFooter({
+                                    text: client.user.displayName,
+                                    iconURL: client.user.displayAvatarURL()
+                                })
+                                .setTimestamp()
+                                .setThumbnail(client.user.displayAvatarURL())
+                                .setColor("Blurple")
+                        );
+                    };
+
+                    await paginations(interaction, embeds, 60 * 1000, false);
+
+                    break;
+                case "random":
+
+                    const response4 = await axios.request({
+                        method: 'GET',
+                        url: `${url}/random`,
+                        headers: {
+                            'x-rapidapi-key': process.env.recipeAPI,
+                            'x-rapidapi-host': 'all-in-one-recipe-api.p.rapidapi.com'
+                        }
+                    });
+
+                    const recipe1 = response4.data.recipe
+
+                    const embeds1 = [
+                        new EmbedBuilder()
+                            .setTitle(`Informations de la recette - ${recipe1.data.Name}`)
+                            .setDescription(`> ${recipe1.data.Description ? recipe1.data.Description : "Aucune"}\n\n**Informations du temps de la recette**\n${recipe1.data.Time.map(time => `> \`${time}\``).join("\n")}\n\n**Informations des ingrédients**\n${recipe1.data.Ingredients.map(ingredient => `> \`${ingredient}\``).join("\n")}`)
+                            .setFooter({
+                                text: client.user.displayName,
+                                iconURL: client.user.displayAvatarURL()
+                            })
+                            .setTimestamp()
+                            .setThumbnail(client.user.displayAvatarURL())
+                            .setColor("Blurple")
+                    ];
+
+                    for (let index = 0; index < recipe1.data.Directions.length; index++) {
+                        const direction = recipe1.data.Directions[index];
+                        embeds1.push(
+                            new EmbedBuilder()
+                                .setTitle(`Informations de la recette - ${recipe1.data.Name}`)
+                                .setDescription(`> - ${direction}`)
+                                .setFooter({
+                                    text: client.user.displayName,
+                                    iconURL: client.user.displayAvatarURL()
+                                })
+                                .setTimestamp()
+                                .setThumbnail(client.user.displayAvatarURL())
+                                .setColor("Blurple")
+                        );
+                    };
+
+                    await paginations(interaction, embeds1, 60 * 1000, false);
+                break;
+                default:
+                break;
             }
         } catch (error) {
             const rateLimit = checkRateLimit(error.response);
