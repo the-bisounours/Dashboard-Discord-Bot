@@ -20,6 +20,7 @@ guildId=votre_guild_id_ici
 logsChannel=votre_logs_id_ici
 supportInvite=https://discord.gg/<code>
 ownerId=votre_id_ici
+recipeAPI=link:https://rapidapi.com/Edsonmark13/api/all-in-one-recipe-api
 ```
 ![.env](https://i.ibb.co/vDkFV7y/image.png)
 
