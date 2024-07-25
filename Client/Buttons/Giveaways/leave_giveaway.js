@@ -17,14 +17,14 @@ module.exports = {
 
         if (!giveaway) {
             return await interaction.reply({
-                content: ":x: Le giveaway n'existe plus.",
+                content: `${client.emo.no} Le giveaway n'existe plus.`,
                 ephemeral: true
             });
         };
 
         if (!giveaway.participants.some(user => user.userId === interaction.user.id)) {
             return await interaction.reply({
-                content: ":x: Vous ne participez pas a ce concours.",
+                content: `${client.emo.no} Vous ne participez pas a ce concours.`,
                 ephemeral: true
             });
         };

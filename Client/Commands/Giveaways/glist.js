@@ -24,7 +24,7 @@ module.exports = {
 
         if (giveaways.length === 0) {
             return await interaction.reply({
-                content: ":x: Il y a aucun giveaway actuellement en cours.",
+                content: `${client.emo.no} Il y a aucun giveaway actuellement en cours.`,
                 ephemeral: true
             });
         };

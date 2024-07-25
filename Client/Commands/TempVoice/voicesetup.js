@@ -23,14 +23,14 @@ module.exports = {
 
         if (!data) {
             return await interaction.reply({
-                content: ":x: Impossible de trouver la base de donnée du serveur.",
+                content: `${client.emo.no} Impossible de trouver la base de donnée du serveur.`,
                 ephemeral: true
             });
         };
 
         if (data.voice.voiceId && interaction.guild.channels.cache.get(data.voice.voiceId)) {
             return await interaction.reply({
-                content: `:x: Le système de vocal temporaire est déjà configuré ${interaction.guild.channels.cache.get(data.voice.voiceId)}.`,
+                content: `${client.emo.no} Le système de vocal temporaire est déjà configuré ${interaction.guild.channels.cache.get(data.voice.voiceId)}.`,
                 ephemeral: true
             });
         };
@@ -98,7 +98,7 @@ module.exports = {
                                                 new ButtonBuilder()
                                                     .setCustomId("voicelimit")
                                                     .setDisabled(false)
-                                                    .setLabel("limit")
+                                                    .setEmoji(`${client.emo.member}`)
                                                     .setStyle(ButtonStyle.Secondary),
                                                 new ButtonBuilder()
                                                     .setCustomId("voiceprivacy")
@@ -141,7 +141,7 @@ module.exports = {
                                                 new ButtonBuilder()
                                                     .setCustomId("voiceregion")
                                                     .setDisabled(false)
-                                                    .setLabel("thread")
+                                                    .setEmoji(`${client.emo.region}`)
                                                     .setStyle(ButtonStyle.Secondary)
                                             ),
                                         new ActionRowBuilder()
@@ -159,7 +159,7 @@ module.exports = {
                                                 new ButtonBuilder()
                                                     .setCustomId("voiceclaim")
                                                     .setDisabled(false)
-                                                    .setLabel("claim")
+                                                    .setEmoji(`${client.emo.owner}`)
                                                     .setStyle(ButtonStyle.Secondary),
                                                 new ButtonBuilder()
                                                     .setCustomId("voicetransfer")
@@ -169,7 +169,7 @@ module.exports = {
                                                 new ButtonBuilder()
                                                     .setCustomId("voicedelete")
                                                     .setDisabled(false)
-                                                    .setLabel("delete")
+                                                    .setEmoji(`${client.emo.delete}`)
                                                     .setStyle(ButtonStyle.Secondary)
                                             )
                                     ]

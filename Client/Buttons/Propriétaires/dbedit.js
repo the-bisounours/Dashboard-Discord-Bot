@@ -13,14 +13,14 @@ module.exports = {
 
         if (interaction.user.id !== interaction.message.interaction.user.id) {
             return await interaction.reply({
-                content: "Vous n'êtes pas l'auteur de cette commande.",
+                content: `${client.emo.no} Vous n'êtes pas l'auteur de cette commande.`,
                 ephemeral: true
             });
         };
 
         if (interaction.user.id !== process.env.ownerId) {
             return await interaction.reply({
-                content: ":x: Vous n'etes pas le propriétaire du robot.",
+                content: `${client.emo.no} Vous n'etes pas le propriétaire du robot.`,
                 ephemeral: true
             });
         };
@@ -31,7 +31,7 @@ module.exports = {
 
         if (datas.length === 0) {
             return await interaction.reply({
-                content: `:x: Il n'y a aucune données pour \`${customid[1]}\`.`,
+                content: `${client.emo.no} Il n'y a aucune données pour \`${customid[1]}\`.`,
                 ephemeral: true
             });
         };
@@ -42,7 +42,7 @@ module.exports = {
 
         if (!data) {
             return await interaction.reply({
-                content: `:x: Je ne retrouve pas le schema a modifier.`,
+                content: `${client.emo.no} Je ne retrouve pas le schema a modifier.`,
                 ephemeral: true
             });
         };

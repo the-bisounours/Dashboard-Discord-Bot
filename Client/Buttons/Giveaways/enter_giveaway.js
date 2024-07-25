@@ -17,14 +17,14 @@ module.exports = {
 
         if (!giveaway) {
             return await interaction.reply({
-                content: ":x: Le giveaway n'existe plus.",
+                content: `${client.emo.no} Le giveaway n'existe plus.`,
                 ephemeral: true
             });
         };
 
         if (giveaway.participants.some(user => user.userId === interaction.user.id)) {
             return await interaction.reply({
-                content: "Vous avez déjà participé à ce concours !",
+                content: `${client.emo.no} Vous avez déjà participé à ce concours !`,
                 ephemeral: true,
                 components: [
                     new ActionRowBuilder()
@@ -50,7 +50,7 @@ module.exports = {
 
             if (realInvites < giveaway.settings.inviteRequired) {
                 return await interaction.reply({
-                    content: `:x: Vous n'avez pas assez d'invitation pour participer au giveaway \`${realInvites}\`/\`${giveaway.settings.inviteRequired}\`.`,
+                    content: `${client.emo.no} Vous n'avez pas assez d'invitation pour participer au giveaway \`${realInvites}\`/\`${giveaway.settings.inviteRequired}\`.`,
                     ephemeral: true
                 });
             };
@@ -60,7 +60,7 @@ module.exports = {
 
             if (client.guilds.cache.get(giveaway.settings.requiredGuild).members.cache.get(interaction.user.id)) {
                 return await interaction.reply({
-                    content: `:x: Vous devez rejoindre le serveur \`${client.guilds.cache.get(giveaway.settings.requiredGuild).name}\` pour participer au giveaway.`,
+                    content: `${client.emo.no} Vous devez rejoindre le serveur \`${client.guilds.cache.get(giveaway.settings.requiredGuild).name}\` pour participer au giveaway.`,
                     ephemeral: true
                 });
             };
@@ -72,7 +72,7 @@ module.exports = {
 
             if (role && !interaction.member.roles.cache.has(role.id)) {
                 return await interaction.reply({
-                    content: `:x: Vous devez avoir le rôle ${role} pour participer au giveaway.`,
+                    content: `${client.emo.no} Vous devez avoir le rôle ${role} pour participer au giveaway.`,
                     ephemeral: true
                 });
             };

@@ -12,21 +12,21 @@ module.exports = {
 
         if (interaction.user.id !== interaction.message.interaction.user.id) {
             return await interaction.reply({
-                content: "Vous n'êtes pas l'auteur de cette commande.",
+                content: `${client.emo.no} Vous n'êtes pas l'auteur de cette commande.`,
                 ephemeral: true
             });
         };
 
         if (interaction.user.id !== process.env.ownerId) {
             return await interaction.reply({
-                content: ":x: Vous n'etes pas le propriétaire du robot.",
+                content: `${client.emo.no} Vous n'etes pas le propriétaire du robot.`,
                 ephemeral: true
             });
         };
 
         if (client.dblogs.length === 0) {
             return await interaction.reply({
-                content: ":x: Il n'y a aucun logs de la database.",
+                content: `${client.emo.no} Il n'y a aucun logs de la database.`,
                 ephemeral: true
             });
         };

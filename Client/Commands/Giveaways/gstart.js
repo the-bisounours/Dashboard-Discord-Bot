@@ -101,7 +101,7 @@ module.exports = {
 
         if (!time) {
             return await interaction.reply({
-                content: ":x: La durée du giveaway est invalide. (ex: \`2d\` \`11h\` \`50m\` \`30s\`)",
+                content: `${client.emo.no} La durée du giveaway est invalide. (ex: \`2d\` \`11h\` \`50m\` \`30s\`)`,
                 ephemeral: true
             });
         };
@@ -134,7 +134,7 @@ module.exports = {
 
         if (bonus && bonus > 0 && !roleBonus && !userBonus) {
             return await interaction.reply({
-                content: ":x: Pour ajouter un bonus vous devez ajouter un rôle ou un utilisateur.",
+                content: `${client.emo.no} Pour ajouter un bonus vous devez ajouter un rôle ou un utilisateur.`,
                 ephemeral: true
             });
         } else if (bonus) {
@@ -287,7 +287,7 @@ module.exports = {
             })
             .catch(async err => {
                 return await interaction.reply({
-                    content: ":x: Une erreur est survenue lors du lancement du giveaway.",
+                    content: `${client.emo.no} Une erreur est survenue lors du lancement du giveaway.`,
                     ephemeral: true
                 });
             });

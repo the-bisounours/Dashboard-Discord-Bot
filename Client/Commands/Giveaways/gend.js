@@ -49,20 +49,20 @@ module.exports = {
 
         if (!giveaway) {
             return await interaction.reply({
-                content: ":x: Le giveaway n'existe pas.",
+                content: `${client.emo.no} Le giveaway n'existe pas.`,
                 ephemeral: true
             });
         };
 
         if(giveaway.status === "ended") {
             return await interaction.reply({
-                content: ":x: Le giveaway est déjà terminé.",
+                content: `${client.emo.no} Le giveaway est déjà terminé.`,
                 ephemeral: true
             });
         };
 
         await interaction.reply({
-            content: "Le giveaway sera terminé dans quelques secondes.",
+            content: `Le giveaway sera terminé dans quelques secondes.`,
             ephemeral: true
         });
 
