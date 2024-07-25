@@ -43,7 +43,7 @@ module.exports = {
 
         if (!data) {
             return await interaction.reply({
-                content: "Impossible de trouver la base de donnée du serveur.",
+                content: ":x: Impossible de trouver la base de donnée du serveur.",
                 ephemeral: true
             });
         };

@@ -18,7 +18,7 @@ module.exports = {
 
         if (!data) {
             return await interaction.reply({
-                content: "Impossible de trouver la base de donnée du serveur.",
+                content: ":x: Impossible de trouver la base de donnée du serveur.",
                 ephemeral: true
             });
         };
@@ -33,7 +33,7 @@ module.exports = {
         const panel = data.tickets.panels.find(panel => panel.messageId === interaction.message.id);
         if (!panel) {
             return await interaction.reply({
-                content: "Impossible de retrouver le panneau de ticket.",
+                content: ":x: Impossible de retrouver le panneau de ticket.",
                 ephemeral: true
             });
         };
@@ -41,7 +41,7 @@ module.exports = {
         const button = panel.buttons.find(button => button.label === interaction.customId.split("-")[1]);
         if (!button) {
             return await interaction.reply({
-                content: "Impossible de retrouver le bouton du ticket.",
+                content: ":x: Impossible de retrouver le bouton du ticket.",
                 ephemeral: true
             });
         };
@@ -54,7 +54,7 @@ module.exports = {
 
         if(tickets.length >= data.tickets.settings.openedTicketPerUser) {
             return await interaction.reply({
-                content: "Vous avez atteint la limite de ticket ouvert.",
+                content: ":x: Vous avez atteint la limite de ticket ouvert.",
                 ephemeral: true
             });
         };
@@ -97,7 +97,7 @@ module.exports = {
 
                         await threadChannel.members.add(interaction.user).catch(async err => {
                             return await interaction.reply({
-                                content: "Je n'ai pas ajouter l'utilisateur au ticket à cause d'une erreur.",
+                                content: ":x: Je n'ai pas ajouter l'utilisateur au ticket à cause d'une erreur.",
                                 ephemeral: true
                             });
                         });
@@ -176,7 +176,7 @@ module.exports = {
                     })
                 .catch(async err => {
                     return await interaction.reply({
-                        content: "Je n'ai pas créer votre ticket à cause d'une erreur.",
+                        content: ":x: Je n'ai pas créer votre ticket à cause d'une erreur.",
                         ephemeral: true
                     });
                 });
@@ -271,7 +271,7 @@ module.exports = {
                 })
                 .catch(async err => {
                     return await interaction.reply({
-                        content: "Je n'ai pas créer votre ticket à cause d'une erreur.",
+                        content: ":x: Je n'ai pas créer votre ticket à cause d'une erreur.",
                         ephemeral: true
                     });
                 });

@@ -29,7 +29,7 @@ module.exports = {
 
         if (!data) {
             return await interaction.reply({
-                content: "Impossible de trouver la base de donnée du serveur.",
+                content: ":x: Impossible de trouver la base de donnée du serveur.",
                 ephemeral: true
             });
         };
@@ -37,7 +37,7 @@ module.exports = {
         const panel = data.tickets.panels.find(panel => panel.panelId === interaction.customId.split("_")[3]);
         if (!panel) {
             return await interaction.reply({
-                content: "Impossible de retrouver le panneau de ticket.",
+                content: ":x: Impossible de retrouver le panneau de ticket.",
                 ephemeral: true
             });
         };
