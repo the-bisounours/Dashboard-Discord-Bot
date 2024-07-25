@@ -22,7 +22,6 @@ supportInvite=https://discord.gg/<code>
 ownerId=votre_id_ici
 recipeAPI=link:https://rapidapi.com/Edsonmark13/api/all-in-one-recipe-api
 ```
-![.env](https://i.ibb.co/vDkFV7y/image.png)
 
 ## Lancement
 
@@ -30,13 +29,12 @@ Pour lancer le bot, utilisez la commande suivante :
 ```js
 node .
 ```
-![node .](https://i.ibb.co/30VMHSF/image.png)
 
 ## Contribuer
 Si vous souhaitez contribuer à ce projet, veuillez soumettre une pull request avec vos modifications.
 
 ## Licence
-Ce projet est sous licence MIT. Voir le fichier LICENSE pour plus d’informations.
+Ce projet est sous licence PUBLIQUE GÉNÉRALE GNU. Voir le fichier LICENSE pour plus d’informations.
 
 
 ### Assurez-vous de remplacer `votre_token_ici` par le token réel de votre bot. Ce `README.md` fournit des instructions de base pour l'installation, la configuration du fichier `.env` et le lancement du bot. Vous pouvez l'ajuster selon les besoins spécifiques de votre projet.
