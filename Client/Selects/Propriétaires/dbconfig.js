@@ -1,4 +1,4 @@
-const { Client, StringSelectMenuInteraction, EmbedBuilder } = require("discord.js");
+const { Client, StringSelectMenuInteraction, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
 const models = require("../../Models");
 const paginations = require("../../Functions/Gestions/paginations");
 
@@ -21,7 +21,7 @@ module.exports = {
 
         if (interaction.user.id !== process.env.ownerId) {
             return await interaction.reply({
-                content: ":x: Vous n'etes pas le propriétaire du robot.",
+                content: ":x: Vous n'êtes pas le propriétaire du robot.",
                 ephemeral: true
             });
         };
@@ -37,6 +37,7 @@ module.exports = {
         };
 
         const embeds = [];
+        const buttons = [];
         for (let index = 0; index < datas.length; index++) {
             const data = datas[index];
             const jsonData = JSON.stringify(data, null, 2);
@@ -52,8 +53,26 @@ module.exports = {
                         iconURL: client.user.displayAvatarURL()
                     })
             );
+
+            buttons.push(
+                new ActionRowBuilder()
+                    .addComponents(
+                        new ButtonBuilder()
+                            .setCustomId(`dbedit_${interaction.values[0]}_${data._id}`)
+                            .setLabel("Modifier le schema")
+                            .setEmoji("✏️")
+                            .setDisabled(false)
+                            .setStyle(ButtonStyle.Primary),
+                        new ButtonBuilder()
+                            .setCustomId(`dbdelete_${interaction.values[0]}_${data._id}`)
+                            .setLabel("Supprimer le schema")
+                            .setEmoji("🗑️")
+                            .setDisabled(false)
+                            .setStyle(ButtonStyle.Danger)
+                    )
+            );
         };
 
-        return await paginations(interaction, embeds, 60 * 1000, true);
+        return await paginations(interaction, embeds, 60 * 1000, true, buttons);
     }
 };
