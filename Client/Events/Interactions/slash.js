@@ -17,7 +17,7 @@ module.exports = {
             const command = client.commands.get(interaction.commandName);
             if (!command) {
                 return await interaction.reply({
-                    content: ":x: Cette commande n'existe plus.",
+                    content: `${client.emo.no} Cette commande n'existe plus.`,
                     ephemeral: true
                 });
             };

@@ -7,5 +7,6 @@ module.exports = {
     Invites: require("./Invites"),
     memberInvite: require("./memberInvite"),
     Tickets: require("./Tickets"),
-    Giveaways: require("./Giveaways")
+    Giveaways: require("./Giveaways"),
+    Voices: require("./Voices")
 };

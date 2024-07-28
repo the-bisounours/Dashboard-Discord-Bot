@@ -39,7 +39,7 @@ module.exports = {
 
             if (!selects) {
                 return await interaction.reply({ 
-                    content: ":x: Ce select-menu n'existe plus.", 
+                    content: `${client.emo.no} Ce select-menu n'existe plus.`, 
                     ephemeral: true 
                 });
             };

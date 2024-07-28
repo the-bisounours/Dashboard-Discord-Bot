@@ -306,12 +306,12 @@ module.exports = {
                 const resetTime = parseInt(rateLimit.reset, 10) * 1000;
 
                 return await interaction.reply({
-                    content: `:x: Vous avez utiliser les \`${rateLimit.limit - rateLimit.remaining}\`/\`${rateLimit.limit}\` requêtes, ils seront réinitialiser <t:${Math.round(new Date().setMilliseconds(resetTime + new Date().getMilliseconds()) / 1000)}:R>`,
+                    content: `${client.emo.no} Vous avez utiliser les \`${rateLimit.limit - rateLimit.remaining}\`/\`${rateLimit.limit}\` requêtes, ils seront réinitialiser <t:${Math.round(new Date().setMilliseconds(resetTime + new Date().getMilliseconds()) / 1000)}:R>`,
                     ephemeral: true
                 });
             } else {
                 return await interaction.reply({
-                    content: ":x: Une erreur s'est produite lors de la récupération de la recette. Veuillez réessayer plus tard.",
+                    content: `${client.emo.no} Une erreur s'est produite lors de la récupération de la recette. Veuillez réessayer plus tard.`,
                     ephemeral: true
                 });
             };

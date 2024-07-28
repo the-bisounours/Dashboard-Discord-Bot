@@ -35,7 +35,7 @@ module.exports = {
 
             if (!modals) {
                 return await interaction.reply({ 
-                    content: ":x: Ce popup n'existe plus.", 
+                    content: `${client.emo.no} Ce popup n'existe plus.`, 
                     ephemeral: true 
                 });
             };

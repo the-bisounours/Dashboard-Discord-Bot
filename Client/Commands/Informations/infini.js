@@ -63,14 +63,14 @@ module.exports = {
 
                 if (!interaction.guild.channels.cache.get(data.infini.channel)) {
                     return await interaction.reply({
-                        content: ":x: Le sysème d'infini n'est pas configuré.",
+                        content: `${client.emo.no} Le sysème d'infini n'est pas configuré.`,
                         ephemeral: true
                     });
                 };
 
                 if (data.infini.maintenance) {
                     return await interaction.reply({
-                        content: ":x: Le sysème d'infini est actuellement en maintenance.",
+                        content: `${client.emo.no} Le sysème d'infini est actuellement en maintenance.`,
                         ephemeral: true
                     });
                 };
@@ -96,7 +96,7 @@ module.exports = {
 
                 if (!interaction.guild.channels.cache.get(data.infini.channel)) {
                     return await interaction.reply({
-                        content: ":x: Le sysème d'infini n'est pas configuré.",
+                        content: `${client.emo.no} Le sysème d'infini n'est pas configuré.`,
                         ephemeral: true
                     });
                 };
@@ -124,7 +124,7 @@ module.exports = {
 
                 if (data.infini.channel && interaction.guild.channels.cache.get(data.infini.channel)) {
                     return await interaction.reply({
-                        content: `:x: Le sysème d'infini a déjà commencé dans le salon ${interaction.guild.channels.cache.get(data.infini.channel)}.`,
+                        content: `${client.emo.no} Le sysème d'infini a déjà commencé dans le salon ${interaction.guild.channels.cache.get(data.infini.channel)}.`,
                         ephemeral: true
                     });
                 };
@@ -149,7 +149,7 @@ module.exports = {
 
                 if (!interaction.guild.channels.cache.get(data.infini.channel)) {
                     return await interaction.reply({
-                        content: ":x: Le sysème d'infini est déjà arrêté.",
+                        content: `${client.emo.no} Le sysème d'infini est déjà arrêté.`,
                         ephemeral: true
                     });
                 };

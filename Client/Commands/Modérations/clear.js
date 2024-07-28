@@ -54,7 +54,7 @@ module.exports = {
             ChannelType.PublicThread
         ].includes(channel.type)) {
             return await interaction.reply({
-                content: ":x: Vous ne pouvez pas supprimer des messages sur ce type de salon.",
+                content: `${client.emo.no} Vous ne pouvez pas supprimer des messages sur ce type de salon.`,
                 ephemeral: true
             });
         };

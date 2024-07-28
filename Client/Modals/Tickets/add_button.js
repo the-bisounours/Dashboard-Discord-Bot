@@ -34,21 +34,21 @@ module.exports = {
         const panel = data.tickets.panels.find(panel => panel.panelId === interaction.customId.split("_")[2]);
         if (!panel) {
             return await interaction.reply({
-                content: ":x: Impossible de retrouver le panneau de ticket.",
+                content: `${client.emo.no} Impossible de retrouver le panneau de ticket.`,
                 ephemeral: true
             });
         };
 
         if (panel.buttons.length >= 7) {
             return await interaction.reply({
-                content: "Vous avez atteint la limite de bouton.",
+                content: `${client.emo.no} Vous avez atteint la limite de bouton.`,
                 ephemeral: true
             });
         };
 
         if (panel.buttons.some(button => button.label === interaction.fields.getTextInputValue("label"))) {
             return interaction.reply({
-                content: `Le label est déjà inclus dans l'un des boutons.`,
+                content: `${client.emo.no} Le label est déjà inclus dans l'un des boutons.`,
                 ephemeral: true
             });
         };

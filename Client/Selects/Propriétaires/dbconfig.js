@@ -21,7 +21,7 @@ module.exports = {
 
         if (interaction.user.id !== process.env.ownerId) {
             return await interaction.reply({
-                content: ":x: Vous n'êtes pas le propriétaire du robot.",
+                content: `${client.emo.no} Vous n'êtes pas le propriétaire du robot.`,
                 ephemeral: true
             });
         };
@@ -31,7 +31,7 @@ module.exports = {
 
         if (datas.length === 0) {
             return await interaction.reply({
-                content: `:x: Il n'y a aucune données pour \`${interaction.values[0]}\`.`,
+                content: `${client.emo.no} Il n'y a aucune données pour \`${interaction.values[0]}\`.`,
                 ephemeral: true
             });
         };

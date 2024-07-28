@@ -32,7 +32,7 @@ module.exports = async (client, id, rerollCommand) => {
 
     if(giveaway.status === "ended" && !rerollCommand) {
         return await message.reply({
-            content: ":x: Le giveaway est déjà terminé.",
+            content: `${client.emo.no} Le giveaway est déjà terminé.`,
             ephemeral: true
         });
     };
@@ -41,7 +41,7 @@ module.exports = async (client, id, rerollCommand) => {
     if (participants.length === 0) {
         await editComponentsAndStatus(message, giveaway);
         return await message.reply({
-            content: `${giveaway.participants.length === 0 ? ":x: Aucune personne n'a participer a ce concours." : `:x: ${giveaway.participants.length === 1 ? "Le participant n'a pas" : `Les \`${giveaway.participants.length}\` participants n'ont pas`} les conditions pour gagner le concours.`}`
+            content: `${giveaway.participants.length === 0 ? `${client.emo.no} Aucune personne n'a participer a ce concours.` : `${client.emo.no} ${giveaway.participants.length === 1 ? "Le participant n'a pas" : `Les \`${giveaway.participants.length}\` participants n'ont pas`} les conditions pour gagner le concours.`}`
         });
     };
 
@@ -49,7 +49,7 @@ module.exports = async (client, id, rerollCommand) => {
     if (winners.length === 0) {
         await editComponentsAndStatus(message, giveaway);
         return await message.reply({
-            content: `:x: Aucune personne n'a gagner a ce concours.`
+            content: `${client.emo.no} Aucune personne n'a gagner a ce concours.`
         });
     };
 

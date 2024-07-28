@@ -34,7 +34,7 @@ module.exports = {
         const panel = data.tickets.panels.find(panel => panel.panelId === interaction.values[0]);
         if (!panel) {
             return await interaction.reply({
-                content: ":x: Impossible de retrouver le panneau de ticket.",
+                content: `${client.emo.no} Impossible de retrouver le panneau de ticket.`,
                 ephemeral: true
             });
         };

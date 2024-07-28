@@ -20,7 +20,7 @@ module.exports = {
         const bans = [...(await interaction.guild.bans.fetch())]
         if(bans.length <= 0) {
             return await interaction.reply({
-                content: ":x: Il n'y a aucun bannissement dans le serveur discord.",
+                content: `${client.emo.no} Il n'y a aucun bannissement dans le serveur discord.`,
                 ephemeral: true
             });
         };

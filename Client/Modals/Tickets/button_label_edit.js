@@ -33,7 +33,7 @@ module.exports = {
         const panel = data.tickets.panels.find(panel => panel.panelId === interaction.customId.split("_")[3]);
         if (!panel) {
             return await interaction.reply({
-                content: ":x: Impossible de retrouver le panneau de ticket.",
+                content: `${client.emo.no} Impossible de retrouver le panneau de ticket.`,
                 ephemeral: true
             });
         };
@@ -41,14 +41,14 @@ module.exports = {
         const button = panel.buttons.find(button => button.customId === interaction.customId.split("_")[4]);
         if (!button) {
             return await interaction.reply({
-                content: ":x: Impossible de retrouver le bouton du ticket.",
+                content: `${client.emo.no} Impossible de retrouver le bouton du ticket.`,
                 ephemeral: true
             });
         };
 
         if (panel.buttons.some(button => button.label === interaction.fields.getTextInputValue("label"))) {
             return interaction.reply({
-                content: `Le label est déjà inclus dans l'un des boutons.`,
+                content: `${client.emo.no} Le label est déjà inclus dans l'un des boutons.`,
                 ephemeral: true
             });
         };

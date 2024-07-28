@@ -129,6 +129,10 @@ const guildSchema = new Schema({
         voiceId: {
             type: String,
             default: ""
+        },
+        interfaceId: {
+            type: String,
+            default: ""
         }
     }
 })

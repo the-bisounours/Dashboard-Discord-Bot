@@ -35,21 +35,21 @@ module.exports = {
 
         if (!ticket) {
             return await interaction.reply({
-                content: ":x: Le salon n'est pas un ticket.",
+                content: `${client.emo.no} Le salon n'est pas un ticket.`,
                 ephemeral: true
             });
         };
 
         if (interaction.channel.type === ChannelType.PrivateThread || interaction.channel.type === ChannelType.PublicThread) {
             return await interaction.reply({
-                content: ":x: Le système pour réclamer ne fonctionne pas dans les threads.",
+                content: `${client.emo.no} Le système pour réclamer ne fonctionne pas dans les threads.`,
                 ephemeral: true
             });
         };
 
         if (ticket.claimed && interaction.guild.members.cache.get(ticket.claimedId)) {
             return await interaction.reply({
-                content: `:x: ${interaction.guild.members.cache.get(ticket.claimedId)} à déjà réclamé le ticket.`,
+                content: `${client.emo.no} ${interaction.guild.members.cache.get(ticket.claimedId)} à déjà réclamé le ticket.`,
                 ephemeral: true
             });
         };

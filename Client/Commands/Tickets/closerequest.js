@@ -42,7 +42,7 @@ module.exports = {
 
         if (!ticket) {
             return await interaction.reply({
-                content: ":x: Le salon n'est pas un ticket.",
+                content: `${client.emo.no} Le salon n'est pas un ticket.`,
                 ephemeral: true
             });
         };

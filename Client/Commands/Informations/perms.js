@@ -26,14 +26,14 @@ module.exports = {
 
         if (!member) {
             return await interaction.reply({
-                content: ":x: Je n'arrive pas a trouver le membre.",
+                content: `${client.emo.no} Je n'arrive pas a trouver le membre.`,
                 ephemeral: true
             });
         };
 
         if (member.permissions.toArray().length <= 0) {
             return await interaction.reply({
-                content: ":x: Le membre n'a aucune permission.",
+                content: `${client.emo.no} Le membre n'a aucune permission.`,
                 ephemeral: true
             });
         };

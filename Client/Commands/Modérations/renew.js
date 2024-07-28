@@ -42,7 +42,7 @@ module.exports = {
             ChannelType.GuildMedia
         ].includes(channel.type)) {
             return await interaction.reply({
-                content: ":x: Vous ne pouvez pas faire cette action sur ce type de salon.",
+                content: `${client.emo.no} Vous ne pouvez pas faire cette action sur ce type de salon.`,
                 ephemeral: true
             });
         };

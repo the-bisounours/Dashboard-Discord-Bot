@@ -93,14 +93,14 @@ module.exports = {
             ChannelType.PublicThread
         ].includes(channel.type)) {
             return await interaction.reply({
-                content: ":x: Vous ne pouvez pas ajouter un mode lent sur ce type de salon.",
+                content: `${client.emo.no} Vous ne pouvez pas ajouter un mode lent sur ce type de salon.`,
                 ephemeral: true
             });
         };
 
         if(channel.rateLimitPerUser === number) {
             return await interaction.reply({
-                content: ":x: Vous ne pouvez pas ajouter le même temps.",
+                content: `${client.emo.no} Vous ne pouvez pas ajouter le même temps.`,
                 ephemeral: true
             });
         };

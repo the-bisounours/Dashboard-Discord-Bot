@@ -73,7 +73,7 @@ module.exports = {
         const bans = await interaction.guild.bans.fetch();
         if (!userId || !bans.find(ban => ban.user.id === userId)) {
             return await interaction.reply({
-                content: ":x: Je n'arrive pas a trouver le membre/Le membre n'est pas bannis.",
+                content: `${client.emo.no} Le membre n'est pas bannis.`,
                 ephemeral: true
             });
         };

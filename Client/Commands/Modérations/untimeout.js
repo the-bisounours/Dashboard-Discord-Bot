@@ -40,7 +40,7 @@ module.exports = {
 
         if (!member) {
             return await interaction.reply({
-                content: ":x: Je n'arrive pas a trouver le membre.",
+                content: `${client.emo.no} Je n'arrive pas a trouver le membre.`,
                 ephemeral: true
             });
         };

@@ -42,7 +42,7 @@ module.exports = {
             const command = client.commands.filter(command => command.data.name === interaction.options.getString("commande")).first()
             if (!command) {
                 return await interaction.reply({
-                    content: `:x: Impossible de trouver la commande: \`${interaction.options.getString("commande")}\``,
+                    content: `${client.emo.no} Impossible de trouver la commande: \`${interaction.options.getString("commande")}\``,
                     ephemeral: true
                 });
             };

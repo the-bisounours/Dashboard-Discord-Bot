@@ -27,7 +27,7 @@ module.exports = {
 
         if (!member) {
             return await interaction.reply({
-                content: ":x: Je n'arrive pas a trouver le membre.",
+                content: `${client.emo.no} Je n'arrive pas a trouver le membre.`,
                 ephemeral: true
             });
         };
@@ -50,35 +50,35 @@ module.exports = {
 
         if (!ticket) {
             return await interaction.reply({
-                content: ":x: Le salon n'est pas un ticket.",
+                content: `${client.emo.no} Le salon n'est pas un ticket.`,
                 ephemeral: true
             });
         };
 
         if (interaction.channel.type === ChannelType.PrivateThread || interaction.channel.type === ChannelType.PublicThread) {
             return await interaction.reply({
-                content: ":x: Le système pour réclamer ne fonctionne pas dans les threads.",
+                content: `${client.emo.no} Le système pour réclamer ne fonctionne pas dans les threads.`,
                 ephemeral: true
             });
         };
 
         if (member.user.id === interaction.user.id) {
             return await interaction.reply({
-                content: `:x: Vous ne pouvez vous transférer la réclamation du ticket.`,
+                content: `${client.emo.no} Vous ne pouvez vous transférer la réclamation du ticket.`,
                 ephemeral: true
             });
         };
 
         if (member.user.bot) {
             return await interaction.reply({
-                content: `:x: Vous ne pouvez pas transférer la réclamation a un bot.`,
+                content: `${client.emo.no} Vous ne pouvez pas transférer la réclamation a un bot.`,
                 ephemeral: true
             });
         };
 
         if (!ticket.claimed || !interaction.guild.members.cache.get(ticket.claimedId)) {
             return await interaction.reply({
-                content: `:x: Personne ne s'occupe du ticket.`,
+                content: `${client.emo.no} Personne ne s'occupe du ticket.`,
                 ephemeral: true
             });
         };

@@ -19,7 +19,7 @@ module.exports = {
 
         if (interaction.user.id !== process.env.ownerId) {
             return await interaction.reply({
-                content: ":x: Vous n'etes pas le propriétaire du robot.",
+                content: `${client.emo.no} Vous n'etes pas le propriétaire du robot.`,
                 ephemeral: true
             });
         };

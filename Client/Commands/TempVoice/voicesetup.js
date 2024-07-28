@@ -78,14 +78,30 @@ module.exports = {
                                     embeds: [
                                         new EmbedBuilder()
                                             .setTitle("Interface des vocaux temporaires")
-                                            .setDescription("Cette **interface** peut être utilisée pour gérer les canaux vocaux temporaires. D'autres options sont disponibles avec les commandes **/voice**.")
+                                            .setDescription(`Cette **interface** peut être utilisée pour gérer les canaux vocaux temporaires. D'autres options sont disponibles avec les commandes **/voice**.`)
                                             .setColor("Blurple")
                                             .setFooter({
                                                 text: client.user.displayName,
                                                 iconURL: client.user.displayAvatarURL()
                                             })
                                             .setTimestamp()
-                                            .setImage("https://cdn.discordapp.com/attachments/1265979183377416194/1265979185252536320/NeverGonnaGiveYouUp.png?ex=66a37a7e&is=66a228fe&hm=ff9babbcd56cd17bac18ef046d2b2d8a80344bb84ce2cedbbdd7f90675943133&")
+                                            .addFields(
+                                                {
+                                                    name: "\u200b",
+                                                    value: `> ${client.emo.salon} \`Nom\`\n> ${client.emo.member} \`Limite\`\n> ${client.emo.privacy} \`Confidentialité\`\n> ${client.emo.temp} \`Attente\`\n> ${client.emo.salon_thread} \`Fil de discussion\``,
+                                                    inline: true
+                                                },
+                                                {
+                                                    name: "\u200b",
+                                                    value: `> ${client.emo.user_trust} \`Confiance\`\n> ${client.emo.user_untrust} \`Méfiance\`\n> ${client.emo.invite} \`Inviter\`\n> ${client.emo.kick} \`Expulser\`\n> ${client.emo.region} \`Région\``,
+                                                    inline: true
+                                                },
+                                                {
+                                                    name: "\u200b",
+                                                    value: `> ${client.emo.user_block} \`Bloquer\`\n> ${client.emo.user_unblock} \`Débloquer\`\n> ${client.emo.owner} \`Réclamer\`\n> ${client.emo.owner_tranfer} \`Transférer\`\n> ${client.emo.delete} \`Supprimer\``,
+                                                    inline: true
+                                                }
+                                            )
                                     ],
                                     components: [
                                         new ActionRowBuilder()
@@ -93,107 +109,111 @@ module.exports = {
                                                 new ButtonBuilder()
                                                     .setCustomId("voicename")
                                                     .setDisabled(false)
-                                                    .setLabel("name")
-                                                    .setStyle(ButtonStyle.Secondary),
+                                                    .setEmoji(`${client.emo.salon}`)
+                                                    .setStyle(ButtonStyle.Primary),
                                                 new ButtonBuilder()
                                                     .setCustomId("voicelimit")
                                                     .setDisabled(false)
                                                     .setEmoji(`${client.emo.member}`)
-                                                    .setStyle(ButtonStyle.Secondary),
+                                                    .setStyle(ButtonStyle.Primary),
                                                 new ButtonBuilder()
                                                     .setCustomId("voiceprivacy")
                                                     .setDisabled(false)
-                                                    .setLabel("privacy")
-                                                    .setStyle(ButtonStyle.Secondary),
+                                                    .setEmoji(`${client.emo.privacy}`)
+                                                    .setStyle(ButtonStyle.Primary),
                                                 new ButtonBuilder()
                                                     .setCustomId("voicewaiting")
                                                     .setDisabled(false)
-                                                    .setLabel("waiting")
-                                                    .setStyle(ButtonStyle.Secondary),
+                                                    .setEmoji(`${client.emo.temp}`)
+                                                    .setStyle(ButtonStyle.Primary),
                                                 new ButtonBuilder()
                                                     .setCustomId("voicethread")
                                                     .setDisabled(false)
-                                                    .setLabel("thread")
-                                                    .setStyle(ButtonStyle.Secondary)
+                                                    .setEmoji(`${client.emo.salon_thread}`)
+                                                    .setStyle(ButtonStyle.Primary)
                                             ),
                                         new ActionRowBuilder()
                                             .addComponents(
                                                 new ButtonBuilder()
                                                     .setCustomId("voicetrust")
                                                     .setDisabled(false)
-                                                    .setLabel("trust")
-                                                    .setStyle(ButtonStyle.Secondary),
+                                                    .setEmoji(`${client.emo.trust}`)
+                                                    .setStyle(ButtonStyle.Primary),
                                                 new ButtonBuilder()
                                                     .setCustomId("voiceuntrust")
                                                     .setDisabled(false)
-                                                    .setLabel("untrust")
-                                                    .setStyle(ButtonStyle.Secondary),
+                                                    .setEmoji(`${client.emo.untrust}`)
+                                                    .setStyle(ButtonStyle.Primary),
                                                 new ButtonBuilder()
                                                     .setCustomId("voiceinvite")
                                                     .setDisabled(false)
-                                                    .setLabel("invite")
-                                                    .setStyle(ButtonStyle.Secondary),
+                                                    .setEmoji(`${client.emo.invite}`)
+                                                    .setStyle(ButtonStyle.Primary),
                                                 new ButtonBuilder()
                                                     .setCustomId("voicekick")
                                                     .setDisabled(false)
-                                                    .setLabel("kick")
-                                                    .setStyle(ButtonStyle.Secondary),
+                                                    .setEmoji(`${client.emo.kick}`)
+                                                    .setStyle(ButtonStyle.Primary),
                                                 new ButtonBuilder()
                                                     .setCustomId("voiceregion")
                                                     .setDisabled(false)
                                                     .setEmoji(`${client.emo.region}`)
-                                                    .setStyle(ButtonStyle.Secondary)
+                                                    .setStyle(ButtonStyle.Primary)
                                             ),
                                         new ActionRowBuilder()
                                             .addComponents(
                                                 new ButtonBuilder()
                                                     .setCustomId("voiceblock")
                                                     .setDisabled(false)
-                                                    .setLabel("block")
-                                                    .setStyle(ButtonStyle.Secondary),
+                                                    .setEmoji(`${client.emo.user_block}`)
+                                                    .setStyle(ButtonStyle.Primary),
                                                 new ButtonBuilder()
                                                     .setCustomId("voiceunblock")
                                                     .setDisabled(false)
-                                                    .setLabel("unblock")
-                                                    .setStyle(ButtonStyle.Secondary),
+                                                    .setEmoji(`${client.emo.user_unblock}`)
+                                                    .setStyle(ButtonStyle.Primary),
                                                 new ButtonBuilder()
                                                     .setCustomId("voiceclaim")
                                                     .setDisabled(false)
                                                     .setEmoji(`${client.emo.owner}`)
-                                                    .setStyle(ButtonStyle.Secondary),
+                                                    .setStyle(ButtonStyle.Primary),
                                                 new ButtonBuilder()
                                                     .setCustomId("voicetransfer")
                                                     .setDisabled(false)
-                                                    .setLabel("transfer")
-                                                    .setStyle(ButtonStyle.Secondary),
+                                                    .setEmoji(`${client.emo.owner_tranfer}`)
+                                                    .setStyle(ButtonStyle.Primary),
                                                 new ButtonBuilder()
                                                     .setCustomId("voicedelete")
                                                     .setDisabled(false)
                                                     .setEmoji(`${client.emo.delete}`)
-                                                    .setStyle(ButtonStyle.Secondary)
+                                                    .setStyle(ButtonStyle.Danger)
                                             )
                                     ]
-                                })
+                                });
+
+                                data.voice.voiceId = voicechannel.id;
+                                data.voice.interfaceId = interface.id
+                                await data.save();
 
                                 return await interaction.editReply({
-                                    content: `Le système de vocal temporaire a bien été configuré ${interface} ${voicechannel}`
+                                    content: `${client.emo.yes} Le système de vocal temporaire a bien été configuré ${interface} ${voicechannel}`
                                 });
                             })
                             .catch(async err => {
                                 return await interaction.editReply({
-                                    content: ":x: Une erreur est survenue lors de la création du salon vocal."
+                                    content: `${client.emo.no} Une erreur est survenue lors de la création du salon vocal.`
                                 });
                             });
                     })
                     .catch(async err => {
                         return await interaction.editReply({
-                            content: ":x: Une erreur est survenue lors de la création du salon d'interface."
+                            content: `${client.emo.no} Une erreur est survenue lors de la création du salon d'interface.`
                         });
                     });
             })
             .catch(async err => {
                 return await interaction.editReply({
-                    content: ":x: Une erreur est survenue lors de la création de la catégorie."
+                    content: `${client.emo.no} Une erreur est survenue lors de la création de la catégorie.`
                 });
             });
     }

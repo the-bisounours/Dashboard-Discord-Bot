@@ -33,7 +33,7 @@ module.exports = {
         const panel = data.tickets.panels.find(panel => panel.panelId === interaction.customId.split("_")[3]);
         if (!panel) {
             return await interaction.reply({
-                content: ":x: Impossible de retrouver le panneau de ticket.",
+                content: `${client.emo.no} Impossible de retrouver le panneau de ticket.`,
                 ephemeral: true
             });
         };
@@ -41,7 +41,7 @@ module.exports = {
         const button = panel.buttons.find(button => button.customId === interaction.values[0]);
         if (!button) {
             return await interaction.reply({
-                content: ":x: Impossible de retrouver le bouton du ticket.",
+                content: `${client.emo.no} Impossible de retrouver le bouton du ticket.`,
                 ephemeral: true
             });
         };

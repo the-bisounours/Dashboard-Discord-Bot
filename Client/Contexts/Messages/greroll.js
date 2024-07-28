@@ -22,14 +22,14 @@ module.exports = {
 
         if (!giveaway) {
             return await interaction.reply({
-                content: ":x: Le giveaway n'existe pas.",
+                content: `${client.emo.no} Le giveaway n'existe pas.`,
                 ephemeral: true
             });
         };
 
         if(giveaway.status !== "ended") {
             return await interaction.reply({
-                content: ":x: Le giveaway n'est pas terminé.",
+                content: `${client.emo.no} Le giveaway n'est pas terminé.`,
                 ephemeral: true
             });
         };
