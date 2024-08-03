@@ -170,6 +170,10 @@ const guildSchema = new Schema({
                 }
             },
             ignore: {
+                ticket: {
+                    type: Boolean,
+                    default: false
+                },
                 channel: {
                     type: Array,
                     default: []
@@ -188,6 +192,10 @@ const guildSchema = new Schema({
                     type: Array,
                     default: []
                 }
+            },
+            resetLeave: {
+                type: Boolean,
+                default: true
             }
         }
     }
