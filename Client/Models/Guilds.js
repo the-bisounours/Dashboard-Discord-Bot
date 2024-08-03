@@ -134,8 +134,64 @@ const guildSchema = new Schema({
             type: String,
             default: ""
         }
+    },
+    level: {
+        settings: {
+            enabled: {
+                type: Boolean,
+                default: false
+            },
+            message: {
+                enabled: {
+                    type: Boolean,
+                    default: false
+                },
+                channel: {
+                    type: String,
+                    default: ""
+                },
+                image: {
+                    type: Boolean,
+                    default: false
+                },
+                content: {
+                    type: String,
+                    default: "Félicitation ! vous êtes passé niveau {level}"
+                }
+            },
+            ratio: {
+                max: {
+                    type: Number,
+                    default: 25
+                },
+                min: {
+                    type: Number,
+                    default: 15
+                }
+            },
+            ignore: {
+                channel: {
+                    type: Array,
+                    default: []
+                },
+                roles: {
+                    type: Array,
+                    default: []
+                }
+            },
+            bonus: {
+                channel: {
+                    type: Array,
+                    default: []
+                },
+                roles: {
+                    type: Array,
+                    default: []
+                }
+            }
+        }
     }
-})
+});
 
 guildSchema.indexes({ guildId: 1 });
 module.exports = model("Guilds", guildSchema);
