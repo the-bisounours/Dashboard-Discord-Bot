@@ -20,6 +20,14 @@ const VoiceSchema = new Schema({
     userId: {
         type: String,
         default: ""
+    },
+    trust: {
+        type: Array,
+        default: []
+    },
+    block: {
+        type: Array,
+        default: []
     }
 });
 
