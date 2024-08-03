@@ -117,7 +117,8 @@ module.exports = {
                             .setLabel("Réinitialiser la database")
                             .setStyle(ButtonStyle.Danger)
                     )
-            ]
+            ],
+            fetchReply: true
         });
     }
 };
