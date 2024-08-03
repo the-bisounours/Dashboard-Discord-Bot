@@ -34,7 +34,7 @@ module.exports = {
             voiceId: interaction.member.voice.channel.id
         });
 
-        if (!voice || !interaction.guild.channels.cache.get(voice.voiceId)) {
+        if (!voice || !interaction.guild.channels.cache.get(voice.voiceId) || voice.userId !== interaction.user.id && !voice.trust.includes(interaction.user.id)) {
             return await interaction.reply({
                 content: `${client.emo.no} Vous devez rejoindre le salon vocal ${interaction.guild.channels.cache.get(data.voice.voiceId)}`,
                 ephemeral: true

@@ -33,11 +33,10 @@ module.exports = {
 
         const voice = await Voices.findOne({
             guildId: interaction.guild.id,
-            voiceId: interaction.member.voice.channel.id,
-            userId: interaction.user.id
+            voiceId: interaction.member.voice.channel.id
         });
 
-        if (!voice || !interaction.guild.channels.cache.get(voice.voiceId)) {
+        if (!voice || !interaction.guild.channels.cache.get(voice.voiceId) || voice.userId !== interaction.user.id && !voice.trust.includes(interaction.user.id)) {
             return await interaction.update({
                 content: `${client.emo.no} Vous devez rejoindre le salon vocal ${interaction.guild.channels.cache.get(data.voice.voiceId)}`,
                 ephemeral: true,
