@@ -196,6 +196,10 @@ const guildSchema = new Schema({
             resetLeave: {
                 type: Boolean,
                 default: true
+            },
+            rewards: {
+                type: Array,
+                default: []
             }
         }
     }
