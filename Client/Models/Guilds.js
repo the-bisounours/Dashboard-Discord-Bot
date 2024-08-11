@@ -174,7 +174,7 @@ const guildSchema = new Schema({
                     type: Boolean,
                     default: false
                 },
-                channel: {
+                channels: {
                     type: Array,
                     default: []
                 },
@@ -184,7 +184,7 @@ const guildSchema = new Schema({
                 }
             },
             bonus: {
-                channel: {
+                channels: {
                     type: Array,
                     default: []
                 },
