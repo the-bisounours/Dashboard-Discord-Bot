@@ -1,4 +1,5 @@
 const { Events, Client } = require("discord.js");
+const chalk = require('chalk');
 
 module.exports = {
     name: Events.ClientReady,
@@ -10,6 +11,6 @@ module.exports = {
      */
     execute: (client) => {
 
-        console.log(`${client.user.displayName} est connecté sur ${client.guilds.cache.size} serveurs.`);
+        console.log(chalk.blue.bold(`[Identifiant ${client.shard.ids[0]}] ${client.user.displayName} est connecté sur ${client.guilds.cache.size} serveur${client.guilds.cache.size > 1 ? "s" : ""}.`));
     }
 };

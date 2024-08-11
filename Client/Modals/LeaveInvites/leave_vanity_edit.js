@@ -1,6 +1,6 @@
 const { Client, ModalSubmitInteraction, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
 const { Guilds, Users } = require("../../Models");
-const replace = require("../../Functions/Invites/replace");
+const replace = require("../../Functions/Gestions/replace");
 
 module.exports = {
     id: "leave_vanity_edit",

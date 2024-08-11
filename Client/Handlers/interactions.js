@@ -42,12 +42,9 @@ module.exports = async (client) => {
         try {
 
             await rest.put(Routes.applicationCommands(client.user.id), { body: client.slashArray });
-            console.log("Les commandes slash ont été mises en place avec succès !");
     
         } catch (err) {
-            console.error("Erreur lors de la création des commandes Slash :", err);
+            console.error("Erreur lors de la création des commandes Slash:", err);
         };
     });
-
-    console.log("Les boutons, les modales, les selects, les commandes et les contexts ont bien été chargés avec succès!");
 };

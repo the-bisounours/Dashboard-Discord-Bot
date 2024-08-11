@@ -57,7 +57,6 @@ module.exports = {
                 successCount++;
             };
 
-            console.log(`${successCount} émojis ont été chargés avec succès.`);
         } catch (error) {
             console.log(error)
         };

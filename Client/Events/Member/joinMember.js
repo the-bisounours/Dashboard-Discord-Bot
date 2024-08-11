@@ -1,6 +1,6 @@
 const { Events, Client, GuildMember } = require("discord.js");
 const { Invites, Users, memberInvite, Guilds } = require("../../Models");
-const replace = require("../../Functions/Invites/replace");
+const replace = require("../../Functions/Gestions/replace");
 const checkInvites = require("../../Functions/Invites/checkInvites");
 
 module.exports = {

@@ -156,7 +156,7 @@ const guildSchema = new Schema({
                 },
                 content: {
                     type: String,
-                    default: "Félicitation ! vous êtes passé niveau {level}"
+                    default: "{member} Félicitation ! vous êtes passé niveau {level}"
                 }
             },
             ratio: {

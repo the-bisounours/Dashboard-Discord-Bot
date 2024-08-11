@@ -11,7 +11,9 @@
   "dependencies": {
     "@distube/ytdl-core": "^4.13.5",
     "axios": "^1.7.2",
+    "chalk": "^4.1.2",
     "date-fns": "^3.6.0",
+    "discord-arts": "^0.6.1",
     "discord-html-transcripts": "^3.2.0",
     "discord-player": "^6.6.2",
     "discord.js": "^14.15.3",

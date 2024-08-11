@@ -32,6 +32,4 @@ module.exports = async (client) => {
     for (const dir of fs.readdirSync("./Client/Events")) {
         await loadEvents(dir);
     };
-
-    console.log("Les évènements ont été mis en place avec succès !");
 };

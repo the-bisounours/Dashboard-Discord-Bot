@@ -1,6 +1,6 @@
 const { Client, ButtonInteraction, ActionRowBuilder, ChannelSelectMenuBuilder, ButtonStyle, ButtonBuilder, ChannelType, EmbedBuilder } = require("discord.js");
 const { Guilds, Users } = require("../../Models");
-const replace = require("../../Functions/Invites/replace");
+const replace = require("../../Functions/Gestions/replace");
 const defaultDb = require("../../Functions/Gestions/defaultDb");
 
 module.exports = {

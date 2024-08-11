@@ -24,7 +24,5 @@ module.exports = client => {
     app.use('/support', require("./Routes/index"));
     app.use('/dashboard', require("./Routes/index"));
 
-    app.listen(process.env.port, () => {
-        console.log(`Le serveur fonctionne sur http://localhost:${process.env.port}`);
-    });
+    app.listen(process.env.port, () => {});
 };
