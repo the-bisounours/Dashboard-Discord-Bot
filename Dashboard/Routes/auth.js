@@ -20,7 +20,7 @@ router.get('/callback', async (req, res) => {
             client_secret: process.env.clientSecret,
             code,
             grant_type: 'authorization_code',
-            redirect_uri: process.env.redirectURI
+            redirect_uri: process.env.dashboard + process.env.redirectURI
         }, {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
