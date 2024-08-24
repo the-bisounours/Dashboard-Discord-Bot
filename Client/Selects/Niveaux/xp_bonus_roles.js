@@ -1,20 +1,13 @@
-const { SlashCommandBuilder, Client, ChatInputCommandInteraction, PermissionFlagsBits, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, StringSelectMenuBuilder, StringSelectMenuOptionBuilder } = require("discord.js");
-const { useMainPlayer } = require('discord-player');
+const { Client, EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, RoleSelectMenuInteraction } = require("discord.js");
 const { Guilds } = require("../../Models");
 
 module.exports = {
-    data: new SlashCommandBuilder()
-        .setName("xpconfig")
-        .setDescription("Permet de configurer le système de niveaux.")
-        .setDMPermission(false)
-        .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
-
-    category: "Niveaux",
+    id: "xp_bonus_roles",
 
     /**
      * 
      * @param {Client} client 
-     * @param {ChatInputCommandInteraction} interaction 
+     * @param {RoleSelectMenuInteraction} interaction 
      */
     execute: async (client, interaction) => {
 
@@ -29,7 +22,15 @@ module.exports = {
             });
         };
 
-        return await interaction.reply({
+        data.level.settings.bonus.roles =  interaction.values;
+        await data.save();
+
+        await interaction.reply({
+            content: `${client.emo.yes} Les rôles de bonus ont été mis a jour.`,
+            ephemeral: true
+        });
+
+        return await interaction.message.edit({
             embeds: [
                 new EmbedBuilder()
                     .setTitle("Information du système de niveaux")

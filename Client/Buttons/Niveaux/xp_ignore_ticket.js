@@ -1,23 +1,16 @@
-const { SlashCommandBuilder, Client, ChatInputCommandInteraction, PermissionFlagsBits, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, StringSelectMenuBuilder, StringSelectMenuOptionBuilder } = require("discord.js");
-const { useMainPlayer } = require('discord-player');
+const { Client, ButtonInteraction, StringSelectMenuOptionBuilder, StringSelectMenuBuilder, ActionRowBuilder, EmbedBuilder } = require("discord.js");
 const { Guilds } = require("../../Models");
 
 module.exports = {
-    data: new SlashCommandBuilder()
-        .setName("xpconfig")
-        .setDescription("Permet de configurer le système de niveaux.")
-        .setDMPermission(false)
-        .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
-
-    category: "Niveaux",
+    id: "xp_ignore_ticket",
 
     /**
      * 
      * @param {Client} client 
-     * @param {ChatInputCommandInteraction} interaction 
+     * @param {ButtonInteraction} interaction 
      */
     execute: async (client, interaction) => {
-
+        
         const data = await Guilds.findOne({
             guildId: interaction.guild.id
         });
@@ -28,8 +21,21 @@ module.exports = {
                 ephemeral: true
             });
         };
+        
+        if(data.level.settings.ignore.ticket) {
+            data.level.settings.ignore.ticket = false;
+        } else {
+            data.level.settings.ignore.ticket = true;
+        };
 
-        return await interaction.reply({
+        await data.save();
+
+        await interaction.reply({
+            ephemeral: true,
+            content: `${data.level.settings.ignore.ticket ? client.emo.no : client.emo.yes} L'expérience est maintenant ${data.level.settings.ignore.ticket ? "désactivé" : "activé"} dans les tickets.`,
+        });
+
+        return await interaction.message.edit({
             embeds: [
                 new EmbedBuilder()
                     .setTitle("Information du système de niveaux")

@@ -1,20 +1,13 @@
-const { SlashCommandBuilder, Client, ChatInputCommandInteraction, PermissionFlagsBits, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, StringSelectMenuBuilder, StringSelectMenuOptionBuilder } = require("discord.js");
-const { useMainPlayer } = require('discord-player');
+const { Client, StringSelectMenuInteraction, EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder } = require("discord.js");
 const { Guilds } = require("../../Models");
 
 module.exports = {
-    data: new SlashCommandBuilder()
-        .setName("xpconfig")
-        .setDescription("Permet de configurer le système de niveaux.")
-        .setDMPermission(false)
-        .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
-
-    category: "Niveaux",
+    id: "xp_proportion",
 
     /**
      * 
      * @param {Client} client 
-     * @param {ChatInputCommandInteraction} interaction 
+     * @param {StringSelectMenuInteraction} interaction 
      */
     execute: async (client, interaction) => {
 
@@ -29,7 +22,22 @@ module.exports = {
             });
         };
 
-        return await interaction.reply({
+        const numbers = interaction.values[0].split("-");
+        const number1 = new Number(numbers[0]);
+        const number2 = new Number(numbers[1]);
+
+        data.level.settings.ratio.min =  number1;
+        data.level.settings.ratio.max = number2;
+        await data.save();
+
+        await interaction.update({
+            fetchReply: true,
+            content: `${client.emo.yes} La proportion est maintenant entre \`${number1}\` et \`${number2}\`.`,
+            components: []
+        });
+
+        return (await interaction.message.fetchReference()).edit({
+            fetchReply: true,
             embeds: [
                 new EmbedBuilder()
                     .setTitle("Information du système de niveaux")
