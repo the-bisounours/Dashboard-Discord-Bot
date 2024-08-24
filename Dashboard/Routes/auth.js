@@ -4,7 +4,7 @@ const axios = require('axios');
 const { EmbedBuilder } = require('discord.js');
 
 router.get('/login', (req, res) => {
-    res.redirect(`https://discord.com/oauth2/authorize?client_id=${process.env.clientId}&response_type=code&redirect_uri=${process.env.redirectURI}&scope=${process.env.scopes}`);
+    res.redirect(`https://discord.com/oauth2/authorize?client_id=${process.env.clientId}&response_type=code&redirect_uri=${process.env.dashboard}${process.env.redirectURI}&scope=${process.env.scopes}`);
 });
 
 router.get('/callback', async (req, res) => {
