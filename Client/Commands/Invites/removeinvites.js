@@ -47,7 +47,7 @@ module.exports = {
 
         if (!data) {
             return await interaction.reply({
-                content: "Impossible de trouver la base de donnée de l'utilisateur.",
+                content: `${client.emo.no} Impossible de trouver la base de donnée de l'utilisateur.`,
                 ephemeral: true
             });
         };
@@ -58,7 +58,7 @@ module.exports = {
         return await interaction.reply({
             embeds: [
                 new EmbedBuilder()
-                .setDescription(`✅ Vous avez supprimé avec succès \`${interaction.options.getNumber("bonus")}\` invitations bonus à ${member} en \`${new Date() - date}\`ms.`)
+                .setDescription(`${client.emo.yes} Vous avez supprimé avec succès \`${interaction.options.getNumber("bonus")}\` invitations bonus à ${member} en \`${new Date() - date}\`ms.`)
                 .setFooter({
                     text: client.user.displayName,
                     iconURL: client.user.displayAvatarURL()

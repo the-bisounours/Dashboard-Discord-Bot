@@ -87,7 +87,7 @@ module.exports = {
                 await data.save();
 
                 await interaction.reply({
-                    content: `Vous avez activé la maintenance.`,
+                    content: `${client.emo.yes} Vous avez activé la maintenance.`,
                     ephemeral: true
                 });
 
@@ -113,7 +113,7 @@ module.exports = {
                 await data.save();
 
                 await interaction.reply({
-                    content: `Vous avez désactivé la maintenance.`,
+                    content: `${client.emo.yes} Vous avez désactivé la maintenance.`,
                     ephemeral: true
                 });
                 break;
@@ -141,7 +141,7 @@ module.exports = {
                 });
 
                 await interaction.reply({
-                    content: `Vous avez lancé le système d'infini dans le salon ${channel}`,
+                    content: `${client.emo.yes} Vous avez lancé le système d'infini dans le salon ${channel}`,
                     ephemeral: true
                 });
                 break;
@@ -166,7 +166,7 @@ module.exports = {
                 await data.save();
 
                 await interaction.reply({
-                    content: `Vous avez arrêté le système d'infini.`,
+                    content: `${client.emo.yes} Vous avez arrêté le système d'infini.`,
                     ephemeral: true
                 });
                 break;

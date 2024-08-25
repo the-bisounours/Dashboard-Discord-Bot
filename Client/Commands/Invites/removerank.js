@@ -39,7 +39,7 @@ module.exports = {
         const rankIndex = data.invites.ranks.findIndex(rank => rank.invites === interaction.options.getNumber("invites"));
         if (rankIndex === -1) {
             return await interaction.reply({
-                content: `La récompense avec \`${interaction.options.getNumber("invites")}\` invitations n'existe pas.`,
+                content: `${client.emo.no} La récompense avec \`${interaction.options.getNumber("invites")}\` invitations n'existe pas.`,
                 ephemeral: true
             });
         };
@@ -50,7 +50,7 @@ module.exports = {
         return await interaction.reply({
             embeds: [
                 new EmbedBuilder()
-                .setDescription(`✅ Vous avez retiré la récompense de \`${interaction.options.getNumber("invites")}\` invitations en \`${new Date() - date}\`ms.`)
+                .setDescription(`${client.emo.yes} Vous avez retiré la récompense de \`${interaction.options.getNumber("invites")}\` invitations en \`${new Date() - date}\`ms.`)
                 .setFooter({
                     text: client.user.displayName,
                     iconURL: client.user.displayAvatarURL()

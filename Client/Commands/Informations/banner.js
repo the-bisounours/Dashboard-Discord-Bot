@@ -32,7 +32,7 @@ module.exports = {
 
         if(!user && !interaction.guild.banner) {
             return await interaction.reply({
-                content: `Le serveur ne possède pas de bannière.`,
+                content: `${client.emo.no} Le serveur ne possède pas de bannière.`,
                 ephemeral: true
             });
         };

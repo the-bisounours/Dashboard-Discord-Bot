@@ -55,7 +55,7 @@ module.exports = {
                 await interaction.reply({
                     embeds: [
                         new EmbedBuilder()
-                            .setDescription(`✅ Le message a été ajouté avec succès en \`${new Date() - date}\`ms.`)
+                            .setDescription(`${client.emo.yes} Le message a été ajouté avec succès en \`${new Date() - date}\`ms.`)
                             .setFooter({
                                 text: client.user.displayName,
                                 iconURL: client.user.displayAvatarURL()
@@ -74,7 +74,7 @@ module.exports = {
                 await interaction.reply({
                     embeds: [
                         new EmbedBuilder()
-                            .setDescription(`✅ Le message a été réinitialiser avec succès en \`${new Date() - date}\`ms.`)
+                            .setDescription(`${client.emo.yes} Le message a été réinitialiser avec succès en \`${new Date() - date}\`ms.`)
                             .setFooter({
                                 text: client.user.displayName,
                                 iconURL: client.user.displayAvatarURL()

@@ -38,13 +38,13 @@ module.exports = {
         })
             .then(async invite => {
                 return await interaction.reply({
-                    content: `✅ L'invitation a été crée avec succès https://discord.gg/${invite.code}`
+                    content: `${client.emo.yes} L'invitation a été crée avec succès https://discord.gg/${invite.code}`
                 });
             })
             .catch(async err => {
                 console.log(err)
                 return await interaction.reply({
-                    content: `L'invitation n'a pas été crée a cause d'une erreur.`,
+                    content: `${client.emo.no} L'invitation n'a pas été crée a cause d'une erreur.`,
                     ephemeral: true
                 });
             })

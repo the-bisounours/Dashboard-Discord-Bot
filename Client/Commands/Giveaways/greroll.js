@@ -62,7 +62,7 @@ module.exports = {
         };
 
         await interaction.reply({
-            content: `Le giveaway avec l'identifiant \`${interaction.options.getString("identifiant")}\` a été relancer.`
+            content: `${client.emo.yes} Le giveaway avec l'identifiant \`${interaction.options.getString("identifiant")}\` a été relancer.`
         });
 
         return await endGiveaway(client, giveaway.giveawayId, true);

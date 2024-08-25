@@ -62,7 +62,7 @@ module.exports = {
         };
 
         await interaction.reply({
-            content: `Le giveaway sera terminé dans quelques secondes.`,
+            content: `${client.emo.yes} Le giveaway sera terminé dans quelques secondes.`,
             ephemeral: true
         });
 

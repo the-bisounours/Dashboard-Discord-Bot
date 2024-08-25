@@ -77,12 +77,12 @@ module.exports = {
         await Promise.all(promises)
             .then(async () => {
                 return await interaction.followUp({
-                    content: `Vous avez donner \`${role.name}\` à \`${count}\` membres pour \`${raison}\`, réaliser en ${convert(Date.now() - time, "millisecondes")}.${interaction.options.getAttachment("preuve") ? ` [\`preuve\`](${interaction.options.getAttachment("preuve").url})` : ""}`,
+                    content: `${client.emo.yes} Vous avez donner \`${role.name}\` à \`${count}\` membres pour \`${raison}\`, réaliser en ${convert(Date.now() - time, "millisecondes")}.${interaction.options.getAttachment("preuve") ? ` [\`preuve\`](${interaction.options.getAttachment("preuve").url})` : ""}`,
                 });
             })
             .catch(async err => {
                 return await interaction.followUp({
-                    content: `Une erreur s'est produite.`,
+                    content: `${client.emo.no} Une erreur s'est produite.`,
                     ephemeral: true
                 });
             });

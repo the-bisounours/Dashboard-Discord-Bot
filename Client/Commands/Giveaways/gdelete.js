@@ -72,7 +72,7 @@ module.exports = {
         });
 
         return await interaction.reply({
-            content: `Le giveaway avec l'identifiant \`${interaction.options.getString("identifiant")}\` a été supprimé.`
+            content: `${client.emo.yes} Le giveaway avec l'identifiant \`${interaction.options.getString("identifiant")}\` a été supprimé.`
         });
     }
 };

@@ -18,7 +18,7 @@ module.exports = {
 
         if(interaction.guild.members.cache.filter(member => member.permissions.has(PermissionFlagsBits.ModerateMembers) && !member.user.bot).size <= 0) {
             return await interaction.reply({
-                content: `Il n'y a aucun modérateur.`,
+                content: `${client.emo.no} Il n'y a aucun modérateur.`,
                 ephemeral: true
             });
         };

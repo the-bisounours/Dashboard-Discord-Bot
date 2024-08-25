@@ -276,7 +276,7 @@ module.exports = {
                 await giveaway.save();
 
                 await interaction.reply({
-                    content: `Un giveaway pour \`${prize}\` a été créé avec l'identifiant suivant: \`${giveaway.giveawayId}\`\nÇa finira <t:${Math.round(new Date().setMilliseconds(new Date().getMilliseconds() + time) / 1000)}:R>`,
+                    content: `${client.emo.yes} Un giveaway pour \`${prize}\` a été créé avec l'identifiant suivant: \`${giveaway.giveawayId}\`\nÇa finira <t:${Math.round(new Date().setMilliseconds(new Date().getMilliseconds() + time) / 1000)}:R>`,
                     ephemeral: true
                 });
 

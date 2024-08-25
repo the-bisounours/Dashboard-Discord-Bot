@@ -32,7 +32,7 @@ module.exports = {
 
         if (data.invites.ranks.length === 0) {
             return await interaction.reply({
-                content: `Il y a aucune récompense disponible sur ce serveur.`,
+                content: `${client.emo.no} Il y a aucune récompense disponible sur ce serveur.`,
                 ephemeral: true
             });
         };

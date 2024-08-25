@@ -109,7 +109,7 @@ module.exports = {
         if (!member.user.bot) {
             try {
                 await member.send({
-                    content: `Vous avez reçu \`${role.name}\` par \`${interaction.user.displayName}\` pour \`${raison}\`.${interaction.options.getAttachment("preuve") ? ` [\`preuve\`](${interaction.options.getAttachment("preuve").url})` : ""}`,
+                    content: `${client.emo.yes} Vous avez reçu \`${role.name}\` par \`${interaction.user.displayName}\` pour \`${raison}\`.${interaction.options.getAttachment("preuve") ? ` [\`preuve\`](${interaction.options.getAttachment("preuve").url})` : ""}`,
                     components: [
                         new ActionRowBuilder()
                             .addComponents(
@@ -131,12 +131,12 @@ module.exports = {
         })
             .then(async addInfo => {
                 return await interaction.reply({
-                    content: `Vous avez donner \`${role.name}\` à \`${addInfo.displayName}\` pour \`${raison}\`.${interaction.options.getAttachment("preuve") ? ` [\`preuve\`](${interaction.options.getAttachment("preuve").url})` : ""}`,
+                    content: `${client.emo.yes} Vous avez donner \`${role.name}\` à \`${addInfo.displayName}\` pour \`${raison}\`.${interaction.options.getAttachment("preuve") ? ` [\`preuve\`](${interaction.options.getAttachment("preuve").url})` : ""}`,
                 });
             })
             .catch(async err => {
                 return await interaction.reply({
-                    content: `\`${member.user.displayName}\` n'a pas reçu le rôle à cause d'une erreur.`,
+                    content: `${client.emo.no} \`${member.user.displayName}\` n'a pas reçu le rôle à cause d'une erreur.`,
                     ephemeral: true
                 });
             });

@@ -50,7 +50,7 @@ module.exports = {
 
         if (data.invites.ranks.filter(rank => rank.invites === interaction.options.getNumber("invites")).length !== 0) {
             return await interaction.reply({
-                content: `Une récompense est déjà présente pour \`${interaction.options.getNumber("invites")}\` invitations.`,
+                content: `${client.emo.no} Une récompense est déjà présente pour \`${interaction.options.getNumber("invites")}\` invitations.`,
                 ephemeral: true
             });
         };
@@ -66,7 +66,7 @@ module.exports = {
         return await interaction.reply({
             embeds: [
                 new EmbedBuilder()
-                .setDescription(`✅ Vous avez ajouté le rôle ${interaction.options.getRole("role")} pour \`${interaction.options.getNumber("invites")}\` invitations en \`${new Date() - date}\`ms.`)
+                .setDescription(`${client.emo.yes} Vous avez ajouté le rôle ${interaction.options.getRole("role")} pour \`${interaction.options.getNumber("invites")}\` invitations en \`${new Date() - date}\`ms.`)
                 .setFooter({
                     text: client.user.displayName,
                     iconURL: client.user.displayAvatarURL()

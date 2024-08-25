@@ -126,7 +126,7 @@ module.exports = {
         if (!member.user.bot) {
             try {
                 await member.send({
-                    content: `Vous avez été bannis par \`${interaction.user.displayName}\` pour \`${raison}\`.${interaction.options.getAttachment("preuve") ? ` [\`preuve\`](${interaction.options.getAttachment("preuve").url})` : ""}`,
+                    content: `${client.emo.yes} Vous avez été bannis par \`${interaction.user.displayName}\` pour \`${raison}\`.${interaction.options.getAttachment("preuve") ? ` [\`preuve\`](${interaction.options.getAttachment("preuve").url})` : ""}`,
                     components: [
                         new ActionRowBuilder()
                             .addComponents(
@@ -147,12 +147,12 @@ module.exports = {
         })
             .then(async banInfo => {
                 return await interaction.reply({
-                    content: `Vous avez bannis \`${banInfo.username}\` pour \`${raison}\`.${interaction.options.getAttachment("preuve") ? ` [\`preuve\`](${interaction.options.getAttachment("preuve").url})` : ""}`,
+                    content: `${client.emo.yes} Vous avez bannis \`${banInfo.username}\` pour \`${raison}\`.${interaction.options.getAttachment("preuve") ? ` [\`preuve\`](${interaction.options.getAttachment("preuve").url})` : ""}`,
                 });
             })
             .catch(async err => {
                 return await interaction.reply({
-                    content: `\`${member.user.displayName}\` n'a pas été bannis à cause d'une erreur.`,
+                    content: `${client.emo.no} \`${member.user.displayName}\` n'a pas été bannis à cause d'une erreur.`,
                     ephemeral: true
                 });
             });
