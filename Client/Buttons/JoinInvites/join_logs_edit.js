@@ -13,7 +13,7 @@ module.exports = {
 
         if(interaction.user.id !== interaction.message.interaction.user.id) {
             return await interaction.reply({
-                content: "Vous n'êtes pas l'auteur de cette commande.",
+                content: `${client.emo.no} Vous n'êtes pas l'auteur de cette commande.`,
                 ephemeral: true
             });
         };
@@ -47,7 +47,7 @@ module.exports = {
                         new ButtonBuilder()
                             .setCustomId("delete")
                             .setDisabled(false)
-                            .setEmoji("❌")
+                            .setEmoji(`${client.emo.no}`)
                             .setLabel("Annuler")
                             .setStyle(ButtonStyle.Danger)
                     )

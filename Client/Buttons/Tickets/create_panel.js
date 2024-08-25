@@ -16,7 +16,7 @@ module.exports = {
 
         if (interaction.user.id !== interaction.message.interaction.user.id) {
             return await interaction.reply({
-                content: "Vous n'êtes pas l'auteur de cette commande.",
+                content: `${client.emo.no} Vous n'êtes pas l'auteur de cette commande.`,
                 ephemeral: true
             });
         };
@@ -34,7 +34,7 @@ module.exports = {
 
         if (data.tickets.panels.length >= 3) {
             return await interaction.reply({
-                content: "Vous avez atteint la limite de panneau.",
+                content: `${client.emo.no} Vous avez atteint la limite de panneau.`,
                 ephemeral: true
             });
         };

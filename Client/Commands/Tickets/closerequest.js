@@ -69,13 +69,13 @@ module.exports = {
                             .setCustomId("accept_close")
                             .setLabel("Accepter et fermer")
                             .setDisabled(false)
-                            .setEmoji("✅")
+                            .setEmoji(`${client.emo.yes}`)
                             .setStyle(ButtonStyle.Success),
                         new ButtonBuilder()
                             .setCustomId("deny_close")
                             .setLabel("Refuser et rester ouvert")
                             .setDisabled(false)
-                            .setEmoji("❌")
+                            .setEmoji(`${client.emo.no}`)
                             .setStyle(ButtonStyle.Danger)
                     )
             ]

@@ -13,7 +13,7 @@ module.exports = {
 
         if (interaction.user.id !== interaction.message.interaction.user.id) {
             return await interaction.reply({
-                content: "Vous n'êtes pas l'auteur de cette commande.",
+                content: `${client.emo.no} Vous n'êtes pas l'auteur de cette commande.`,
                 ephemeral: true
             });
         };
@@ -125,7 +125,7 @@ module.exports = {
                             new ButtonBuilder()
                                 .setCustomId("dbdrop")
                                 .setDisabled(false)
-                                .setEmoji("🗑️")
+                                .setEmoji(`${client.emo.delete}`)
                                 .setLabel("Réinitialiser la database")
                                 .setStyle(ButtonStyle.Danger)
                         )

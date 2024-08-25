@@ -28,17 +28,17 @@ module.exports = {
                     .setColor("Blurple")
                     .addFields(
                         {
-                            name: "🤖 Robot",
+                            name: `${client.emo.robot} Robot`,
                             value: `> \`${Date.now() - interaction.createdTimestamp}\` ms.`,
                             inline: true
                         },
                         {
-                            name: "🌍 API Discord",
+                            name: `${client.emo.region} API Discord`,
                             value: `> \`${Math.round(client.ws.ping)}\` ms.`,
                             inline: true
                         },
                         {
-                            name: "⏹️ MongoDB",
+                            name: `${client.emo.home} MongoDB`,
                             value: `> \`${ping}\` ms.`,
                             inline: true
                         }
@@ -58,7 +58,7 @@ module.exports = {
                         new ButtonBuilder()
                             .setCustomId("delete")
                             .setDisabled(false)
-                            .setEmoji("🗑️")
+                            .setEmoji(`${client.emo.delete}`)
                             .setStyle(ButtonStyle.Danger)
                     )
             ]

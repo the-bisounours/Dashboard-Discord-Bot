@@ -13,7 +13,7 @@ module.exports = {
 
         if (interaction.user.id !== interaction.message.interaction.user.id) {
             return await interaction.reply({
-                content: "Vous n'êtes pas l'auteur de cette commande.",
+                content: `${client.emo.no} Vous n'êtes pas l'auteur de cette commande.`,
                 ephemeral: true
             });
         };
@@ -48,19 +48,19 @@ module.exports = {
                         new ButtonBuilder()
                             .setCustomId("ticket_enabled")
                             .setDisabled(false)
-                            .setEmoji(data.tickets.settings.enabled ? "❌" : "✅")
+                            .setEmoji(data.tickets.settings.enabled ? `${client.emo.no}` : `${client.emo.yes}`)
                             .setLabel(data.tickets.settings.enabled ? "Désactivé les tickets" : "Activé les tickets")
                             .setStyle(data.tickets.settings.enabled ? ButtonStyle.Danger : ButtonStyle.Success),
                         new ButtonBuilder()
                             .setCustomId("autoclose_enabled")
                             .setDisabled(false)
-                            .setEmoji(data.tickets.settings.autoclose ? "❌" : "✅")
+                            .setEmoji(data.tickets.settings.autoclose ? `${client.emo.no}` : `${client.emo.yes}`)
                             .setLabel(data.tickets.settings.autoclose ? "Désactivé l'autoclose" : "Activé l'autoclose")
                             .setStyle(data.tickets.settings.autoclose ? ButtonStyle.Danger : ButtonStyle.Success),
                         new ButtonBuilder()
                             .setCustomId("threads_enabled")
                             .setDisabled(false)
-                            .setEmoji(data.tickets.settings.threads.enabled ? "❌" : "✅")
+                            .setEmoji(data.tickets.settings.threads.enabled ? `${client.emo.no}` : `${client.emo.yes}`)
                             .setLabel(data.tickets.settings.threads.enabled ? "Désactivé les threads" : "Activé les threads")
                             .setStyle(data.tickets.settings.threads.enabled ? ButtonStyle.Danger : ButtonStyle.Success)
                     ),

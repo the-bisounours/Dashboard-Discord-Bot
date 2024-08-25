@@ -15,7 +15,7 @@ module.exports = {
 
         if (interaction.user.id !== interaction.message.interaction.user.id) {
             return await interaction.reply({
-                content: "Vous n'êtes pas l'auteur de cette commande.",
+                content: `${client.emo.no} Vous n'êtes pas l'auteur de cette commande.`,
                 ephemeral: true
             });
         };
@@ -62,19 +62,19 @@ module.exports = {
                         new ButtonBuilder()
                             .setCustomId("join_vanity_edit")
                             .setDisabled(false)
-                            .setEmoji("✏️")
+                            .setEmoji(`${client.emo.pencil}`)
                             .setLabel("Modifier")
                             .setStyle(ButtonStyle.Primary),
                         new ButtonBuilder()
                             .setCustomId("join_vanity_reset")
                             .setDisabled(false)
-                            .setEmoji("🗑️")
+                            .setEmoji(`${client.emo.delete}`)
                             .setLabel("Réinitialiser")
                             .setStyle(ButtonStyle.Danger),
                         new ButtonBuilder()
                             .setCustomId("delete")
                             .setDisabled(false)
-                            .setEmoji("❌")
+                            .setEmoji(`${client.emo.no}`)
                             .setLabel("Annuler")
                             .setStyle(ButtonStyle.Danger)
                     )

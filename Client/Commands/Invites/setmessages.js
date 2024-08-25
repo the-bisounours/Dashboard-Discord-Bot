@@ -69,7 +69,7 @@ module.exports = {
                                 new ButtonBuilder()
                                     .setCustomId("join_msg_self")
                                     .setDisabled(false)
-                                    .setEmoji("⛔")
+                                    .setEmoji(`${client.emo.plus}`)
                                     .setStyle(ButtonStyle.Primary),
                                 new ButtonBuilder()
                                     .setCustomId("join_msg_unknown")
@@ -84,7 +84,7 @@ module.exports = {
                                 new ButtonBuilder()
                                     .setCustomId("delete")
                                     .setDisabled(false)
-                                    .setEmoji("❌")
+                                    .setEmoji(`${client.emo.no}`)
                                     .setStyle(ButtonStyle.Danger)
                             )
                     ]
@@ -132,7 +132,7 @@ module.exports = {
                                 new ButtonBuilder()
                                     .setCustomId("delete")
                                     .setDisabled(false)
-                                    .setEmoji("❌")
+                                    .setEmoji(`${client.emo.no}`)
                                     .setStyle(ButtonStyle.Danger)
                             )
                     ]

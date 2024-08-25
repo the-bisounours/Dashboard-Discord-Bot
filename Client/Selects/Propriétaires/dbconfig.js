@@ -14,7 +14,7 @@ module.exports = {
 
         if (interaction.user.id !== interaction.message.interaction.user.id) {
             return await interaction.reply({
-                content: "Vous n'êtes pas l'auteur de cette commande.",
+                content: `${client.emo.no} Vous n'êtes pas l'auteur de cette commande.`,
                 ephemeral: true
             });
         };
@@ -60,13 +60,13 @@ module.exports = {
                         new ButtonBuilder()
                             .setCustomId(`dbedit_${interaction.values[0]}_${data._id}`)
                             .setLabel("Modifier le schema")
-                            .setEmoji("✏️")
+                            .setEmoji(`${client.emo.pencil}`)
                             .setDisabled(false)
                             .setStyle(ButtonStyle.Primary),
                         new ButtonBuilder()
                             .setCustomId(`dbdelete_${interaction.values[0]}_${data._id}`)
                             .setLabel("Supprimer le schema")
-                            .setEmoji("🗑️")
+                            .setEmoji(`${client.emo.delete}`)
                             .setDisabled(false)
                             .setStyle(ButtonStyle.Danger)
                     )

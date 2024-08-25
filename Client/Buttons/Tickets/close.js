@@ -28,7 +28,7 @@ module.exports = {
                         new ButtonBuilder()
                             .setCustomId("close_confirm")
                             .setDisabled(false)
-                            .setEmoji("✅")
+                            .setEmoji(`${client.emo.yes}`)
                             .setLabel("Fermé le ticket")
                             .setStyle(ButtonStyle.Success)
                     )

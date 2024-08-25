@@ -244,7 +244,7 @@ module.exports = {
                             .setCustomId("enter_giveaway")
                             .setLabel("Participer au giveaway")
                             .setDisabled(false)
-                            .setEmoji("🎉")
+                            .setEmoji(`${client.emo.gift}`)
                             .setStyle(ButtonStyle.Primary)
                     )
             ]

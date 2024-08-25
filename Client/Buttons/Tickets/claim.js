@@ -29,14 +29,14 @@ module.exports = {
 
         if (!ticket) {
             return await interaction.reply({
-                content: "Impossible de trouver la base du ticket.",
+                content: `${client.emo.no} Impossible de trouver la base du ticket.`,
                 ephemeral: true
             });
         };
 
         if (ticket.claimed && interaction.guild.members.cache.get(ticket.claimedId)) {
             return await interaction.reply({
-                content: `${interaction.guild.members.cache.get(ticket.claimedId)} à déjà réclamé le ticket.`,
+                content: `${client.emo.no} ${interaction.guild.members.cache.get(ticket.claimedId)} à déjà réclamé le ticket.`,
                 ephemeral: true
             });
         };
@@ -52,13 +52,13 @@ module.exports = {
                         new ButtonBuilder()
                             .setCustomId("close")
                             .setDisabled(false)
-                            .setEmoji("🔒")
+                            .setEmoji(`${client.emo.lock}`)
                             .setLabel("Fermé")
                             .setStyle(ButtonStyle.Danger),
                         new ButtonBuilder()
                             .setCustomId("close_reason")
                             .setDisabled(false)
-                            .setEmoji("🔒")
+                            .setEmoji(`${client.emo.lock}`)
                             .setLabel("Fermé avec raison")
                             .setStyle(ButtonStyle.Danger)
                     )

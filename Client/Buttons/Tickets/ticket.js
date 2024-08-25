@@ -25,7 +25,7 @@ module.exports = {
 
         if (!data.tickets.settings.enabled) {
             return await interaction.reply({
-                content: "Les tickets ne sont pas activé.",
+                content: `${client.emo.no} Les tickets ne sont pas activé.`,
                 ephemeral: true
             });
         };
@@ -118,13 +118,13 @@ module.exports = {
                                         new ButtonBuilder()
                                             .setCustomId("close")
                                             .setDisabled(false)
-                                            .setEmoji("🔒")
+                                            .setEmoji(`${client.emo.lock}`)
                                             .setLabel("Fermé")
                                             .setStyle(ButtonStyle.Danger),
                                         new ButtonBuilder()
                                             .setCustomId("close_reason")
                                             .setDisabled(false)
-                                            .setEmoji("🔒")
+                                            .setEmoji(`${client.emo.lock}`)
                                             .setLabel("Fermé avec raison")
                                             .setStyle(ButtonStyle.Danger)
                                     )
@@ -233,19 +233,19 @@ module.exports = {
                                     new ButtonBuilder()
                                         .setCustomId("close")
                                         .setDisabled(false)
-                                        .setEmoji("🔒")
+                                        .setEmoji(`${client.emo.lock}`)
                                         .setLabel("Fermé")
                                         .setStyle(ButtonStyle.Danger),
                                     new ButtonBuilder()
                                         .setCustomId("close_reason")
                                         .setDisabled(false)
-                                        .setEmoji("🔒")
+                                        .setEmoji(`${client.emo.lock}`)
                                         .setLabel("Fermé avec raison")
                                         .setStyle(ButtonStyle.Danger),
                                     new ButtonBuilder()
                                         .setCustomId("claim")
                                         .setDisabled(false)
-                                        .setEmoji("🙋‍♂️")
+                                        .setEmoji(`${client.emo.user}`)
                                         .setLabel("Réclamer")
                                         .setStyle(ButtonStyle.Success)
                                 )

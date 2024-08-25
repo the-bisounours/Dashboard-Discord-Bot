@@ -39,7 +39,7 @@ module.exports = async (client, id, rerollCommand) => {
 
     const participants = await filterParticipants(client, guild, giveaway);
     if (participants.length === 0) {
-        await editComponentsAndStatus(message, giveaway);
+        await editComponentsAndStatus(client, message, giveaway);
         return await message.reply({
             content: `${giveaway.participants.length === 0 ? `${client.emo.no} Aucune personne n'a participer a ce concours.` : `${client.emo.no} ${giveaway.participants.length === 1 ? "Le participant n'a pas" : `Les \`${giveaway.participants.length}\` participants n'ont pas`} les conditions pour gagner le concours.`}`
         });
@@ -47,13 +47,13 @@ module.exports = async (client, id, rerollCommand) => {
 
     const winners = selectWinners(participants, giveaway.settings.winners);
     if (winners.length === 0) {
-        await editComponentsAndStatus(message, giveaway);
+        await editComponentsAndStatus(client, message, giveaway);
         return await message.reply({
             content: `${client.emo.no} Aucune personne n'a gagner a ce concours.`
         });
     };
 
-    await editComponentsAndStatus(message, giveaway);
+    await editComponentsAndStatus(client, message, giveaway);
     const winnerUsers = await Promise.all(winners.map(id => client.users.fetch(id)));
     return await message.reply({
         content: `🎉 Le${winners.length > 1 ? "s": ""} gagant${winners.length > 1 ? "s": ""} pour \`${giveaway.prize}\` ${winners.length > 1 ? "sont": "est"} ${winnerUsers.map(user => user).join(" ")} !`
@@ -66,7 +66,7 @@ module.exports = async (client, id, rerollCommand) => {
  * @param {Message} message 
  * @param {Object} giveaway 
  */
-async function editComponentsAndStatus(message, giveaway) {
+async function editComponentsAndStatus(client, message, giveaway) {
 
     giveaway.status = "ended";
     await giveaway.save();
@@ -79,13 +79,13 @@ async function editComponentsAndStatus(message, giveaway) {
                         .setCustomId("enter_giveaway")
                         .setLabel("Giveaway terminé !")
                         .setDisabled(true)
-                        .setEmoji("🎉")
+                        .setEmoji(`${client.emo.gift}`)
                         .setStyle(ButtonStyle.Primary),
                     new ButtonBuilder()
                         .setCustomId("participants")
                         .setLabel(`${giveaway.participants.length} participant${giveaway.participants.length > 1 ? "s" : ""}`)
                         .setDisabled(true)
-                        .setEmoji("✏️")
+                        .setEmoji(`${client.emo.pencil}`)
                         .setStyle(ButtonStyle.Secondary)
                 )
         ]

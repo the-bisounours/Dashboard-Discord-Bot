@@ -14,7 +14,7 @@ module.exports = {
 
         if (interaction.user.id !== interaction.message.content.replace("<", "").replace("@", "").replace(">", "")) {
             return await interaction.reply({
-                content: "Vous n'êtes pas l'auteur de cette commande.",
+                content: `${client.emo.no} Vous n'êtes pas l'auteur de cette commande.`,
                 ephemeral: true
             });
         };

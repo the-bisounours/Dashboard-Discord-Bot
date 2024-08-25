@@ -13,14 +13,14 @@ module.exports = {
         const threadChannel = interaction.guild.channels.cache.get(interaction.customId.split("_")[2]);
         if(!threadChannel) {
             return await interaction.reply({
-                content: "Le salon n'existe plus.",
+                content: `${client.emo.no} Le salon n'existe plus.`,
                 ephemeral: true
             });
         };
 
         await threadChannel.members.add(interaction.user).catch(async err => {
             return await interaction.reply({
-                content: "Je ne vous ai pas ajouter au ticket à cause d'une erreur.",
+                content: `${client.emo.no} Je ne vous ai pas ajouter au ticket à cause d'une erreur.`,
                 ephemeral: true
             });
         });

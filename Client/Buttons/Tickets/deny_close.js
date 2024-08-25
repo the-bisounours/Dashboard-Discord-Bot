@@ -30,7 +30,7 @@ module.exports = {
 
         if (interaction.user.id !== ticket.userId) {
             return await interaction.reply({
-                content: "Vous n'êtes pas l'auteur de ce ticket.",
+                content: `${client.emo.no} Vous n'êtes pas l'auteur de ce ticket.`,
                 ephemeral: true
             });
         };

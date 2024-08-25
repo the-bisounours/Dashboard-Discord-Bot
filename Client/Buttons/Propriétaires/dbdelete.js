@@ -113,7 +113,7 @@ module.exports = {
                         new ButtonBuilder()
                             .setCustomId("dbdrop")
                             .setDisabled(false)
-                            .setEmoji("🗑️")
+                            .setEmoji(`${client.emo.delete}`)
                             .setLabel("Réinitialiser la database")
                             .setStyle(ButtonStyle.Danger)
                     )

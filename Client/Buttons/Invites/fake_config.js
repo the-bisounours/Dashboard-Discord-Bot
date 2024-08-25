@@ -14,7 +14,7 @@ module.exports = {
 
         if(interaction.user.id !== interaction.message.interaction.user.id) {
             return await interaction.reply({
-                content: "Vous n'êtes pas l'auteur de cette commande.",
+                content: `${client.emo.no} Vous n'êtes pas l'auteur de cette commande.`,
                 ephemeral: true
             });
         };
@@ -44,7 +44,7 @@ module.exports = {
                     })
                     .setTimestamp()
                     .setThumbnail(client.user.displayAvatarURL())
-                    .setDescription(`Le système est actuellement: ${data.invites.fake.enabled ? "✅" : "❌"} \`${data.invites.fake.enabled ? "Activé" : "Désactivé"}\` (\`${data.invites.fake.enabled ? "Les invitations doivent être considérées comme fausses en suivant les paramètres ci-dessous" : "Toutes les invitations sont considérées comme réelles"}\`)\n\n⛔ **Obligatoire:** (les utilisateurs doivent remplir toutes ces conditions)\n> - ${data.invites.fake.obligation.map(number => fakeMessage(number)).join("\n> - ")}\n\n🗑️ Réinitialiser le système par défaut`)
+                    .setDescription(`Le système est actuellement: ${data.invites.fake.enabled ? `${client.emo.yes}` : `${client.emo.no}`} \`${data.invites.fake.enabled ? "Activé" : "Désactivé"}\` (\`${data.invites.fake.enabled ? "Les invitations doivent être considérées comme fausses en suivant les paramètres ci-dessous" : "Toutes les invitations sont considérées comme réelles"}\`)\n\n⛔ **Obligatoire:** (les utilisateurs doivent remplir toutes ces conditions)\n> - ${data.invites.fake.obligation.map(number => fakeMessage(number)).join("\n> - ")}\n\n🗑️ Réinitialiser le système par défaut`)
             ],
             components: [
                 new ActionRowBuilder()
@@ -52,19 +52,19 @@ module.exports = {
                         new ButtonBuilder()
                             .setCustomId("fake_config")
                             .setDisabled(false)
-                            .setEmoji(data.invites.fake.enabled ? "❌" : "✅")
+                            .setEmoji(data.invites.fake.enabled ? `${client.emo.no}` : `${client.emo.yes}`)
                             .setLabel(data.invites.fake.enabled ? "Désactivé" : "Activé")
                             .setStyle(data.invites.fake.enabled ? ButtonStyle.Danger : ButtonStyle.Success),
                         new ButtonBuilder()
                             .setCustomId("obligation_fake_edit")
                             .setDisabled(false)
-                            .setEmoji("⛔")
+                            .setEmoji(`${client.emo.plus}`)
                             .setLabel("Obligatoire")
                             .setStyle(ButtonStyle.Primary),
                         new ButtonBuilder()
                             .setCustomId("delete")
                             .setDisabled(false)
-                            .setEmoji("❌")
+                            .setEmoji(`${client.emo.no}`)
                             .setLabel("Annuler")
                             .setStyle(ButtonStyle.Danger)
                     )

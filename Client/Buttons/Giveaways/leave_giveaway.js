@@ -41,13 +41,13 @@ module.exports = {
                             .setCustomId("enter_giveaway")
                             .setLabel("Participer au giveaway")
                             .setDisabled(false)
-                            .setEmoji("🎉")
+                            .setEmoji(`${client.emo.gift}`)
                             .setStyle(ButtonStyle.Primary),
                         new ButtonBuilder()
                             .setCustomId("participants")
                             .setLabel(`${giveaway.participants.length} participant${giveaway.participants.length > 1 ? "s": ""}`)
                             .setDisabled(true)
-                            .setEmoji("✏️")
+                            .setEmoji(`${client.emo.pencil}`)
                             .setStyle(ButtonStyle.Secondary)
                     )
             ]
