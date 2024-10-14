@@ -8,5 +8,6 @@ module.exports = {
     memberInvite: require("./memberInvite"),
     Tickets: require("./Tickets"),
     Giveaways: require("./Giveaways"),
-    Voices: require("./Voices")
+    Voices: require("./Voices"),
+    Backups: require("./Backups")
 };
